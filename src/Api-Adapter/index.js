@@ -59,6 +59,20 @@ export const fetchMe = async (token) => {
 // userPayments endpoints
 
 // cart endpoints
+export const getCart = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}/cart`, {
+      method: "GET",
+    });
+
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const addToCart
 
 // discounts endpoints
 
