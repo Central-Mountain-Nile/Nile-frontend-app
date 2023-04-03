@@ -1,3 +1,4 @@
+
 import React from 'react'
 
 const Categories = memo(() => {
@@ -7,3 +8,4 @@ const Categories = memo(() => {
 })
 
 export default Categories
+

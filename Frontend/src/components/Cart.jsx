@@ -1,3 +1,4 @@
+
 import React from 'react'
 
 const Cart = memo(() => {
@@ -7,3 +8,4 @@ const Cart = memo(() => {
 })
 
 export default Cart
+

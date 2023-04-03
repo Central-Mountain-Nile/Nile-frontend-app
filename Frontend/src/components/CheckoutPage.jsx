@@ -1,3 +1,4 @@
+
 import React from 'react'
 
 const CheckoutPage = memo(() => {
@@ -7,3 +8,4 @@ const CheckoutPage = memo(() => {
 })
 
 export default CheckoutPage
+
