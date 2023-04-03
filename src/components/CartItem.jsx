@@ -1,10 +1,9 @@
-
 import React from 'react'
 
-const CartItem = memo(() => {
+function CartItem() {
   return (
     <div>CartItem</div>
   )
-})
+}
 
 export default CartItem

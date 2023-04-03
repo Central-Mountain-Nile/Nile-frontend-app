@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Footer = memo(() => {
+function Footer() {
   return (
     <div>Footer</div>
   )
-})
+}
 
 export default Footer

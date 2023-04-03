@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Store = memo(() => {
+function Store() {
   return (
     <div>Store</div>
   )
-})
+}
 
 export default Store

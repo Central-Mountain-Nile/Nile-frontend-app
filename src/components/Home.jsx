@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Home = memo(() => {
+function Home() {
   return (
     <div>Home</div>
   )
-})
+}
 
 export default Home

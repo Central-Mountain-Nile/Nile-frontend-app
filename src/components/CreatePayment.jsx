@@ -1,9 +1,9 @@
 import React from 'react'
 
-const CreatePayment = memo(() => {
+function CreatePayment() {
   return (
     <div>CreatePayment</div>
   )
-})
+}
 
 export default CreatePayment

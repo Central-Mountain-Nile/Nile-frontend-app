@@ -1,9 +1,9 @@
 import React from 'react'
 
-const CreateItem = memo(() => {
+function CreateItem() {
   return (
     <div>CreateItem</div>
   )
-})
+}
 
 export default CreateItem

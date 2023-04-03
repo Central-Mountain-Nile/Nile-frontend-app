@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Login = memo(() => {
+function Login() {
   return (
     <div>Login</div>
   )
-})
+}
 
 export default Login

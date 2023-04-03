@@ -1,9 +1,9 @@
 import React from 'react'
 
-const DisplayItem = memo(() => {
+function DisplayItem() {
   return (
     <div>DisplayItem</div>
   )
-})
+}
 
 export default DisplayItem

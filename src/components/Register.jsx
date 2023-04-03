@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Register = memo(() => {
+function Register() {
   return (
     <div>Register</div>
   )
-})
+}
 
 export default Register

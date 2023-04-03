@@ -1,11 +1,9 @@
-
 import React from 'react'
 
-const Categories = memo(() => {
+function Categories() {
   return (
     <div>Categories</div>
   )
-})
+}
 
 export default Categories
-

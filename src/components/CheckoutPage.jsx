@@ -1,11 +1,9 @@
-
 import React from 'react'
 
-const CheckoutPage = memo(() => {
+function CheckoutPage() {
   return (
     <div>CheckoutPage</div>
   )
-})
+}
 
 export default CheckoutPage
-

@@ -1,11 +1,9 @@
-
 import React from 'react'
 
-const Cart = memo(() => {
+function Cart() {
   return (
     <div>Cart</div>
   )
-})
+}
 
 export default Cart
-

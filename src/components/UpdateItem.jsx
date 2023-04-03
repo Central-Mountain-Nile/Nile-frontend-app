@@ -1,9 +1,9 @@
 import React from 'react'
 
-const UpdateItem = memo(() => {
+function UpdateItem() {
   return (
     <div>UpdateItem</div>
   )
-})
+}
 
 export default UpdateItem

@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Profile = memo(() => {
+function Profile() {
   return (
     <div>Profile</div>
   )
-})
+}
 
 export default Profile
