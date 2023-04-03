@@ -1,4 +1,4 @@
-const BASE_URL = "";
+const BASE_URL = "https://nile-marketplace.onrender.com/api";
 
 // user endpoints
 
