@@ -1,7 +1,11 @@
-import React from "react";
 
-function Cart() {
-  return <div>Cart</div>;
-}
+import React from 'react'
 
-export default Cart;
+const Cart = memo(() => {
+  return (
+    <div>Cart</div>
+  )
+})
+
+export default Cart
+

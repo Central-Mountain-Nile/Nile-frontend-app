@@ -1,11 +1,11 @@
-import React from "react";
 
-function Categories() {
+import React from 'react'
+
+const Categories = memo(() => {
   return (
-    <div>
-      <h1>categorie</h1>
-    </div>
-  );
-}
+    <div>Categories</div>
+  )
+})
 
-export default Categories;
+export default Categories
+

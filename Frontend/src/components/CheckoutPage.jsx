@@ -1,11 +1,11 @@
-import React from "react";
 
-function CheckoutPage() {
+import React from 'react'
+
+const CheckoutPage = memo(() => {
   return (
-    <div>
-      <h1>checkOut</h1>
-    </div>
-  );
-}
+    <div>CheckoutPage</div>
+  )
+})
 
-export default CheckoutPage;
+export default CheckoutPage
+
