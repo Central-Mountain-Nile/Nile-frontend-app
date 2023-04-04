@@ -379,12 +379,12 @@ export const updateCart = async (quantity, cartItemId, token) => {
 // discounts endpoints
 
 // order endpoints
-export const getUserOrderById = async (id) => {
+export const getUserOrderById = async (id, token) => {
   try {
     const response = await fetch(`${BASE_URL}/user_order/${id}`, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}}`,
       },
     });
     const result = await response.json();
@@ -395,18 +395,16 @@ export const getUserOrderById = async (id) => {
   }
 };
 
-export const updateUserOrder = async (userId, orderId, total) => {
+export const updateUserOrder = async (fields, token) => {
   try {
     const response = await fetch(`${BASE_URL}/user_order`, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
       method: "PATCH",
       body: JSON.stringify({
-        orderId: orderId,
-        userId: userId,
-        total: total,
+        ...fields
       }),
     });
 
@@ -418,13 +416,13 @@ export const updateUserOrder = async (userId, orderId, total) => {
   }
 };
 
-export const createOrder = async (orderItemData, orderPaymentData, total) => {
+export const createOrder = async (orderItemData, orderPaymentData, total, token) => {
   try {
     const response = await fetch(`${BASE_URL}/users_order`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         orderItemData: orderItemData,
@@ -442,13 +440,13 @@ export const createOrder = async (orderItemData, orderPaymentData, total) => {
   }
 };
 
-export const deleteOrder = async (id) => {
+export const deleteOrder = async (id, token) => {
   try {
     const response = await fetch(`${BASE_URL}/users_order/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     const result = await response.json();
