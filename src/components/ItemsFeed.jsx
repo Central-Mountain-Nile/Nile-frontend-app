@@ -1,12 +1,14 @@
 import { React, useState, useEffect } from "react";
 import { getProducts } from "../Api-Adapter";
+import { useParams } from "react-router-dom";
 
 
 function ItemsFeed(props) {
   const [products, setProducts] = useState([])
-
+  const {pageNumber} = useParams()
   const retrieveProducts = async () => {
-    const allProducts = await getProducts()
+
+    const allProducts = await getProducts(pageNumber)
     setProducts(allProducts);
 }
 
