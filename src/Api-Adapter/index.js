@@ -76,8 +76,8 @@ export const fetchMe = async (token) => {
 // products endpoints
 export const getProducts = async (pageNumber, searchTerm) => {
   try {
-    if(!pageNumber){
-      pageNumber = 1
+    if (!pageNumber) {
+      pageNumber = 1;
     }
     let urlSearch = "";
     if (searchTerm) {
@@ -100,10 +100,14 @@ export const getProducts = async (pageNumber, searchTerm) => {
 };
 //getProducts()
 //getProducts(1,'searchterm')
-export const getProductsByCategory = async (categoryId, pageNumber, searchTerm) => {
+export const getProductsByCategory = async (
+  categoryId,
+  pageNumber,
+  searchTerm
+) => {
   try {
-    if(!pageNumber){
-      pageNumber = 1
+    if (!pageNumber) {
+      pageNumber = 1;
     }
     let urlSearch = "";
     if (searchTerm) {
@@ -226,7 +230,12 @@ export const getUserPaymentById = async (id) => {
   }
 };
 
-export const createUserPayment = async (paymentType, provider, accountNo, expire) => {
+export const createUserPayment = async (
+  paymentType,
+  provider,
+  accountNo,
+  expire
+) => {
   try {
     const response = await fetch(`${BASE_URL}/users_payments`, {
       method: "POST",
@@ -416,7 +425,7 @@ export const createOrder = async (orderItemData, orderPaymentData, total) => {
       body: JSON.stringify({
         orderItemData: orderItemData,
         orderPaymentData: orderPaymentData,
-        total: total
+        total: total,
       }),
     });
 
