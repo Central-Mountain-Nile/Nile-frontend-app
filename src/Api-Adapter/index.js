@@ -93,13 +93,13 @@ export const getProducts = async (pageNumber, searchTerm) => {
       }
     );
     const result = await response.json();
+
     return result;
   } catch (error) {
     throw error;
   }
 };
-//getProducts()
-//getProducts(1,'searchterm')
+
 export const getProductsByCategory = async (
   categoryId,
   pageNumber,
@@ -123,11 +123,13 @@ export const getProductsByCategory = async (
       }
     );
     const result = await response.json();
+
     return result;
   } catch (error) {
     throw error;
   }
 };
+
 export const getProductById = async (productId) => {
   try {
     const response = await fetch(`${BASE_URL}/products/product/${productId}`, {
@@ -214,12 +216,12 @@ export const postProduct = async (token, fields) => {
 };
 // userPayments endpoints
 
-export const getUserPaymentById = async (id) => {
+export const getUserPaymentById = async (id, token) => {
   try {
     const response = await fetch(`${BASE_URL}/users_payments/${id}`, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     const result = await response.json();
@@ -234,14 +236,15 @@ export const createUserPayment = async (
   paymentType,
   provider,
   accountNo,
-  expire
+  expire,
+  token
 ) => {
   try {
     const response = await fetch(`${BASE_URL}/users_payments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         paymentType: paymentType,
@@ -260,18 +263,16 @@ export const createUserPayment = async (
   }
 };
 
-export const updateUserPayment = async (paymentType, provider, accountNo) => {
+export const updateUserPayment = async (fields, token) => {
   try {
     const response = await fetch(`${BASE_URL}/users_payments`, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
       method: "PATCH",
       body: JSON.stringify({
-        paymentType: paymentType,
-        provider: provider,
-        accountNo: accountNo,
+        ...fields,
       }),
     });
 
@@ -283,13 +284,13 @@ export const updateUserPayment = async (paymentType, provider, accountNo) => {
   }
 };
 
-export const deleteUserPayment = async (id) => {
+export const deleteUserPayment = async (id, token) => {
   try {
     const response = await fetch(`${BASE_URL}/users_payments/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     const result = await response.json();
