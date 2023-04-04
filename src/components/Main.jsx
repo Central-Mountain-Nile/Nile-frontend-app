@@ -20,7 +20,6 @@ import {
   Store,
   UpdateItem,
 } from "./";
-  } from "./";
   const Main = () => {
     return(
         <div id="main">
