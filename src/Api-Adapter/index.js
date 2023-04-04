@@ -117,7 +117,7 @@ export const getProductsByCategory = async (
     throw error;
   }
 };
-export const getProduct = async (productId) => {
+export const getProductById = async (productId) => {
   try {
     const response = await fetch(
       `${BASE_URL}/products/product/${productId}`,
@@ -141,7 +141,7 @@ export const getProduct = async (productId) => {
 export const getProductByUserName = async (username, pageNumber) =>{
   try {
     const response = await fetch(
-      `${BASE_URL}/products/${username}/${pageNumber}`,
+      `${BASE_URL}/products/user/${username}/${pageNumber}`,
       {
         method: "GET",
         headers: {
@@ -152,6 +152,59 @@ export const getProductByUserName = async (username, pageNumber) =>{
         }),
       }
     );
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    throw error;
+  }
+}
+export const deleteProduct = async (productId,token)=>{
+  try {
+    const response = await fetch(`${BASE_URL}/products/${productId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": token
+      },
+    });
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    throw error;
+  }
+}
+//fields is an object that can include(name,categoryId, description, price ,quantity, and imagURL)
+export const editProduct = async(productId,token, fields)=>{
+  try {
+    const response = await fetch(`${BASE_URL}/products/${productId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": token
+      },
+      body: JSON.stringify({
+        ...fields,
+      }),
+    });
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    throw error;
+  }
+}
+//fields is an object that must include(name,categoryId, description, price ,quantity, and imagURL)
+export const postProduct = async(token, fields)=>{
+  try {
+    const response = await fetch(`${BASE_URL}/products/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": token
+      },
+      body: JSON.stringify({
+        ...fields,
+      }),
+    });
     const result = await response.json();
     return result;
   } catch (error) {
