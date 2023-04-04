@@ -92,14 +92,18 @@ export const getProducts = async (pageNumber, searchTerm) => {
       }
     );
     const result = await response.json();
-    console.log(result)
+    console.log(result);
     return result;
   } catch (error) {
     throw error;
   }
 };
 
-export const getProductsByCategory = async (categoryId, pageNumber, searchTerm) => {
+export const getProductsByCategory = async (
+  categoryId,
+  pageNumber,
+  searchTerm
+) => {
   try {
     let urlSearch = "";
     if (searchTerm) {
@@ -115,13 +119,13 @@ export const getProductsByCategory = async (categoryId, pageNumber, searchTerm) 
       }
     );
     const result = await response.json();
-    console.log(result)
+    console.log(result);
     return result;
   } catch (error) {
     throw error;
   }
 };
-getProducts(2)
+getProducts(2);
 export const getProductById = async (productId) => {
   try {
     const response = await fetch(`${BASE_URL}/products/product/${productId}`, {
@@ -214,12 +218,12 @@ export const postProduct = async (token, fields) => {
 };
 // userPayments endpoints
 
-export const getUserPaymentById = async (id) => {
+export const getUserPaymentById = async (id, token) => {
   try {
     const response = await fetch(`${BASE_URL}/users_payments/${id}`, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     const result = await response.json();
@@ -230,13 +234,19 @@ export const getUserPaymentById = async (id) => {
   }
 };
 
-export const createUserPayment = async (paymentType, provider, accountNo, expire) => {
+export const createUserPayment = async (
+  paymentType,
+  provider,
+  accountNo,
+  expire,
+  token
+) => {
   try {
     const response = await fetch(`${BASE_URL}/users_payments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         paymentType: paymentType,
@@ -255,18 +265,16 @@ export const createUserPayment = async (paymentType, provider, accountNo, expire
   }
 };
 
-export const updateUserPayment = async (paymentType, provider, accountNo) => {
+export const updateUserPayment = async (fields, token) => {
   try {
     const response = await fetch(`${BASE_URL}/users_payments`, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
       method: "PATCH",
       body: JSON.stringify({
-        paymentType: paymentType,
-        provider: provider,
-        accountNo: accountNo,
+        ...fields,
       }),
     });
 
@@ -278,13 +286,13 @@ export const updateUserPayment = async (paymentType, provider, accountNo) => {
   }
 };
 
-export const deleteUserPayment = async (id) => {
+export const deleteUserPayment = async (id, token) => {
   try {
     const response = await fetch(`${BASE_URL}/users_payments/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     const result = await response.json();
@@ -420,7 +428,7 @@ export const createOrder = async (orderItemData, orderPaymentData, total) => {
       body: JSON.stringify({
         orderItemData: orderItemData,
         orderPaymentData: orderPaymentData,
-        total: total
+        total: total,
       }),
     });
 
