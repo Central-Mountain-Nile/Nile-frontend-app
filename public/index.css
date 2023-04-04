@@ -73,6 +73,18 @@ body {
   font-size: larger;
 }
 
+.categories {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin: auto;
+  background-color: #3A3A3A;
+  color: white;
+}
+
+
+
 .loader {
   border: 6px solid #f3f3f3;
   border-top: 6px solid rgb(44, 44, 44);
