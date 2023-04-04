@@ -4,7 +4,6 @@ const BASE_URL = "https://nile-marketplace.onrender.com/api";
 
 export const loginUser = async (username, password) => {
   try {
-    console.log(`${BASE_URL}/users/login`);
     const response = await fetch(`${BASE_URL}/users/login`, {
       method: "POST",
       headers: {
@@ -69,7 +68,6 @@ export const fetchMe = async (token) => {
       },
     });
     const result = await response.json();
-    console.log(result);
     return result;
   } catch (err) {
     console.error(err);
@@ -78,6 +76,9 @@ export const fetchMe = async (token) => {
 // products endpoints
 export const getProducts = async (pageNumber, searchTerm) => {
   try {
+    if (!pageNumber) {
+      pageNumber = 1;
+    }
     let urlSearch = "";
     if (searchTerm) {
       urlSearch = `/${searchTerm}`;
@@ -92,7 +93,7 @@ export const getProducts = async (pageNumber, searchTerm) => {
       }
     );
     const result = await response.json();
-    console.log(result);
+
     return result;
   } catch (error) {
     throw error;
@@ -105,6 +106,9 @@ export const getProductsByCategory = async (
   searchTerm
 ) => {
   try {
+    if (!pageNumber) {
+      pageNumber = 1;
+    }
     let urlSearch = "";
     if (searchTerm) {
       urlSearch = `/${searchTerm}`;
@@ -119,13 +123,13 @@ export const getProductsByCategory = async (
       }
     );
     const result = await response.json();
-    console.log(result);
+
     return result;
   } catch (error) {
     throw error;
   }
 };
-getProducts(2);
+
 export const getProductById = async (productId) => {
   try {
     const response = await fetch(`${BASE_URL}/products/product/${productId}`, {
@@ -133,9 +137,6 @@ export const getProductById = async (productId) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        searchTerm: searchTerm,
-      }),
     });
     const result = await response.json();
     return result;
@@ -143,7 +144,7 @@ export const getProductById = async (productId) => {
     throw error;
   }
 };
-export const getProductByUserName = async (username, pageNumber) => {
+export const getProductsByUserName = async (username, pageNumber) => {
   try {
     const response = await fetch(
       `${BASE_URL}/products/user/${username}/${pageNumber}`,
@@ -152,9 +153,6 @@ export const getProductByUserName = async (username, pageNumber) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          searchTerm: searchTerm,
-        }),
       }
     );
     const result = await response.json();
@@ -169,7 +167,7 @@ export const deleteProduct = async (productId, token) => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        Authorization: token,
+        Authorization: `Bearer ${token}`,
       },
     });
     const result = await response.json();
@@ -185,7 +183,7 @@ export const editProduct = async (productId, token, fields) => {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-        Authorization: token,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         ...fields,
@@ -204,7 +202,7 @@ export const postProduct = async (token, fields) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: token,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         ...fields,
@@ -304,10 +302,14 @@ export const deleteUserPayment = async (id, token) => {
 };
 
 // cart endpoints
-export const getCart = async () => {
+export const getCart = async (token) => {
   try {
     const response = await fetch(`${BASE_URL}/cart`, {
       method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     });
 
     const result = await response.json();
@@ -316,7 +318,7 @@ export const getCart = async () => {
     console.error(error);
   }
 };
-export const addToCart = async () => {
+export const addToCart = async (token) => {
   try {
     const response = await fetch(`${BASE_URL}/cart`, {
       method: "POST",
@@ -337,13 +339,13 @@ export const addToCart = async () => {
     console.error(error);
   }
 };
-export const deleteCartItem = async (id) => {
+export const deleteCartItem = async (id, token) => {
   try {
     const response = await fetch(`${BASE_URL}/carts/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     const result = await response.json();
@@ -353,12 +355,12 @@ export const deleteCartItem = async (id) => {
     console.error(err);
   }
 };
-export const updateCart = async (quantity, cartItemId) => {
+export const updateCart = async (quantity, cartItemId, token) => {
   try {
     const response = await fetch(`${BASE_URL}/carts`, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
       method: "PATCH",
       body: JSON.stringify({
@@ -378,12 +380,12 @@ export const updateCart = async (quantity, cartItemId) => {
 // discounts endpoints
 
 // order endpoints
-export const getUserOrderById = async (id) => {
+export const getUserOrderById = async (id, token) => {
   try {
     const response = await fetch(`${BASE_URL}/user_order/${id}`, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}}`,
       },
     });
     const result = await response.json();
@@ -394,18 +396,16 @@ export const getUserOrderById = async (id) => {
   }
 };
 
-export const updateUserOrder = async (userId, orderId, total) => {
+export const updateUserOrder = async (fields, token) => {
   try {
     const response = await fetch(`${BASE_URL}/user_order`, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
       method: "PATCH",
       body: JSON.stringify({
-        orderId: orderId,
-        userId: userId,
-        total: total,
+        ...fields
       }),
     });
 
@@ -417,13 +417,13 @@ export const updateUserOrder = async (userId, orderId, total) => {
   }
 };
 
-export const createOrder = async (orderItemData, orderPaymentData, total) => {
+export const createOrder = async (orderItemData, orderPaymentData, total, token) => {
   try {
     const response = await fetch(`${BASE_URL}/users_order`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         orderItemData: orderItemData,
@@ -441,13 +441,13 @@ export const createOrder = async (orderItemData, orderPaymentData, total) => {
   }
 };
 
-export const deleteOrder = async (id) => {
+export const deleteOrder = async (id, token) => {
   try {
     const response = await fetch(`${BASE_URL}/users_order/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     const result = await response.json();
