@@ -20,22 +20,16 @@ import {
   Store,
   UpdateItem,
 } from "./";
-
-const Main = () => {
-  return (
-    <>
-      <div id="main">
-        <BrowserRouter>
-          <Navbar />
-          <div>
+  } from "./";
+  const Main = () => {
+    return(
+        <div id="main">
+            <Navbar />
             <Routes>
-              <Route path="/" element={<Login />} />
+                <Route path="/" element={<Login/>}/>
             </Routes>
-          </div>
-        </BrowserRouter>
-      </div>
-    </>
-  );
-};
+        </div>
+    )
+}
 
 export default Main;
