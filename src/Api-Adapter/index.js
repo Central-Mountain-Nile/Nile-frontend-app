@@ -159,7 +159,7 @@ export const getProductByUserName = async (username, pageNumber) =>{
   }
 }
 // userPayments endpoints
-// get payment()
+
 export const getUserPaymentById = async (id) => {
   try {
     const response = await fetch(`${BASE_URL}/users_payments/${id}`, {
@@ -175,7 +175,7 @@ export const getUserPaymentById = async (id) => {
     console.error(err);
   }
 };
-// post()
+
 export const createUserPayment = async (
   paymentType,
   provider,
@@ -205,7 +205,7 @@ export const createUserPayment = async (
     console.error(err);
   }
 };
-// patch()
+
 export const updateUserPayment = async (paymentType, provider, accountNo) => {
   try {
     const response = await fetch(`${BASE_URL}/users_payments`, {
@@ -228,7 +228,7 @@ export const updateUserPayment = async (paymentType, provider, accountNo) => {
     console.error(err);
   }
 };
-// delete()
+
 export const deleteUserPayment = async (id) => {
   try {
     const response = await fetch(`${BASE_URL}/users_payments/${id}`, {
