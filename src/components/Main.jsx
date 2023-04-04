@@ -23,14 +23,18 @@ import {
 
 const Main = () => {
   return (
-    <div id="main">
-      <Navbar />
-      {/* <div>
-        <Routes>
-          <Route element={<Login />} />
-        </Routes>
-      </div> */}
-    </div>
+    <>
+      <div id="main">
+        <BrowserRouter>
+          <Navbar />
+          <div>
+            <Routes>
+              <Route path="/" element={<Login />} />
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </div>
+    </>
   );
 };
 
