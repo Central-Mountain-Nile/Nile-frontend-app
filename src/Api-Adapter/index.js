@@ -72,8 +72,6 @@ export const getCart = async () => {
   }
 };
 
-export const addToCart
-
 // discounts endpoints
 
 // order endpoints
