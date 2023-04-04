@@ -35,9 +35,8 @@ body {
   background-color: rgb(44, 44, 44);
 }
 
-.navBarBtns button {
+.linksBtn button {
   margin-left: 0px;
-  padding: 1rem;
   color: rgb(181, 179, 179);
   background-color: rgb(44, 44, 44);
   border: none;
@@ -47,13 +46,13 @@ body {
   transition: 0.5s;
 }
 
-.navBarBtns button:hover {
+.linksBtn button:hover {
   color: #FFD116;
   background-color: rgb(44, 44, 44);
   border-bottom: 2px solid #FFD116;
 }
 
-.navBarBtns button:active {
+.linksBtn button:active {
   color: rgb(181, 179, 179);
   background-color: rgb(44, 44, 44);
 }
@@ -80,7 +79,12 @@ body {
 .categories {
   display: flex;
   justify-content: center;
-  
+  position: sticky;
+  position: -webkit-sticky;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: 9998;
   margin: auto;
   background-color: #3A3A3A;
   color: white;
@@ -109,6 +113,10 @@ body {
   .categories button:active {
     color: rgb(181, 179, 179);
     background-color: #3A3A3A;
+  }
+  .product-card{
+    border: 1px solid rgb(0, 0, 0);
+    
   }
 
 
