@@ -4,13 +4,15 @@ import { useNavigate } from "react-router-dom";
 const Navbar = () => {
   return (
     <div id="navbar">
-      <h2> Logo</h2>
+      <img className="logoDash" src="/Untitled_Artwork 36.png" alt="" />
       <input type="text" className="search" />
       <ul className="links">
-        <li>Hello</li>
-        <li>My cart</li>
-        <li>Login</li>
-        <li>Logout</li>
+        <div className="navBarBtns">
+        <button>Hello</button>
+        <button>My cart</button>
+        <button>Login</button>
+        <button>Logout</button>
+        </div>
       </ul>
     </div>
   );
