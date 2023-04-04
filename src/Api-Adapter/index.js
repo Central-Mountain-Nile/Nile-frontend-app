@@ -65,7 +65,7 @@ export const fetchMe = async (token) => {
 // order endpoints
 export const getUserOrderById = async (id) => {
   try {
-    const response = await fetch(`${BASE_URL}/user_orders/${id}`, {
+    const response = await fetch(`${BASE_URL}/user_order/${id}`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -81,7 +81,7 @@ export const getUserOrderById = async (id) => {
 
 export const updateUserOrder = async (userId, orderId, total) => {
   try {
-    const response = await fetch(`${BASE_URL}/user_orders`, {
+    const response = await fetch(`${BASE_URL}/user_order`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("token")}`,
