@@ -161,7 +161,7 @@ export const deleteProduct = async (productId, token) => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        Authorization: token,
+        Authorization: `Bearer ${token}`,
       },
     });
     const result = await response.json();
@@ -177,7 +177,7 @@ export const editProduct = async (productId, token, fields) => {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-        Authorization: token,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         ...fields,
@@ -196,7 +196,7 @@ export const postProduct = async (token, fields) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: token,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         ...fields,
