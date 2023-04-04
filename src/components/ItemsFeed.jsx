@@ -1,11 +1,14 @@
 import { React, useState, useEffect } from "react";
 import { getProducts } from "../Api-Adapter";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 
 function ItemsFeed(props) {
   const [products, setProducts] = useState([])
   const {pageNumber} = useParams()
+  const next = Number(pageNumber) + 1;
+  console.log(next)
+  const previous = pageNumber - 1;
   const retrieveProducts = async () => {
 
     const allProducts = await getProducts(pageNumber)
@@ -35,6 +38,11 @@ useEffect(() => {
     ) : (
       <div className="loader"></div>
     )}
+    {
+      pageNumber != 1 ?    <Link>previousPage</Link>:null
+    }
+
+    <Link to="/itemsfeed/2"next>nextPage</Link>
   </div>
   )
 }

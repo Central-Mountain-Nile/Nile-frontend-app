@@ -54,17 +54,11 @@ const Main = () => {
       <Categories />
       <Routes>
         <Route path="/login" element={<Login setToken={setToken} />} />
-      </Routes>
-      <Routes>
         <Route path="/register" element={<Register setToken={setToken} />} />
-      </Routes>
-      <Routes>
         <Route
           path="/categories"
           element={<Categories setToken={setToken} />}
         />
-      </Routes>
-      <Routes>
         <Route path="/itemsfeed/:pageNumber" element={<ItemsFeed />} />
       </Routes>
     </div>
