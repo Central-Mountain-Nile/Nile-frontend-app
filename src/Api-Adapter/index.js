@@ -78,7 +78,53 @@ export const fetchMe = async (token) => {
 // products endpoints
 export const getProducts = async (pageNumber, searchTerm) => {
   try {
-    const response = await fetch(`${BASE_URL}/products/${pageNumber}`, {
+    let urlSearch = "";
+    if (searchTerm) {
+      urlSearch = `/${searchTerm}`;
+    }
+    const response = await fetch(
+      `${BASE_URL}/products/${pageNumber}${urlSearch}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result)
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getProductsByCategory = async (categoryId, pageNumber, searchTerm) => {
+  try {
+    let urlSearch = "";
+    if (searchTerm) {
+      urlSearch = `/${searchTerm}`;
+    }
+    const response = await fetch(
+      `${BASE_URL}/products/category/${categoryId}/${pageNumber}${urlSearch}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const result = await response.json();
+    console.log(result)
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
+getProducts(2)
+export const getProductById = async (productId) => {
+  try {
+    const response = await fetch(`${BASE_URL}/products/product/${productId}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -93,52 +139,7 @@ export const getProducts = async (pageNumber, searchTerm) => {
     throw error;
   }
 };
-export const getProductsByCategory = async (
-  categoryId,
-  pageNumber,
-  searchTerm
-) => {
-  try {
-    const response = await fetch(
-      `${BASE_URL}/products/category/${categoryId}/${pageNumber}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          searchTerm: searchTerm,
-        }),
-      }
-    );
-    const result = await response.json();
-    return result;
-  } catch (error) {
-    throw error;
-  }
-};
-export const getProductById = async (productId) => {
-  try {
-    const response = await fetch(
-      `${BASE_URL}/products/product/${productId}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          searchTerm: searchTerm,
-        }),
-      }
-    );
-    const result = await response.json();
-    return result;
-  } catch (error) {
-    throw error;
-  }
-
-};
-export const getProductByUserName = async (username, pageNumber) =>{
+export const getProductByUserName = async (username, pageNumber) => {
   try {
     const response = await fetch(
       `${BASE_URL}/products/user/${username}/${pageNumber}`,
@@ -157,14 +158,14 @@ export const getProductByUserName = async (username, pageNumber) =>{
   } catch (error) {
     throw error;
   }
-}
-export const deleteProduct = async (productId,token)=>{
+};
+export const deleteProduct = async (productId, token) => {
   try {
     const response = await fetch(`${BASE_URL}/products/${productId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": token
+        Authorization: token,
       },
     });
     const result = await response.json();
@@ -172,15 +173,15 @@ export const deleteProduct = async (productId,token)=>{
   } catch (error) {
     throw error;
   }
-}
+};
 //fields is an object that can include(name,categoryId, description, price ,quantity, and imagURL)
-export const editProduct = async(productId,token, fields)=>{
+export const editProduct = async (productId, token, fields) => {
   try {
     const response = await fetch(`${BASE_URL}/products/${productId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": token
+        Authorization: token,
       },
       body: JSON.stringify({
         ...fields,
@@ -191,15 +192,15 @@ export const editProduct = async(productId,token, fields)=>{
   } catch (error) {
     throw error;
   }
-}
+};
 //fields is an object that must include(name,categoryId, description, price ,quantity, and imagURL)
-export const postProduct = async(token, fields)=>{
+export const postProduct = async (token, fields) => {
   try {
     const response = await fetch(`${BASE_URL}/products/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": token
+        Authorization: token,
       },
       body: JSON.stringify({
         ...fields,
@@ -210,7 +211,7 @@ export const postProduct = async(token, fields)=>{
   } catch (error) {
     throw error;
   }
-}
+};
 // userPayments endpoints
 
 export const getUserPaymentById = async (id) => {
@@ -229,12 +230,7 @@ export const getUserPaymentById = async (id) => {
   }
 };
 
-export const createUserPayment = async (
-  paymentType,
-  provider,
-  accountNo,
-  expire
-) => {
+export const createUserPayment = async (paymentType, provider, accountNo, expire) => {
   try {
     const response = await fetch(`${BASE_URL}/users_payments`, {
       method: "POST",
