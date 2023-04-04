@@ -25,6 +25,9 @@ import {
     return(
         <div id="main">
             <Navbar />
+            <Routes>
+                <Route path="/" element={<Login/>}/>
+            </Routes>
         </div>
     )
 }
