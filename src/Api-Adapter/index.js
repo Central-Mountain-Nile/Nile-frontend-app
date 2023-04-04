@@ -55,7 +55,88 @@ export const fetchMe = async (token) => {
   }
 };
 // products endpoints
+export const getProducts = async (pageNumber, searchTerm) => {
+  try {
+    const response = await fetch(`${BASE_URL}/products/${pageNumber}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        searchTerm: searchTerm,
+      }),
+    });
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
+export const getProductsByCategory = async (
+  categoryId,
+  pageNumber,
+  searchTerm
+) => {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/products/category/${categoryId}/${pageNumber}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          searchTerm: searchTerm,
+        }),
+      }
+    );
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
+export const getProduct = async (productId) => {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/products/product/${productId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          searchTerm: searchTerm,
+        }),
+      }
+    );
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    throw error;
+  }
 
+};
+export const getProductByUserName = async (username, pageNumber) =>{
+  try {
+    const response = await fetch(
+      `${BASE_URL}/products/${username}/${pageNumber}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          searchTerm: searchTerm,
+        }),
+      }
+    );
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    throw error;
+  }
+}
 // userPayments endpoints
 
 // cart endpoints
