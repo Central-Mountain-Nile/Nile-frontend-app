@@ -1,5 +1,4 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { React, useState, useEffect } from "react";import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
   Navbar,
   Login,
@@ -20,12 +19,39 @@ import {
   Store,
   UpdateItem,
 } from "./";
+import { fetchMe } from "../Api-Adapter";
+
   const Main = () => {
+    const [loggedIn, setLoggedIn] = useState(false);
+    const [currentUser, setCurrentUser] = useState(null);
+    const [users, setUsers] = useState({});
+    const [searchTerm, setSearchTerm] = useState("");
+    const [token, setToken] = useState(localStorage.getItem("token"))
+
+    async function getMeUser() {
+        //only want getMe to run if token is present
+          if (token) {
+            const response = await fetchMe(token);
+            setUsers(response);
+          } else {
+            setUsers({});
+          }
+      }
+      useEffect(() => {
+        if (token) {
+          getMeUser();
+        }
+      }, [token]);
+
+
     return(
         <div id="main">
             <Navbar />
             <Routes>
-                <Route path="/" element={<Login/>}/>
+                <Route path="/login" element={<Login setToken={setToken} />}/>
+            </Routes>
+            <Routes>
+                <Route path="/register" element={<Register setToken={setToken}/>}/>
             </Routes>
         </div>
     )

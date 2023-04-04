@@ -1,30 +1,35 @@
-// import React, { useState } from "react";
-// import { loginUser } from "../Api-Adapter";
+import { React, useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { loginUser } from "../Api-Adapter";
+
 function Login() {
-//   const logIn = async ({
-//     LoggedIn,
-//     setLoggedIn,
-//     token,
-//     setToken,
-//     currentUser,
-//     setCurrentUser,
-//   }) => {
-    // const response = await logIn(userName, password);
-    // if (response.error) {
-    //   alert("Invalid Credientials");
-    // } else {
-    //   console.log(response);
-    //   setToken(response.token);
-    //   setCurrentUser(response.user);
-    //   localStorage.setItem("currentUser", JSON.stringify(response.user));
-    //   localStorage.setItem("token", JSON.stringify(response.token));
-    //   setLoggedIn(true);
-    // }
-//   };
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+
+  const logIn = async ({
+    LoggedIn,
+    setLoggedIn,
+    token,
+    setToken,
+    currentUser,
+    setCurrentUser,
+  }) => {
+    const response = await loginUser(userName, password);
+    if (response.error) {
+      alert("Invalid Credentials");
+    } else {
+      console.log(response);
+      setToken(response.token);
+      setCurrentUser(response.user);
+      localStorage.setItem("currentUser", JSON.stringify(response.user));
+      localStorage.setItem("token", JSON.stringify(response.token));
+      setLoggedIn(true);
+    }
+  };
   return (
     <div className="LoginForm">
       <h2>Please Log in</h2>
-      {/* <form
+      <form
         className="form"
         onSubmit={(e) => {
           e.preventDefault();
@@ -53,16 +58,9 @@ function Login() {
           Log In
         </button>
       </form>
-      <h2>Or Register for an Account Below</h2>
-      <Register
-        userName={userName}
-        password={password}
-        setUserName={setUserName}
-        setPassword={setPassword}
-        setLoggedIn={setLoggedIn}
-        setToken={setToken}
-        setCurrentUser={setCurrentUser}
-      /> */}
+      <Link to="/register" className="registerLink">
+            Don't have an account? Register here!
+          </Link>
     </div>
   );
 }
