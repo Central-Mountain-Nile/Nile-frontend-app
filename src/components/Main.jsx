@@ -1,25 +1,25 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
-    Navbar,
-    Login,
-    Register,
-    Home,
-    Cart,
-    CartItem,
-    Categories,
-    CheckoutPage,
-    CreateItem,
-    CreatePayment,
-    DisplayItem,
-    EditProfile,
-    Footer,
-    ItemsFeed,
-    Profile,
-    SingleItem,
-    Store,
-    UpdateItem,
-
+  Navbar,
+  Login,
+  Register,
+  Home,
+  Cart,
+  CartItem,
+  Categories,
+  CheckoutPage,
+  CreateItem,
+  CreatePayment,
+  DisplayItem,
+  EditProfile,
+  Footer,
+  ItemsFeed,
+  Profile,
+  SingleItem,
+  Store,
+  UpdateItem,
+} from "./";
   } from "./";
   const Main = () => {
     return(
@@ -32,4 +32,4 @@ import {
     )
 }
 
-export default Main
+export default Main;

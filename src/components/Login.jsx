@@ -1,8 +1,6 @@
-import React from "react";
-
+// import React, { useState } from "react";
+// import { loginUser } from "../Api-Adapter";
 function Login() {
-
-
 //   const logIn = async ({
 //     LoggedIn,
 //     setLoggedIn,
