@@ -59,10 +59,14 @@ export const fetchMe = async (token) => {
 // userPayments endpoints
 
 // cart endpoints
-export const getCart = async () => {
+export const getCart = async (token) => {
   try {
     const response = await fetch(`${BASE_URL}/cart`, {
       method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     });
 
     const result = await response.json();
@@ -71,7 +75,7 @@ export const getCart = async () => {
     console.error(error);
   }
 };
-export const addToCart = async () => {
+export const addToCart = async (token) => {
   try {
     const response = await fetch(`${BASE_URL}/cart`, {
       method: "POST",
@@ -92,13 +96,13 @@ export const addToCart = async () => {
     console.error(error);
   }
 };
-export const deleteCartItem = async (id) => {
+export const deleteCartItem = async (id, token) => {
   try {
     const response = await fetch(`${BASE_URL}/carts/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     const result = await response.json();
@@ -108,12 +112,12 @@ export const deleteCartItem = async (id) => {
     console.error(err);
   }
 };
-export const updateCart = async (quantity, cartItemId) => {
+export const updateCart = async (quantity, cartItemId, token) => {
   try {
     const response = await fetch(`${BASE_URL}/carts`, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
       },
       method: "PATCH",
       body: JSON.stringify({
