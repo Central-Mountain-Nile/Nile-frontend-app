@@ -4,7 +4,6 @@ const BASE_URL = "https://nile-marketplace.onrender.com/api";
 
 export const loginUser = async (username, password) => {
   try {
-    console.log(`${BASE_URL}/users/login`);
     const response = await fetch(`${BASE_URL}/users/login`, {
       method: "POST",
       headers: {
@@ -69,7 +68,6 @@ export const fetchMe = async (token) => {
       },
     });
     const result = await response.json();
-    console.log(result);
     return result;
   } catch (err) {
     console.error(err);
@@ -78,6 +76,9 @@ export const fetchMe = async (token) => {
 // products endpoints
 export const getProducts = async (pageNumber, searchTerm) => {
   try {
+    if(!pageNumber){
+      pageNumber = 1
+    }
     let urlSearch = "";
     if (searchTerm) {
       urlSearch = `/${searchTerm}`;
@@ -92,15 +93,18 @@ export const getProducts = async (pageNumber, searchTerm) => {
       }
     );
     const result = await response.json();
-    console.log(result)
     return result;
   } catch (error) {
     throw error;
   }
 };
-
+//getProducts()
+//getProducts(1,'searchterm')
 export const getProductsByCategory = async (categoryId, pageNumber, searchTerm) => {
   try {
+    if(!pageNumber){
+      pageNumber = 1
+    }
     let urlSearch = "";
     if (searchTerm) {
       urlSearch = `/${searchTerm}`;
@@ -115,13 +119,11 @@ export const getProductsByCategory = async (categoryId, pageNumber, searchTerm) 
       }
     );
     const result = await response.json();
-    console.log(result)
     return result;
   } catch (error) {
     throw error;
   }
 };
-getProducts(2)
 export const getProductById = async (productId) => {
   try {
     const response = await fetch(`${BASE_URL}/products/product/${productId}`, {
@@ -129,9 +131,6 @@ export const getProductById = async (productId) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        searchTerm: searchTerm,
-      }),
     });
     const result = await response.json();
     return result;
@@ -139,7 +138,7 @@ export const getProductById = async (productId) => {
     throw error;
   }
 };
-export const getProductByUserName = async (username, pageNumber) => {
+export const getProductsByUserName = async (username, pageNumber) => {
   try {
     const response = await fetch(
       `${BASE_URL}/products/user/${username}/${pageNumber}`,
@@ -148,9 +147,6 @@ export const getProductByUserName = async (username, pageNumber) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          searchTerm: searchTerm,
-        }),
       }
     );
     const result = await response.json();
