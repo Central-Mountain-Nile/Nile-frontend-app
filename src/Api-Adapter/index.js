@@ -4,7 +4,6 @@ const BASE_URL = "https://nile-marketplace.onrender.com/api";
 
 export const loginUser = async (username, password) => {
   try {
-    console.log(`${BASE_URL}/users/login`);
     const response = await fetch(`${BASE_URL}/users/login`, {
       method: "POST",
       headers: {
@@ -69,7 +68,6 @@ export const fetchMe = async (token) => {
       },
     });
     const result = await response.json();
-    console.log(result);
     return result;
   } catch (err) {
     console.error(err);
@@ -78,6 +76,9 @@ export const fetchMe = async (token) => {
 // products endpoints
 export const getProducts = async (pageNumber, searchTerm) => {
   try {
+    if (!pageNumber) {
+      pageNumber = 1;
+    }
     let urlSearch = "";
     if (searchTerm) {
       urlSearch = `/${searchTerm}`;
@@ -92,15 +93,22 @@ export const getProducts = async (pageNumber, searchTerm) => {
       }
     );
     const result = await response.json();
-    console.log(result)
     return result;
   } catch (error) {
     throw error;
   }
 };
-
-export const getProductsByCategory = async (categoryId, pageNumber, searchTerm) => {
+//getProducts()
+//getProducts(1,'searchterm')
+export const getProductsByCategory = async (
+  categoryId,
+  pageNumber,
+  searchTerm
+) => {
   try {
+    if (!pageNumber) {
+      pageNumber = 1;
+    }
     let urlSearch = "";
     if (searchTerm) {
       urlSearch = `/${searchTerm}`;
@@ -115,13 +123,11 @@ export const getProductsByCategory = async (categoryId, pageNumber, searchTerm) 
       }
     );
     const result = await response.json();
-    console.log(result)
     return result;
   } catch (error) {
     throw error;
   }
 };
-getProducts(2)
 export const getProductById = async (productId) => {
   try {
     const response = await fetch(`${BASE_URL}/products/product/${productId}`, {
@@ -129,9 +135,6 @@ export const getProductById = async (productId) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        searchTerm: searchTerm,
-      }),
     });
     const result = await response.json();
     return result;
@@ -139,7 +142,7 @@ export const getProductById = async (productId) => {
     throw error;
   }
 };
-export const getProductByUserName = async (username, pageNumber) => {
+export const getProductsByUserName = async (username, pageNumber) => {
   try {
     const response = await fetch(
       `${BASE_URL}/products/user/${username}/${pageNumber}`,
@@ -148,9 +151,6 @@ export const getProductByUserName = async (username, pageNumber) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          searchTerm: searchTerm,
-        }),
       }
     );
     const result = await response.json();
@@ -165,7 +165,7 @@ export const deleteProduct = async (productId, token) => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        Authorization: token,
+        Authorization: `Bearer ${token}`,
       },
     });
     const result = await response.json();
@@ -181,7 +181,7 @@ export const editProduct = async (productId, token, fields) => {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-        Authorization: token,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         ...fields,
@@ -200,7 +200,7 @@ export const postProduct = async (token, fields) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: token,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         ...fields,
@@ -230,7 +230,12 @@ export const getUserPaymentById = async (id) => {
   }
 };
 
-export const createUserPayment = async (paymentType, provider, accountNo, expire) => {
+export const createUserPayment = async (
+  paymentType,
+  provider,
+  accountNo,
+  expire
+) => {
   try {
     const response = await fetch(`${BASE_URL}/users_payments`, {
       method: "POST",
@@ -424,7 +429,7 @@ export const createOrder = async (orderItemData, orderPaymentData, total) => {
       body: JSON.stringify({
         orderItemData: orderItemData,
         orderPaymentData: orderPaymentData,
-        total: total
+        total: total,
       }),
     });
 
