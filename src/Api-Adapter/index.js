@@ -370,6 +370,44 @@ export const updateCart = async (quantity, cartItemId) => {
 // discounts endpoints
 
 // order endpoints
+export const getUserOrderById = async (id) => {
+  try {
+    const response = await fetch(`${BASE_URL}/user_order/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const updateUserOrder = async (userId, orderId, total) => {
+  try {
+    const response = await fetch(`${BASE_URL}/user_order`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      method: "PATCH",
+      body: JSON.stringify({
+        orderId: orderId,
+        userId: userId,
+        total: total,
+      }),
+    });
+
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 export const createOrder = async (orderItemData, orderPaymentData, total) => {
   try {
