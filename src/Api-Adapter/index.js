@@ -304,3 +304,44 @@ export const deleteUserPayment = async (id) => {
 // discounts endpoints
 
 // order endpoints
+
+export const createOrder = async (orderItemData, orderPaymentData, total) => {
+  try {
+    const response = await fetch(`${BASE_URL}/users_order`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify({
+        orderItemData: orderItemData,
+        orderPaymentData: orderPaymentData,
+        total: total
+      }),
+    });
+
+    const result = await response.json();
+
+    console.log(result);
+    return result;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const deleteOrder = async (id) => {
+  try {
+    const response = await fetch(`${BASE_URL}/users_order/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (err) {
+    console.error(err);
+  }
+};
