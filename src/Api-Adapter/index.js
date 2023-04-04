@@ -63,3 +63,41 @@ export const fetchMe = async (token) => {
 // discounts endpoints
 
 // order endpoints
+export const getUserOrderById = async (id) => {
+  try {
+    const response = await fetch(`${BASE_URL}/user_orders/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const updateUserOrder = async (userId, orderId, total) => {
+  try {
+    const response = await fetch(`${BASE_URL}/user_orders`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      method: "PATCH",
+      body: JSON.stringify({
+        orderId: orderId,
+        userId: userId,
+        total: total,
+      }),
+    });
+
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (err) {
+    console.error(err);
+  }
+};
