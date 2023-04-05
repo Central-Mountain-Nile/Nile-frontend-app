@@ -145,3 +145,28 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.productName {
+  text-decoration: underline;
+  color: #f3f3f3;
+  font-size: large;
+}
+
+.product-card-cart {
+  background-color: #9a9a9a;
+  border: 1px solid rgb(0, 0, 0);
+  padding-left: 2%;
+}
+
+.product-card-cart:nth-child(odd) {
+  background-color: #727272;
+}
+
+.productPrice {
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.cart-quantity {
+  font-weight: 600;
+}

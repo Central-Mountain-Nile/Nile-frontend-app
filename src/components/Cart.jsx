@@ -19,14 +19,14 @@ const cart = {cartItems:[{id: 1,name:"product1", price:12,quantity:43},{id: 2,na
 
 
   return (
-    <div>Cart
+    <div className="cart"> <h1>Cart</h1>
     { cart.cartItems? (
       cart.cartItems.map((product) => {
         return (
-          <div className="product-card" key={'cart' + product.id}>
-            <h2>{product.name}</h2>
-            <p>${product.price}</p>
-            <p>Quantity: {product.quantity}</p>
+          <div className="product-card-cart" key={'cart' + product.id}>
+            <h2 className="productName">{product.name}</h2>
+            <p className="productPrice">${product.price}</p>
+            <p className="cart-quantity">Quantity: {product.quantity}</p>
           </div>
         );
       })
