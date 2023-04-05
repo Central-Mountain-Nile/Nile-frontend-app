@@ -60,6 +60,7 @@ const Main = () => {
           element={<Categories setToken={setToken} />}
         />
         <Route path="/itemsfeed/:pageNumber" element={<ItemsFeed />} />
+        <Route path="/cart" element={<Cart />} token={token}/>
       </Routes>
     </div>
   );
