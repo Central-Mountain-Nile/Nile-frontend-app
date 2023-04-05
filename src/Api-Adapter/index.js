@@ -1,5 +1,5 @@
-const BASE_URL = "https://nile-marketplace.onrender.com/api";
-
+//const BASE_URL = "https://nile-marketplace.onrender.com/api";
+const BASE_URL ="http://localhost:8080/api/"
 // user endpoints
 
 export const loginUser = async (username, password) => {
@@ -21,17 +21,7 @@ export const loginUser = async (username, password) => {
   }
 };
 export const registerUser = async (
-  firstName,
-  lastName,
-  username,
-  password,
-  addressLineOne,
-  addressLineTwo,
-  city,
-  state,
-  country,
-  postalCode,
-  email
+  fields
 ) => {
   try {
     const response = await fetch(`${BASE_URL}/users/register`, {
@@ -40,17 +30,7 @@ export const registerUser = async (
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        firstName: firstName,
-        lastName: lastName,
-        username: username,
-        password: password,
-        addressLineOne: addressLineOne,
-        addressLineTwo: addressLineTwo,
-        city: city,
-        state: state,
-        country: country,
-        postalCode: postalCode,
-        email: email,
+        ...fields
       }),
     });
     const result = await response.json();

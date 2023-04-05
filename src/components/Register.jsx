@@ -12,9 +12,9 @@ function Register(props) {
   const [address2, setAddress2] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
-  const [zip, setZip] = useState("");
+  const [postalCode, setPostalCode] = useState("");
   const [country, setCountry] = useState("");
-  const setToken = props.setToken
+  const setToken = props.setToken;
 
   const [user, setUser] = useState("");
 
@@ -27,23 +27,28 @@ function Register(props) {
     }
 
     try {
-      const result = await registerUser(username, password);
-      localStorage.setItem("token", result.token);
-      setToken(token)
-      setUsername(username);
-      setPassword(password);
-      setUser(username);
-      setFirstName(firstName);
-      setLastName(lastName);
-      setEmail(email);
-      setAddress(address);
-      setAddress2(address2);
-      setCity(city);
-      setState(state);
-      setZip(zip);
-      setCountry(country);
+      const result = await registerUser({
+        username,
+        password,
+        firstName,
+        lastName,
+        email,
+        address,
+        address2,
+        city,
+        state,
+        postalCode,
+        country,
+      });
+      if(!result.message){
+        localStorage.setItem("token", result.token);
+        setToken(token);
+ 
+       navigate("/");
+      }else{
+        //display message
+      }
 
-      navigate("/login");
     } catch (error) {
       console.log(error);
     }
@@ -68,7 +73,7 @@ function Register(props) {
             placeholder="First Name"
             onChange={(e) => setFirstName(e.target.value)}
           />
-                    <p>Last Name:</p>
+          <p>Last Name:</p>
           <input
             className="LastNameInput"
             value={lastName}
@@ -84,7 +89,7 @@ function Register(props) {
             placeholder="Username"
             onChange={(e) => setUsername(e.target.value)}
           />
-                    <p>Email:</p>
+          <p>Email:</p>
           <input
             className="emailInput"
             value={email}
@@ -107,7 +112,7 @@ function Register(props) {
             type="password"
             placeholder="Confirm Password"
           />
-                    <p>Address:</p>
+          <p>Address:</p>
           <input
             className="addressInput"
             value={address}
@@ -115,7 +120,7 @@ function Register(props) {
             placeholder="Address"
             onChange={(e) => setAddress(e.target.value)}
           />
-           <p>Address line 2:</p>
+          <p>Address line 2:</p>
           <input
             className="address2Input"
             value={address2}
@@ -123,7 +128,7 @@ function Register(props) {
             placeholder="Address line 2 (optional)"
             onChange={(e) => setAddress2(e.target.value)}
           />
-      <p>City:</p>
+          <p>City:</p>
           <input
             className="CityInput"
             value={city}
@@ -131,7 +136,7 @@ function Register(props) {
             placeholder="City"
             onChange={(e) => setCity(e.target.value)}
           />
-                <p>State:</p>
+          <p>State:</p>
           <input
             className="StateInput"
             value={state}
@@ -139,15 +144,15 @@ function Register(props) {
             placeholder="State"
             onChange={(e) => setState(e.target.value)}
           />
-       <p>Zip:</p>
+          <p>Zip:</p>
           <input
             className="ZipInput"
-            value={zip}
+            value={postalCode}
             type="text"
             placeholder="Zip"
-            onChange={(e) => setZip(e.target.value)}
+            onChange={(e) => setPostalCode(e.target.value)}
           />
-           <p>Country:</p>
+          <p>Country:</p>
           <input
             className="CountryInput"
             value={country}
@@ -155,7 +160,6 @@ function Register(props) {
             placeholder="Country"
             onChange={(e) => setCountry(e.target.value)}
           />
-
 
           <br></br>
           <button className="submitBtn" type="submit">
@@ -171,4 +175,4 @@ function Register(props) {
   );
 }
 
-export default Register
+export default Register;
