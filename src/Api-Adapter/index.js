@@ -405,7 +405,7 @@ export const updateUserOrder = async (fields, token) => {
       },
       method: "PATCH",
       body: JSON.stringify({
-        ...fields
+        ...fields,
       }),
     });
 
@@ -417,7 +417,12 @@ export const updateUserOrder = async (fields, token) => {
   }
 };
 
-export const createOrder = async (orderItemData, orderPaymentData, total, token) => {
+export const createOrder = async (
+  orderItemData,
+  orderPaymentData,
+  total,
+  token
+) => {
   try {
     const response = await fetch(`${BASE_URL}/users_order`, {
       method: "POST",

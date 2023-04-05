@@ -59,6 +59,7 @@ const Main = () => {
 
         <Route path="/itemsfeed/:pageNumber" element={<ItemsFeed />} />
         <Route path="/cart" element={<Cart />} token={token}/>
+                <Route path="displayItems/:productId" element={<DisplayItem />} />
       </Routes>
     </div>
   );
