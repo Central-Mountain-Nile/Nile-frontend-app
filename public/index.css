@@ -153,10 +153,7 @@ body {
   height: 700px;
   width: 1000px;
 }
-.addToCartBtn{
-    width: 150px;
-    height: 50px;
-}
+
 
 .allProducts {
   display: flex;
