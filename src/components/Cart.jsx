@@ -19,7 +19,8 @@ function Cart(props) {
   // });
   async function getCartItems(){
     console.log(token, "TOKEN!!!!!!");
-    setCart(getCart(token))
+
+    setCart(await getCart(token))
   }
 
   async function removeFromCart(idx) {
