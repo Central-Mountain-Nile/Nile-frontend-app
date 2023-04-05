@@ -1,11 +1,14 @@
-import React from 'react'
-import ItemsFeed from './ItemsFeed'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 function Home() {
   const navigate = useNavigate();
-  navigate("/itemsfeed/1");
 
+
+  useEffect(()=>{
+    navigate("/itemsfeed/1");
+
+  },[])
   return (
     <div>
       
