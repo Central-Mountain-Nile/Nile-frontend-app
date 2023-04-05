@@ -40,9 +40,10 @@ function Register(props) {
         postalCode,
         country,
       });
-      if(!result.message){
+      console.log(result,"result")
+      if(result.token){
         localStorage.setItem("token", result.token);
-        setToken(token);
+        setToken(result.token);
  
        navigate("/");
       }else{
