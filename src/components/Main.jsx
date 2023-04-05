@@ -49,14 +49,13 @@ const Main = () => {
       <Navbar />
       <Categories />
       <Routes>
-        <Route path="/login" element={<Login setToken={setToken} />} />
-      </Routes>
-      <Routes>
-        <Route path="/register" element={<Register setToken={setToken} />} />
-      </Routes>
-      <Routes></Routes>
-      <Routes>
-        <Route path="/itemsfeed/:pageNumber" element={<ItemsFeed />} />
+        <Route path="login" element={<Login setToken={setToken} />} />
+   
+        <Route path="register" element={<Register setToken={setToken} />} />
+
+        <Route path="itemsfeed/:pageNumber" element={<ItemsFeed />} />
+  
+        <Route path="displayItems/:productId" element={<DisplayItem />} />
       </Routes>
     </div>
   );
