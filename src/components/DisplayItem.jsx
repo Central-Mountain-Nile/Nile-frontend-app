@@ -5,8 +5,10 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 function DisplayItem(props) {
 
   const [singleProduct, setSingleProduct] = useState({})
+  const [quantity, setQuantity] = useState()
 const {productId} = useParams()
-const token = props.setToken;
+const token = props.token;
+const navigate = useNavigate();
   
 
   console.log(productId, "ID");
@@ -18,11 +20,13 @@ const token = props.setToken;
 
 const handleClick = async (event) => {
   event.preventDefault();
-  const result = await addToCart(token);
-  if (result && result.token) {
-   setSingleProduct(singleProduct)
+  const result = await addToCart(token, productId, 3);
+  console.log(token, "TOKEN");
+  console.log(result,"RESULT")
+  if (!result.message) {
+   navigate("/")
   } else {
-    console.log("not working");
+    console.log(result.message);
   }
 };
 
