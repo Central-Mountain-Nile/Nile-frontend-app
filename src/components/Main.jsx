@@ -33,9 +33,9 @@ const Main = () => {
     //only want getMe to run if token is present
     if (token) {
       const response = await fetchMe(token);
-      setUsers(response);
+      setCurrentUser(response);
     } else {
-      setUsers({});
+      setCurrentUser({});
     }
   }
   useEffect(() => {

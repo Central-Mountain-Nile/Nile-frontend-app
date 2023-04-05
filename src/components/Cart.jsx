@@ -25,13 +25,13 @@ function Cart(props) {
 
   async function removeFromCart(idx) {
     const newCart = { ...cart };
-   // const result = await deleteCartItem(cart.cartItems[idx].id, token);
-   // if (!result.message) {
+   const result = await deleteCartItem(cart.cartItems[idx].id, token);
+   if (!result.message) {
       newCart.cartItems = cart.cartItems.splice(idx, 1);
       setCart(newCart);
-   // } else {
+   } else {
       //display error message
-   // }
+   }
   }
   return (
     <div className="cart">
