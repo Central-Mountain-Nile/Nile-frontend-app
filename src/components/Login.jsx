@@ -20,7 +20,7 @@ function Login(props) {
       setCurrentUser(response.user);
       localStorage.setItem("currentUser", JSON.stringify(response.user));
       localStorage.setItem("token", JSON.stringify(response.token));      
-      navigate("/");
+      navigate("/itemsfeed/1");
     }
   };
 

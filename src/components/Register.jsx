@@ -45,7 +45,7 @@ function Register(props) {
         localStorage.setItem("token", result.token);
         setToken(result.token);
  
-       navigate("/");
+       navigate("/itemsfeed/1");
       }else{
         //display message
       }
