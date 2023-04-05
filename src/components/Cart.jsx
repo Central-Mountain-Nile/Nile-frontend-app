@@ -30,7 +30,8 @@ console.log(token)
     const newCart = { ...cart };
    const result = await deleteCartItem(cart.cartItems[idx].id, token);
    if (!result.message) {
-      newCart.cartItems = [cart.cartItems.splice(0,idx),cart.cartItems.splice(idx + 1)]
+      newCart.cartItems = [...cart.cartItems.splice(0,idx),...cart.cartItems.splice(idx + 1)]
+      console.log(newCart)
       setCart(newCart);
    } else {
       //display error message
