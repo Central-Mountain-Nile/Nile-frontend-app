@@ -33,9 +33,9 @@ const Main = () => {
     //only want getMe to run if token is present
     if (token) {
       const response = await fetchMe(token);
-      setUsers(response);
+      setCurrentUser(response);
     } else {
-      setUsers({});
+      setCurrentUser({});
     }
   }
   useEffect(() => {
@@ -53,8 +53,8 @@ const Main = () => {
         <Route path="/register" element={<Register setToken={setToken} setCurrentUser={setCurrentUser}/>} />
         <Route path="/" element={<Home />} />
         <Route path="/itemsfeed/:pageNumber" element={<ItemsFeed />} />
-        <Route path="/cart" element={<Cart />} token={token} />
-        <Route path="displayItems/:productId" element={<DisplayItem />} />
+        <Route path="/cart" element={<Cart token={token} />}  />
+        <Route path="displayItems/:productId" element={<DisplayItem token={token}/>} />
       </Routes>
     </div>
   );

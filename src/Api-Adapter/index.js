@@ -20,9 +20,7 @@ export const loginUser = async (username, password) => {
     console.log(error);
   }
 };
-export const registerUser = async (
-  fields
-) => {
+export const registerUser = async (fields) => {
   try {
     const response = await fetch(`${BASE_URL}/users/register`, {
       method: "POST",
@@ -30,7 +28,7 @@ export const registerUser = async (
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        ...fields
+        ...fields,
       }),
     });
     const result = await response.json();
@@ -284,7 +282,7 @@ export const deleteUserPayment = async (id, token) => {
 // cart endpoints
 export const getCart = async (token) => {
   try {
-    const response = await fetch(`${BASE_URL}/cart`, {
+    const response = await fetch(`${BASE_URL}/carts`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -298,18 +296,17 @@ export const getCart = async (token) => {
     console.error(error);
   }
 };
-export const addToCart = async (token) => {
+export const addToCart = async (token, productId, quantity) => {
   try {
-    const response = await fetch(`${BASE_URL}/cart`, {
+    const response = await fetch(`${BASE_URL}/carts`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        productId: productId,
-        cartId: cart.id,
-        quantity: quantity,
+        productId,
+        quantity,
       }),
     });
 
@@ -321,12 +318,15 @@ export const addToCart = async (token) => {
 };
 export const deleteCartItem = async (id, token) => {
   try {
-    const response = await fetch(`${BASE_URL}/carts/${id}`, {
+    const response = await fetch(`${BASE_URL}/carts`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
+      body: JSON.stringify({
+        cartItemId:id
+      }),
     });
     const result = await response.json();
     console.log(result);
