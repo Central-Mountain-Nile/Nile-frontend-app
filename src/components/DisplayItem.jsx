@@ -3,16 +3,18 @@ import { getProductById, getProducts, addToCart } from "../Api-Adapter";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 function DisplayItem(props) {
+
   const [singleProduct, setSingleProduct] = useState({})
 const {productId} = useParams()
 const token = props.setToken;
   
+
   console.log(productId, "ID");
   const retrieveProduct = async () => {
-    
-    const thisProduct = await getProductById(productId)
+    const thisProduct = await getProductById(productId);
     setSingleProduct(thisProduct);
-}
+  };
+
 
 const handleClick = async (event) => {
   event.preventDefault();
@@ -51,9 +53,9 @@ return (
           :       <div className="loader" ></div>
          }
 
-          
+        
 
-        {/* );
+      {/* );
       })
     ) : (
       <div className="loader"></div>
@@ -61,6 +63,7 @@ return (
     </form>
   </div>
   )
+
 }
 
-export default DisplayItem
+export default DisplayItem;
