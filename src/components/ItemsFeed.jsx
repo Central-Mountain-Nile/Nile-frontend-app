@@ -15,12 +15,13 @@ function ItemsFeed(props) {
   const [page, setPage] = useState(Number(pageNumber))
   
   const retrieveProducts = async () => {
-    console.log(page)
     const allProducts = await getProducts(page)
     setProducts(allProducts);
 }
 function changePage(num){
+  navigate(`/itemsfeed/${Number(page) + num}`)
   setPage(Number(page) + num)
+
 }
 
 useEffect(() => {
@@ -46,8 +47,9 @@ useEffect(() => {
       products.map((product) => {
         return (
           // <form onSubmit={handleClick}>
+          <div key={`itemsFeed${product.id}`}>
             <Link to={`/displayItems/${product.id}`}>
-          <div className="product-card" key={product.id}>
+          <div className="product-card" >
             <h2>{product.name}</h2>
             <p>{product.description}</p>
             <p>${product.price}</p>
@@ -58,7 +60,7 @@ useEffect(() => {
           </button> */}
           </div>
           </Link>
-          
+          </div>
     // </form>
         );
       })
@@ -66,7 +68,7 @@ useEffect(() => {
       <div className="loader"></div>
     )}
     {
-      pageNumber != 1 ?    <Link onClick={changePage(-1)}>previousPage</Link>:null
+      page != 1 ?    <Link onClick={()=>changePage(-1)}>previousPage</Link>:null
     }
 
     <Link onClick={()=>changePage(1)}>nextPage</Link>
