@@ -172,3 +172,7 @@ body {
 .cart-quantity {
   font-weight: 600;
 }
+.cart_img {
+  max-height: 150px;
+  max-width:150px;
+}

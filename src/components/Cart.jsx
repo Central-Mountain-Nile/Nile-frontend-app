@@ -27,6 +27,7 @@ const cart = {cartItems:[{id: 1,name:"product1", price:12,quantity:43},{id: 2,na
             <h2 className="productName">{product.name}</h2>
             <p className="productPrice">${product.price}</p>
             <p className="cart-quantity">Quantity: {product.quantity}</p>
+            <img className="cart_img" src="http://placeimg.com/640/480/nature" alt={product.description}/>
           </div>
         );
       })
