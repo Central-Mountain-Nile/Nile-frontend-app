@@ -6,19 +6,20 @@ import { Link, useParams } from "react-router-dom";
 function ItemsFeed(props) {
   const [products, setProducts] = useState([])
   const {pageNumber} = useParams()
-  const next = Number(pageNumber) + 1;
-  console.log(next)
-  const previous = pageNumber - 1;
+  const [page, setPage] = useState(Number(pageNumber))
+  
   const retrieveProducts = async () => {
-
-    const allProducts = await getProducts(pageNumber)
+    console.log(page)
+    const allProducts = await getProducts(page)
     setProducts(allProducts);
 }
-
+function changePage(num){
+  setPage(Number(page) + num)
+}
 
 useEffect(() => {
   retrieveProducts();
-}, []);
+}, [page]);
 
 
   return (
@@ -39,10 +40,10 @@ useEffect(() => {
       <div className="loader"></div>
     )}
     {
-      pageNumber != 1 ?    <Link>previousPage</Link>:null
+      pageNumber != 1 ?    <Link onClick={changePage(-1)}>previousPage</Link>:null
     }
 
-    <Link to="/itemsfeed/2"next>nextPage</Link>
+    <Link onClick={()=>changePage(1)}>nextPage</Link>
   </div>
   )
 }
