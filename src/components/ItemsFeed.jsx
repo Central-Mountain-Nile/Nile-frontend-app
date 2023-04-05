@@ -1,22 +1,31 @@
 import { React, useState, useEffect } from "react";
+
 import { getProducts, getProductById } from "../Api-Adapter";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+
 
 
 function ItemsFeed(props) {
   const [products, setProducts] = useState([])
-  const navigate = useNavigate();
-  console.log(products, );
 
+  const navigate = useNavigate();
+
+
+  const {pageNumber} = useParams()
+  const [page, setPage] = useState(Number(pageNumber))
+  
   const retrieveProducts = async () => {
-    const allProducts = await getProducts()
+    console.log(page)
+    const allProducts = await getProducts(page)
     setProducts(allProducts);
 }
-
+function changePage(num){
+  setPage(Number(page) + num)
+}
 
 useEffect(() => {
   retrieveProducts();
-}, []);
+}, [page]);
 
 
 // const handleClick = async (event) => {
@@ -56,6 +65,11 @@ useEffect(() => {
     ) : (
       <div className="loader"></div>
     )}
+    {
+      pageNumber != 1 ?    <Link onClick={changePage(-1)}>previousPage</Link>:null
+    }
+
+    <Link onClick={()=>changePage(1)}>nextPage</Link>
   </div>
   )
 }
