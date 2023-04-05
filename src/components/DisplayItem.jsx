@@ -20,6 +20,7 @@ const navigate = useNavigate();
 
 const handleClick = async (event) => {
   event.preventDefault();
+  if(quantity > 0){
   const result = await addToCart(token, productId, 3);
   console.log(token, "TOKEN");
   console.log(result,"RESULT")
@@ -28,6 +29,7 @@ const handleClick = async (event) => {
   } else {
     console.log(result.message);
   }
+}
 };
 
 useEffect(() => {
