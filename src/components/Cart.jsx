@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getCart } from "../Api-Adapter";
+import { deleteCartItem, getCart } from "../Api-Adapter";
 
 function Cart(props) {
   const { token } = props;
@@ -10,26 +10,36 @@ function Cart(props) {
   // useEffect(() => {
   //   getCartItems()
   // }, []);
-  const cart = {
+  const [cart, setCart] = useState({
     cartItems: [
       { id: 1, name: "product1", price: 12, quantity: 43 },
       { id: 2, name: "product7", price: 17, quantity: 4 },
       { id: 3, name: "product9", price: 92, quantity: 83 },
     ],
-  };
+  });
   // function getCartItems(){
   //   setCart(getCart(token))
   // }
 
+  async function removeFromCart(idx) {
+    const newCart = { ...cart };
+   // const result = await deleteCartItem(cart.cartItems[idx].id, token);
+   // if (!result.message) {
+      newCart.cartItems = cart.cartItems.splice(idx, 1);
+      setCart(newCart);
+   // } else {
+      //display error message
+   // }
+  }
   return (
     <div className="cart">
       {" "}
       <h1>Cart</h1>
       {cart.cartItems ? (
-        cart.cartItems.map((product) => {
+        cart.cartItems.map((product, idx) => {
           return (
             <div className="product-card-cart" key={"cart" + product.id}>
-              <div className="product_text"> 
+              <div className="product_text">
                 <h2 className="productName">{product.name}</h2>
                 <p className="productPrice">${product.price}</p>
                 <p className="cart-quantity">Quantity: {product.quantity}</p>
@@ -40,9 +50,12 @@ function Cart(props) {
                 alt={product.description}
               />
               <div className="product_buttons">
-                <button>remove from cart</button>
-                <button>change quantity</button>
-                </div>
+                <button onClick={() => removeFromCart(idx)}>
+                  remove from cart
+                </button>
+                <input/>
+                <button>submit</button>
+              </div>
             </div>
           );
         })
