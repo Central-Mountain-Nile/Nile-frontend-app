@@ -29,12 +29,13 @@ return (
         return ( */}
          {
           singleProduct.name ?
-          <div className="product-card">
+          <div className="product-card-individual">
             <h2>{singleProduct.name}</h2>
             <p>{singleProduct.description}</p>
             <p>${singleProduct.price}</p>
             <p>Quantity: {singleProduct.quantity}</p>
             {/* <img src={image_url}/> */}
+            <button className="addToCartBtn">Add To Cart</button>
     
           </div>
           :       <div className="loader"></div>
