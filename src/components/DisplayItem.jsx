@@ -46,13 +46,23 @@ return (
          {
           singleProduct.name ?
           <div className="product-card-individual">
+            <div>
+            <img
+                className="individual_item_img"
+                src="http://placeimg.com/640/480/nature"
+                alt={singleProduct.description}
+              />
+              <div className="singleItemText">
             <h2>{singleProduct.name}</h2>
             <p>{singleProduct.description}</p>
             <p>${singleProduct.price}</p>
-            <p>Quantity: {singleProduct.quantity}</p>
-            {/* <img src={image_url}/> */}
-            <button className="addToCartBtn" type="submit">Add To Cart</button>
-    
+            <p>Quantity left in stock: {singleProduct.quantity}</p>
+            </div>
+            </div>
+            <div className="right-side-individual-product">
+            <input className="quantity-input" placeholder="1" type="number"></input>
+            <button className="addToCartBtn" type="submit" >Add To Cart</button>
+            </div>
           </div>
           :       <div className="loader" ></div>
          }
