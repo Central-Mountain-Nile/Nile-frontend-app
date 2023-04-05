@@ -37,10 +37,9 @@ useEffect(() => {
       products.map((product) => {
         return (
           // <form onSubmit={handleClick}>
-          <div className="product-card" key={product.id}>
             <Link to={`/displayItems/${product.id}`}>
+          <div className="product-card" key={product.id}>
             <h2>{product.name}</h2>
-            </Link>
             <p>{product.description}</p>
             <p>${product.price}</p>
             <p>Quantity: {product.quantity}</p>
@@ -49,6 +48,7 @@ useEffect(() => {
             Submit
           </button> */}
           </div>
+          </Link>
           
     // </form>
         );
