@@ -298,7 +298,7 @@ export const getCart = async (token) => {
     console.error(error);
   }
 };
-export const addToCart = async (token) => {
+export const addToCart = async (token,productId, quantity) => {
   try {
     const response = await fetch(`${BASE_URL}/cart`, {
       method: "POST",
@@ -307,9 +307,8 @@ export const addToCart = async (token) => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        productId: productId,
-        cartId: cart.id,
-        quantity: quantity,
+        productId,
+        quantity,
       }),
     });
 
