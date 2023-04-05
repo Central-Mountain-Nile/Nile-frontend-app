@@ -146,10 +146,8 @@ body {
   }
 }
 
-.productName {
-  text-decoration: underline;
-  color: #f3f3f3;
-  font-size: large;
+.cart {
+  width: 70%;
 }
 
 .product-card-cart {
@@ -162,9 +160,13 @@ body {
   background-color: #727272;
 }
 
+.productName {
+  font-size: large;
+  font-weight: bold;
+}
+
 .productPrice {
-  text-decoration: underline;
-  font-weight: 600;
+  font-weight: bold;
 }
 
 .cart-quantity {
