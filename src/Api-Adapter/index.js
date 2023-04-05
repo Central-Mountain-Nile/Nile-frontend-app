@@ -318,12 +318,15 @@ export const addToCart = async (token, productId, quantity) => {
 };
 export const deleteCartItem = async (id, token) => {
   try {
-    const response = await fetch(`${BASE_URL}/carts/${id}`, {
+    const response = await fetch(`${BASE_URL}/carts`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
+      body: JSON.stringify({
+        cartItemId:id
+      }),
     });
     const result = await response.json();
     console.log(result);
