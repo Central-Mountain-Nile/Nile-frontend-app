@@ -29,9 +29,6 @@ const Main = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
 
-   
-
-
   async function getMeUser() {
     //only want getMe to run if token is present
     if (token) {
@@ -47,7 +44,6 @@ const Main = () => {
     }
   }, [token]);
 
-
   return (
     <div id="main">
       <Navbar />
@@ -55,10 +51,12 @@ const Main = () => {
       <Routes>
         <Route path="/login" element={<Login setToken={setToken} />} />
         <Route path="/register" element={<Register setToken={setToken} />} />
+
         <Route
           path="/categories"
           element={<Categories setToken={setToken} />}
         />
+
         <Route path="/itemsfeed/:pageNumber" element={<ItemsFeed />} />
         <Route path="/cart" element={<Cart />} token={token}/>
       </Routes>
