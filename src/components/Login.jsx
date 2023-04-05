@@ -2,18 +2,15 @@ import { React, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../Api-Adapter";
 
-function Login() {
+function Login(props) {
+  const { setToken, setCurrentUser} = props
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const logIn = async ({
-    LoggedIn,
-    setLoggedIn,
-    token,
-    setToken,
-    currentUser,
-    setCurrentUser,
-  }) => {
+
+
+  const logInToSite = async () => {
     const response = await loginUser(userName, password);
     if (response.error) {
       alert("Invalid Credentials");
@@ -22,10 +19,12 @@ function Login() {
       setToken(response.token);
       setCurrentUser(response.user);
       localStorage.setItem("currentUser", JSON.stringify(response.user));
-      localStorage.setItem("token", JSON.stringify(response.token));
-      setLoggedIn(true);
+      localStorage.setItem("token", JSON.stringify(response.token));      
+      navigate("/");
     }
   };
+
+
   return (
     <div className="LoginForm">
       <h2>Please Log in</h2>

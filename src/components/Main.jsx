@@ -49,8 +49,8 @@ const Main = () => {
       <Navbar />
       <Categories />
       <Routes>
-        <Route path="/login" element={<Login setToken={setToken} />} />
-        <Route path="/register" element={<Register setToken={setToken} />} />
+        <Route path="/login" element={<Login setToken={setToken} setCurrentUser={setCurrentUser} />} />
+        <Route path="/register" element={<Register setToken={setToken} setCurrentUser={setCurrentUser}/>} />
 
         <Route path="/itemsfeed/:pageNumber" element={<ItemsFeed />} />
         <Route path="/cart" element={<Cart />} token={token} />
