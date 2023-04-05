@@ -154,6 +154,8 @@ body {
   background-color: #9a9a9a;
   border: 1px solid rgb(0, 0, 0);
   padding-left: 2%;
+  display:flex;
+  justify-content: space-around;
 }
 
 .product-card-cart:nth-child(odd) {
@@ -175,4 +177,12 @@ body {
 .cart_img {
   max-height: 150px;
   max-width:150px;
+  margin: 10px;
+}
+.product_buttons{
+  display:flex;
+  flex-direction: column;
+}
+.product_text{
+  width: 150px;
 }
