@@ -22,6 +22,7 @@ console.log(token)
 
     setCart(await getCart(token))
   }
+
   // newArr = [
   //   ...arr.slice(0,indexToRemove),
   //   ...arr.slice(indexToRemove+1)
@@ -31,10 +32,12 @@ console.log(token)
    const result = await deleteCartItem(cart.cartItems[idx].id, token);
    if (!result.message) {
       newCart.cartItems = [...cart.cartItems.splice(0,idx),...cart.cartItems.splice(idx + 1)]
+
       setCart(newCart);
-   } else {
+    } else {
       //display error message
-   }
+    }
+
   }
   return (
     <div className="cart">
@@ -58,7 +61,7 @@ console.log(token)
                 <button onClick={() => removeFromCart(idx)}>
                   remove from cart
                 </button>
-                <input/>
+                <input />
                 <button>submit</button>
               </div>
             </div>
