@@ -23,6 +23,7 @@ function Cart(props) {
     setCart(await getCart(token))
   }
 
+
   async function removeFromCart(idx) {
     const newCart = { ...cart };
 
