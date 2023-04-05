@@ -52,14 +52,9 @@ const Main = () => {
         <Route path="/login" element={<Login setToken={setToken} />} />
         <Route path="/register" element={<Register setToken={setToken} />} />
 
-        <Route
-          path="/categories"
-          element={<Categories setToken={setToken} />}
-        />
-
         <Route path="/itemsfeed/:pageNumber" element={<ItemsFeed />} />
-        <Route path="/cart" element={<Cart />} token={token}/>
-                <Route path="displayItems/:productId" element={<DisplayItem />} />
+        <Route path="/cart" element={<Cart />} token={token} />
+        <Route path="displayItems/:productId" element={<DisplayItem />} />
       </Routes>
     </div>
   );
