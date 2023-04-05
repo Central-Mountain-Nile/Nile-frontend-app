@@ -3,7 +3,7 @@ import { deleteCartItem, getCart, loginUser } from "../Api-Adapter";
 
 function Cart(props) {
   const { token } = props;
-
+console.log(token)
   getCart;
   const [cart, setCart] = useState({})
 
@@ -22,12 +22,15 @@ function Cart(props) {
 
     setCart(await getCart(token))
   }
-
+  // newArr = [
+  //   ...arr.slice(0,indexToRemove),
+  //   ...arr.slice(indexToRemove+1)
+  // ]
   async function removeFromCart(idx) {
     const newCart = { ...cart };
    const result = await deleteCartItem(cart.cartItems[idx].id, token);
    if (!result.message) {
-      newCart.cartItems = cart.cartItems.splice(idx, 1);
+      newCart.cartItems = [cart.cartItems.splice(0,idx),cart.cartItems.splice(idx + 1)]
       setCart(newCart);
    } else {
       //display error message
