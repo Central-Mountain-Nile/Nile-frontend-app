@@ -53,8 +53,8 @@ function Cart(props) {
                 <button onClick={() => removeFromCart(idx)}>
                   remove from cart
                 </button>
-                <input/>
-                <button>submit</button>
+                <input placeholder="Edit quantity"/>
+                <button className="submitButton">submit</button>
               </div>
             </div>
           );
@@ -62,6 +62,12 @@ function Cart(props) {
       ) : (
         <div className="loader"></div>
       )}
+      <div>
+        <h3>Total: </h3>
+        <div>
+          <button classname="checkoutButton">Proceed to Checkout</button>
+        </div>
+      </div>
     </div>
   );
 }
