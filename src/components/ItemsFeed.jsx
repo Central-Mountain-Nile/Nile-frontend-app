@@ -7,15 +7,16 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 
 function ItemsFeed(props) {
   const [products, setProducts] = useState([])
-
+  const [page, setPage] = useState(Number(pageNumber))
+  const [pageCount, setPageCount] = useState(1)
   const navigate = useNavigate();
 
 
   const {pageNumber} = useParams()
-  const [page, setPage] = useState(Number(pageNumber))
-  
+
   const retrieveProducts = async () => {
     const allProducts = await getProducts(page)
+   // setProducts(allProducts.products)
     setProducts(allProducts);
 }
 function changePage(num){

@@ -15,7 +15,6 @@ function Login(props) {
     if (response.error) {
       alert("Invalid Credentials");
     } else {
-      console.log(response);
       setToken(response.token);
       setCurrentUser(response.user);
       localStorage.setItem("currentUser", JSON.stringify(response.user));
