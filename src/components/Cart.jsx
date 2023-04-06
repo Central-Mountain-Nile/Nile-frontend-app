@@ -17,6 +17,8 @@ function Cart(props) {
       { id: 3, name: "product9", price: 92, quantity: 83 },
     ],
   });
+
+
   // function getCartItems(){
   //   setCart(getCart(token))
   // }
@@ -30,6 +32,9 @@ function Cart(props) {
    // } else {
       //display error message
    // }
+
+   
+
   }
   return (
     <div className="cart">
@@ -63,9 +68,9 @@ function Cart(props) {
         <div className="loader"></div>
       )}
       <div>
-        <h3>Total: </h3>
+        <h3>Total: $</h3>
         <div>
-          <button classname="checkoutButton">Proceed to Checkout</button>
+        <Link to="/checkout"><button>Proceed to Checkout</button></Link>
         </div>
       </div>
     </div>
