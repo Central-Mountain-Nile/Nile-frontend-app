@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { deleteCartItem, getCart, loginUser } from "../Api-Adapter";
+import { useNavigate, Outlet, Link } from "react-router-dom";
+
 
 function Cart(props) {
   const { token } = props;
@@ -59,7 +61,9 @@ function Cart(props) {
                   remove from cart
                 </button>
                 <input />
-                <button>submit</button>
+             <Link to="/checkoutform">
+                <button>Checkout</button>
+                </Link>
               </div>
             </div>
           );

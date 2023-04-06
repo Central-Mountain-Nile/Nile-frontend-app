@@ -17,3 +17,4 @@ export { default as Register } from "./Register";
 export { default as SingleItem } from "./SingleItem";
 export { default as Store } from "./Store";
 export { default as UpdateItem } from "./UpdateItem";
+export { default as CheckoutForm } from "./CheckoutForm";
