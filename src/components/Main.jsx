@@ -20,6 +20,7 @@ import {
   Store,
   UpdateItem,
   CheckoutForm,
+  Mtest,
 } from "./";
 import { fetchMe } from "../Api-Adapter";
 
@@ -53,7 +54,7 @@ const Main = () => {
         <Route path="/login" element={<Login setToken={setToken} setCurrentUser={setCurrentUser} />} />
         <Route path="/register" element={<Register setToken={setToken} setCurrentUser={setCurrentUser}/>} />
         <Route path="/" element={<Home />} />
-        <Route path="/checkoutform" element={<CheckoutForm />} />
+        <Route path="/mtest" element={<Mtest />} />
         <Route path="/itemsfeed/:pageNumber" element={<ItemsFeed />} />
         <Route path="/cart" element={<Cart token={token} />}  />
         <Route path="displayItems/:productId" element={<DisplayItem token={token}/>} />
