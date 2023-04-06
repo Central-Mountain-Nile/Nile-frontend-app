@@ -6,7 +6,6 @@ import {
   Register,
   Home,
   Cart,
-  CartItem,
   Categories,
   CheckoutPage,
   CreateItem,
@@ -23,9 +22,7 @@ import {
 import { fetchMe } from "../Api-Adapter";
 
 const Main = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
-  const [users, setUsers] = useState({});
   const [searchTerm, setSearchTerm] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
 
@@ -46,13 +43,13 @@ const Main = () => {
 
   return (
     <div id="main">
-      <Navbar />
+      <Navbar setSearchTerm={setSearchTerm} setToken={setToken} setCurrentUser={setCurrentUser} currentUser={currentUser}/>
       <Categories />
       <Routes>
         <Route path="/login" element={<Login setToken={setToken} setCurrentUser={setCurrentUser} />} />
         <Route path="/register" element={<Register setToken={setToken} setCurrentUser={setCurrentUser}/>} />
         <Route path="/" element={<Home />} />
-        <Route path="/itemsfeed/:pageNumber" element={<ItemsFeed />} />
+        <Route path="/itemsfeed/:pageNumber" element={<ItemsFeed searchTerm={searchTerm}/>} />
         <Route path="/cart" element={<Cart token={token} />}  />
         <Route path="displayItems/:productId" element={<DisplayItem token={token}/>} />
       </Routes>

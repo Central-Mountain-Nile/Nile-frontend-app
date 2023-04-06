@@ -3,30 +3,18 @@ import { deleteCartItem, getCart, loginUser } from "../Api-Adapter";
 
 function Cart(props) {
   const { token } = props;
-console.log(token)
   getCart;
   const [cart, setCart] = useState({})
 
   useEffect(() => {
     getCartItems()
   }, []);
-  // const [cart, setCart] = useState({
-  //   cartItems: [
-  //     { id: 1, name: "product1", price: 12, quantity: 43 },
-  //     { id: 2, name: "product7", price: 17, quantity: 4 },
-  //     { id: 3, name: "product9", price: 92, quantity: 83 },
-  //   ],
-  // });
+
   async function getCartItems(){
-    console.log(token, "TOKEN!!!!!!");
 
     setCart(await getCart(token))
   }
 
-  // newArr = [
-  //   ...arr.slice(0,indexToRemove),
-  //   ...arr.slice(indexToRemove+1)
-  // ]
   async function removeFromCart(idx) {
     const newCart = { ...cart };
    const result = await deleteCartItem(cart.cartItems[idx].id, token);

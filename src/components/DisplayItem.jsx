@@ -5,7 +5,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 function DisplayItem(props) {
 
   const [singleProduct, setSingleProduct] = useState({})
-  const [quantity, setQuantity] = useState()
+  const [quantity, setQuantity] = useState(1)
 const {productId} = useParams()
 const token = props.token;
 const navigate = useNavigate();
@@ -21,9 +21,7 @@ const navigate = useNavigate();
 const handleClick = async (event) => {
   event.preventDefault();
   if(quantity > 0){
-  const result = await addToCart(token, productId, 3);
-  console.log(token, "TOKEN");
-  console.log(result,"RESULT")
+  const result = await addToCart(token, productId, quantity);
   if (!result.message) {
    navigate("/")
   } else {
@@ -62,7 +60,7 @@ return (
             </div>
             </div>
             <div className="right-side-individual-product">
-            <input className="quantity-input" placeholder="1" type="number"></input>
+            <input className="quantity-input" placeholder="1" type="number" onChange={(event)=>setQuantity(event.target.value)}></input>
             <button className="addToCartBtn" type="submit" >Add To Cart</button>
             </div>
           </div>

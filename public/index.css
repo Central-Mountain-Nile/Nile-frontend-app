@@ -274,3 +274,7 @@ body {
 .product_text {
   width: 150px;
 }
+.pageCount{
+  display:flex;
+  flex-direction: column;
+}
