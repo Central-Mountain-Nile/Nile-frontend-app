@@ -6,7 +6,6 @@ import {
   Register,
   Home,
   Cart,
-  CartItem,
   Categories,
   CheckoutPage,
   CreateItem,
@@ -44,13 +43,13 @@ const Main = () => {
 
   return (
     <div id="main">
-      <Navbar />
+      <Navbar setSearchTerm={setSearchTerm} setToken={setToken} setCurrentUser={setCurrentUser} currentUser={currentUser}/>
       <Categories />
       <Routes>
         <Route path="/login" element={<Login setToken={setToken} setCurrentUser={setCurrentUser} />} />
         <Route path="/register" element={<Register setToken={setToken} setCurrentUser={setCurrentUser}/>} />
         <Route path="/" element={<Home />} />
-        <Route path="/itemsfeed/:pageNumber" element={<ItemsFeed />} />
+        <Route path="/itemsfeed/:pageNumber" element={<ItemsFeed searchTerm={searchTerm}/>} />
         <Route path="/cart" element={<Cart token={token} />}  />
         <Route path="displayItems/:productId" element={<DisplayItem token={token}/>} />
       </Routes>
