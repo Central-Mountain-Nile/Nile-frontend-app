@@ -23,9 +23,7 @@ import {
 import { fetchMe } from "../Api-Adapter";
 
 const Main = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
-  const [users, setUsers] = useState({});
   const [searchTerm, setSearchTerm] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
 
