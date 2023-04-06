@@ -5,33 +5,24 @@ import { useNavigate, Outlet, Link } from "react-router-dom";
 
 function Cart(props) {
   const { token } = props;
-
   getCart;
   const [cart, setCart] = useState({})
 
   useEffect(() => {
     getCartItems()
   }, []);
-  // const [cart, setCart] = useState({
-  //   cartItems: [
-  //     { id: 1, name: "product1", price: 12, quantity: 43 },
-  //     { id: 2, name: "product7", price: 17, quantity: 4 },
-  //     { id: 3, name: "product9", price: 92, quantity: 83 },
-  //   ],
-  // });
+
   async function getCartItems(){
-    console.log(token, "TOKEN!!!!!!");
 
     setCart(await getCart(token))
   }
 
-
   async function removeFromCart(idx) {
     const newCart = { ...cart };
+   const result = await deleteCartItem(cart.cartItems[idx].id, token);
+   if (!result.message) {
+      newCart.cartItems = [...cart.cartItems.splice(0,idx),...cart.cartItems.splice(idx + 1)]
 
-    const result = await deleteCartItem(cart.cartItems[idx].id, token);
-    if (!result.message) {
-      cart.cartItems.splice(idx, 1);
       setCart(newCart);
     } else {
       //display error message
