@@ -25,6 +25,7 @@ function ItemsFeed(props) {
       elements.push(
         <button
           key={`pageCount${count}`}
+          className="page_number"
           onClick={(event) => changePage(event.target.innerText)}
         >
           {count}
@@ -44,31 +45,35 @@ function ItemsFeed(props) {
   }, [page]);
 
   return (
-    <div className="allProducts">
-      {products.length ? (
-        products.map((product) => {
-          return (
-            // <form onSubmit={handleClick}>
-            <div key={`itemsFeed${product.id}`}>
-              <Link to={`/displayItems/${product.id}`}>
-                <div className="product-card">
-                  <h2>{product.name}</h2>
-                  <p>{product.description}</p>
-                  <p>${product.price}</p>
-                  <p>Quantity: {product.quantity}</p>
-                  {/* <img src={image_url}/> */}
-                </div>
-              </Link>
-            </div>
-            // </form>
-          );
-        })
-      ) : (
-        <div className="loader"></div>
-      )}
-      <div>
+    <div>
+      <div className="allProducts">
+        {products.length ? (
+          products.map((product) => {
+            return (
+              // <form onSubmit={handleClick}>
+              <div key={`itemsFeed${product.id}`}>
+                <Link to={`/displayItems/${product.id}`}>
+                  <div className="product-card">
+                    <h2>{product.name}</h2>
+                    <p>{product.description}</p>
+                    <p>${product.price}</p>
+                    <p>Quantity: {product.quantity}</p>
+                    {/* <img src={image_url}/> */}
+                  </div>
+                </Link>
+              </div>
+              // </form>
+            );
+          })
+        ) : (
+          <div className="loader"></div>
+        )}
+      </div>
+      <div className="pageCount">
         <div>page</div>
+        <div>
         {createPageCount()}
+        </div>
       </div>
     </div>
   );
