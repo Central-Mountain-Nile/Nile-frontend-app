@@ -67,18 +67,18 @@ function Cart(props) {
                 <input placeholder="Edit quantity" />
               </div>
             </div>
-            <div className="CartTotal">
-              <p>Subtotal: ${orderTotal()}</p>
-              <Link to="/checkoutform">
-                <button id="Checkoutbutton">Checkout</button>
-                </Link>
-            </div>
           </div>
           );
         })
       ) : (
         <div className="loader"></div>
       )}
+            <div className="CartTotal">
+              <p>Subtotal: ${orderTotal()}</p>
+              <Link to="/checkoutform">
+                <button id="Checkoutbutton">Checkout</button>
+                </Link>
+            </div>
     </div>
   );
 }
