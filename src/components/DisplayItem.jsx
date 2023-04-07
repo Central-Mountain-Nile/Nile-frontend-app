@@ -23,7 +23,7 @@ const handleClick = async (event) => {
   if(quantity > 0){
   const result = await addToCart(token, productId, quantity);
   if (!result.message) {
-   navigate("/")
+   navigate("/cart")
   } else {
     console.log(result.message);
   }
