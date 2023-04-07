@@ -21,12 +21,14 @@ import {
   CheckoutForm,
   Admin,
 } from "./";
-import { fetchMe } from "../Api-Adapter";
+import { fetchMe, getProducts } from "../Api-Adapter";
 
 const Main = () => {
   const [currentUser, setCurrentUser] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [products, setProducts] = useState([]);
 
   async function getMeUser() {
     //only want getMe to run if token is present
@@ -37,11 +39,20 @@ const Main = () => {
       setCurrentUser({});
     }
   }
+  const retrieveProducts = async () => {
+    const allProducts = await getProducts();
+    setProducts(allProducts.products);
+
+
+  };
   useEffect(() => {
     if (token) {
       getMeUser();
     }
   }, [token]);
+  useEffect(() => {
+    retrieveProducts();
+  }, []);
 
   return (
     <div id="main">
@@ -76,6 +87,8 @@ const Main = () => {
           element={<DisplayItem token={token} />}
         />
         <Route path="/admin" element={<Admin token={token} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
+
+        <Route path="/createitem" element={<CreateItem token={token} setCurrentUser={setCurrentUser} currentUser={currentUser}/>} />
       </Routes>
     </div>
   );
