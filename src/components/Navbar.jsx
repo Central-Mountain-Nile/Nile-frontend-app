@@ -26,17 +26,17 @@ const Navbar = (props) => {
         <div className="linksBtn">
           {loggedIn ? (
             <div>
-          <button >Hello, {props.currentUser.username}</button>
+              {/* <button>Hello, {props.currentUser.username}</button> */}
 
               <Link to="/">
                 <button>Home</button>
               </Link>
-          <Link to="/cart">
-            <button>My cart</button>
-          </Link>
-          <Link to="/createitem">
-            <button>My store</button>
-          </Link>
+              <Link to="/cart">
+                <button>My cart</button>
+              </Link>
+              <Link to="/createitem">
+                <button>My store</button>
+              </Link>
               <Link>
                 <button onClick={() => logout()}>Logout</button>
               </Link>
