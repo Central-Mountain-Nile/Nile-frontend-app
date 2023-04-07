@@ -458,7 +458,21 @@ export const becomeAdmin = async (token, secretCode)=>{
       }),
     });
     const result = await response.json();
-    console.log(result);
+    return result;
+  } catch (err) {
+    console.error(err);
+  }
+}
+export const becomeStore = async (token)=>{
+  try {
+    const response = await fetch(`${BASE_URL}/users/store`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const result = await response.json();
     return result;
   } catch (err) {
     console.error(err);

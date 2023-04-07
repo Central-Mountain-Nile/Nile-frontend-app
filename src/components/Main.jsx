@@ -19,6 +19,7 @@ import {
   Store,
   UpdateItem,
   CheckoutForm,
+  Admin,
 } from "./";
 import { fetchMe } from "../Api-Adapter";
 
@@ -44,16 +45,37 @@ const Main = () => {
 
   return (
     <div id="main">
-      <Navbar setSearchTerm={setSearchTerm} setToken={setToken} setCurrentUser={setCurrentUser} currentUser={currentUser}/>
+      <Navbar
+        setSearchTerm={setSearchTerm}
+        setToken={setToken}
+        setCurrentUser={setCurrentUser}
+        currentUser={currentUser}
+      />
       <Categories />
       <Routes>
-        <Route path="/login" element={<Login setToken={setToken} setCurrentUser={setCurrentUser} />} />
-        <Route path="/register" element={<Register setToken={setToken} setCurrentUser={setCurrentUser}/>} />
+        <Route
+          path="/login"
+          element={
+            <Login setToken={setToken} setCurrentUser={setCurrentUser} />
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <Register setToken={setToken} setCurrentUser={setCurrentUser} />
+          }
+        />
         <Route path="/" element={<Home />} />
-        <Route path="/itemsfeed/:pageNumber" element={<ItemsFeed searchTerm={searchTerm}/>} />
-        <Route path="/cart" element={<Cart token={token} />}  />
-        <Route path="/displayItems/:productId" element={<DisplayItem token={token}/>} />
-        <Route path="/admin" />
+        <Route
+          path="/itemsfeed/:pageNumber"
+          element={<ItemsFeed searchTerm={searchTerm} />}
+        />
+        <Route path="/cart" element={<Cart token={token} />} />
+        <Route
+          path="/displayItems/:productId"
+          element={<DisplayItem token={token} />}
+        />
+        <Route path="/admin" element={<Admin token={token} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
       </Routes>
     </div>
   );
