@@ -19,7 +19,7 @@ import {
   Store,
   UpdateItem,
   CheckoutForm,
-  Mtest,
+  Admin,
 } from "./";
 import { fetchMe, getProducts } from "../Api-Adapter";
 
@@ -56,17 +56,39 @@ const Main = () => {
 
   return (
     <div id="main">
-      <Navbar setSearchTerm={setSearchTerm} setToken={setToken} setCurrentUser={setCurrentUser} currentUser={currentUser}/>
+      <Navbar
+        setSearchTerm={setSearchTerm}
+        setToken={setToken}
+        setCurrentUser={setCurrentUser}
+        currentUser={currentUser}
+      />
       <Categories />
       <Routes>
-        <Route path="/login" element={<Login setToken={setToken} setCurrentUser={setCurrentUser} />} />
-        <Route path="/register" element={<Register setToken={setToken} setCurrentUser={setCurrentUser}/>} />
+        <Route
+          path="/login"
+          element={
+            <Login setToken={setToken} setCurrentUser={setCurrentUser} />
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <Register setToken={setToken} setCurrentUser={setCurrentUser} />
+          }
+        />
         <Route path="/" element={<Home />} />
-        <Route path="/itemsfeed/:pageNumber" element={<ItemsFeed searchTerm={searchTerm} products={products} setProducts={setProducts}/>} />
-        <Route path="/cart" element={<Cart token={token} />}  />
-        <Route path="displayItems/:productId" element={<DisplayItem token={token}/>} />
-        <Route path="/createitem" element={<CreateItem token={token} setCurrentUser={setCurrentUser} currentUser={currentUser}/>} />
+        <Route
+          path="/itemsfeed/:pageNumber"
+          element={<ItemsFeed searchTerm={searchTerm} />}
+        />
+        <Route path="/cart" element={<Cart token={token} />} />
+        <Route
+          path="/displayItems/:productId"
+          element={<DisplayItem token={token} />}
+        />
+        <Route path="/admin" element={<Admin token={token} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
 
+        <Route path="/createitem" element={<CreateItem token={token} setCurrentUser={setCurrentUser} currentUser={currentUser}/>} />
       </Routes>
     </div>
   );
