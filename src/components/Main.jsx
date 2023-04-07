@@ -21,12 +21,14 @@ import {
   CheckoutForm,
   Mtest,
 } from "./";
-import { fetchMe } from "../Api-Adapter";
+import { fetchMe, getProducts } from "../Api-Adapter";
 
 const Main = () => {
   const [currentUser, setCurrentUser] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [products, setProducts] = useState([]);
 
   async function getMeUser() {
     //only want getMe to run if token is present
@@ -37,11 +39,20 @@ const Main = () => {
       setCurrentUser({});
     }
   }
+  const retrieveProducts = async () => {
+    const allProducts = await getProducts();
+    setProducts(allProducts.products);
+
+
+  };
   useEffect(() => {
     if (token) {
       getMeUser();
     }
   }, [token]);
+  useEffect(() => {
+    retrieveProducts();
+  }, []);
 
   return (
     <div id="main">
@@ -51,10 +62,11 @@ const Main = () => {
         <Route path="/login" element={<Login setToken={setToken} setCurrentUser={setCurrentUser} />} />
         <Route path="/register" element={<Register setToken={setToken} setCurrentUser={setCurrentUser}/>} />
         <Route path="/" element={<Home />} />
-        <Route path="/mtest" element={<Mtest />} />
-        <Route path="/itemsfeed/:pageNumber" element={<ItemsFeed searchTerm={searchTerm}/>} />
+        <Route path="/itemsfeed/:pageNumber" element={<ItemsFeed searchTerm={searchTerm} products={products} setProducts={setProducts}/>} />
         <Route path="/cart" element={<Cart token={token} />}  />
         <Route path="displayItems/:productId" element={<DisplayItem token={token}/>} />
+        <Route path="/createitem" element={<CreateItem token={token} setCurrentUser={setCurrentUser} currentUser={currentUser}/>} />
+
       </Routes>
     </div>
   );
