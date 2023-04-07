@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { postProduct } from "../Api-Adapter";
+import { postProduct, becomeStore } from "../Api-Adapter";
 
 
 
@@ -9,6 +9,7 @@ const CreateItem = (props) => {
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("")
   const [quantity, setQuantity] = useState("");
+  const [isStore, setIsStore] = useState(false)
   const navigate = useNavigate();
   // const loggedIn = props.loggedIn;
   const currentUser = localStorage.getItem("currentUser");
@@ -17,20 +18,32 @@ const CreateItem = (props) => {
   const products = props.products;
   const setProducts = props.setProducts
 
+ async function makeStore() {
+  try {
+    const response = await becomeStore(token)
+    console.log(response, "RESPONSE");
+    setIsStore(response.isStore)
+  } catch (error) {
+    console.log(error)
+  }
+ }
 
   const handleClick = async (event) => {
     event.preventDefault();
     if (token && currentUser) {
     const result = await postProduct(token, {name, price, description, quantity});
    console.log(result, "RESULT")
-    const productsCopy = [...products];
-    productsCopy.push(result);
-    setProducts(productsCopy);
+
+    setProducts(result);
     navigate("/");
     }else{
       alert("MUST BE LOGGED IN TO PERFORM THIS ACTION");
     }
   };
+
+  useEffect(() => {
+    makeStore();
+  }, [])
 
   return (
     <div id="newRoutineFormBox">
@@ -97,6 +110,19 @@ const CreateItem = (props) => {
               />
             </label>
           </div>
+          <div className="newPostLabelText">
+            <label>
+              Make a store?
+              <input
+                type="checkbox"
+                checked={isStore}
+                onChange={(event) => {
+                makeStore()}}
+                />
+
+            </label>
+          </div>
+     
 
             <button className="submitBtn" type="submit">
               POST
