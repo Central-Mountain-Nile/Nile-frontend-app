@@ -28,6 +28,19 @@ function Cart(props) {
       //display error message
     }
 
+    async function orderTotal() {
+      let subtotal = 0;
+      const result = await getCart(cart.Items);
+      if (result) {
+        cart.cartItems.forEach(item => {
+          subtotal += item.price * item.quantity;
+        });
+      }
+      return subtotal;
+    }
+
+  
+
   }
   return (
     <div className="cart">
@@ -36,6 +49,7 @@ function Cart(props) {
       {cart.cartItems ? (
         cart.cartItems.map((product, idx) => {
           return (
+          <div>
             <div className="product-card-cart" key={"cart" + product.id}>
               <div className="product_text">
                 <h2 className="productName">{product.name}</h2>
@@ -51,12 +65,16 @@ function Cart(props) {
                 <button onClick={() => removeFromCart(idx)}>
                   remove from cart
                 </button>
-                <input />
-             <Link to="/checkoutform">
-                <button>Checkout</button>
-                </Link>
+                <input placeholder="Edit quantity" />
               </div>
             </div>
+            <div className="CartTotal">
+              <p>Subtotal: $ {orderTotal()}</p>
+              <Link to="/checkoutform">
+                <button id="Checkoutbutton">Checkout</button>
+                </Link>
+            </div>
+          </div>
           );
         })
       ) : (

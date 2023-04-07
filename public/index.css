@@ -269,6 +269,19 @@ body {
 .product_buttons {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+}
+
+.CartTotal {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 4px;
+  align-content: center;
+}
+
+#Checkoutbutton {
+  background-color: #FFD116;
 }
 
 .product_text {
@@ -278,3 +291,4 @@ body {
   display:flex;
   flex-direction: column;
 }
+
