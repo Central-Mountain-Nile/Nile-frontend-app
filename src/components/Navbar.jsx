@@ -26,7 +26,7 @@ const Navbar = (props) => {
         <div className="linksBtn">
           {loggedIn ? (
             <div>
-          <button >Hello, {props.currentUser.username}</button>
+          {/* <button >Hello, {props.currentUser.username}</button> */}
 
               <Link to="/">
                 <button>Home</button>
