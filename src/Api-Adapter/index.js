@@ -1,6 +1,6 @@
 const BASE_URL = "https://nile-marketplace.onrender.com/api";
 
-// const BASE_URL = "http://localhost:8080/api";
+//const BASE_URL ="http://localhost:8080/api"
 // user endpoints
 
 export const loginUser = async (username, password) => {
