@@ -15,8 +15,6 @@ const CreateItem = (props) => {
   const currentUser = localStorage.getItem("currentUser");
   const token = props.token;
 
-  const products = props.products;
-  const setProducts = props.setProducts
 
  async function makeStore(event) {
   try {
@@ -32,9 +30,6 @@ const CreateItem = (props) => {
     event.preventDefault();
     if (token && currentUser) {
     const result = await postProduct(token, {name, price, description, quantity});
-   console.log(result, "RESULT")
-
-    setProducts(result);
     navigate("/");
     }else{
       alert("MUST BE LOGGED IN TO PERFORM THIS ACTION");
