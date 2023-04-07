@@ -18,10 +18,10 @@ const CreateItem = (props) => {
   const products = props.products;
   const setProducts = props.setProducts
 
- async function makeStore() {
+ async function makeStore(event) {
   try {
+    setIsStore(true)
     const response = await becomeStore(token)
-    console.log(response, "RESPONSE");
     setIsStore(response.isStore)
   } catch (error) {
     console.log(error)
@@ -42,7 +42,6 @@ const CreateItem = (props) => {
   };
 
   useEffect(() => {
-    makeStore();
   }, [])
 
   return (
@@ -116,8 +115,7 @@ const CreateItem = (props) => {
               <input
                 type="checkbox"
                 checked={isStore}
-                onChange={(event) => {
-                makeStore()}}
+                onChange={(event) => {makeStore(event)}}
                 />
 
             </label>

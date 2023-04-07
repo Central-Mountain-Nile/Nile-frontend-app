@@ -1,6 +1,6 @@
-const BASE_URL = "https://nile-marketplace.onrender.com/api";
+// const BASE_URL = "https://nile-marketplace.onrender.com/api";
 
-// const BASE_URL ="http://localhost:8080/api"
+const BASE_URL ="http://localhost:8080/api"
 // user endpoints
 
 export const loginUser = async (username, password) => {
@@ -465,6 +465,7 @@ export const becomeAdmin = async (token, secretCode)=>{
 }
 export const becomeStore = async (token)=>{
   try {
+    console.log('api')
     const response = await fetch(`${BASE_URL}/users/store`, {
       method: "PATCH",
       headers: {
@@ -472,6 +473,7 @@ export const becomeStore = async (token)=>{
         Authorization: `Bearer ${token}`,
       },
     });
+    console.log('api2')
     const result = await response.json();
     return result;
   } catch (err) {
