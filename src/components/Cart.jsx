@@ -15,7 +15,7 @@ function Cart(props) {
   async function getCartItems(){
 
     setCart(await getCart(token))
-  }
+  };
 
   async function removeFromCart(idx) {
     const newCart = { ...cart };
@@ -28,20 +28,19 @@ function Cart(props) {
       //display error message
     }
 
-    async function orderTotal() {
-      let subtotal = 0;
-      const result = await getCart(cart.Items);
-      if (result) {
-        cart.cartItems.forEach(item => {
-          subtotal += item.price * item.quantity;
-        });
-      }
-      return subtotal;
+  };
+
+  function orderTotal() {
+    let subtotal = 0;
+    if (cart.cartItems) {
+      cart.cartItems.forEach(item => {
+        subtotal += item.price * item.quantity;
+      });
     }
+    return subtotal;
+  };
 
-  
 
-  }
   return (
     <div className="cart">
       {" "}
@@ -69,7 +68,7 @@ function Cart(props) {
               </div>
             </div>
             <div className="CartTotal">
-              <p>Subtotal: $ {orderTotal()}</p>
+              <p>Subtotal: ${orderTotal()}</p>
               <Link to="/checkoutform">
                 <button id="Checkoutbutton">Checkout</button>
                 </Link>
