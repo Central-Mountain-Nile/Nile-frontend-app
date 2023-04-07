@@ -22,6 +22,9 @@ const Navbar = (props) => {
           <Link to="/cart">
             <button>My cart</button>
           </Link>
+          <Link to="/createitem">
+            <button>My store</button>
+          </Link>
           <Link to="/login">
             <button onClick={() => logout()}>Logout</button>
           </Link>

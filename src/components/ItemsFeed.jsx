@@ -43,6 +43,7 @@ function ItemsFeed(props) {
   useEffect(() => {
     retrieveProducts();
   }, [page]);
+  
 
   return (
     <div>
@@ -54,11 +55,12 @@ function ItemsFeed(props) {
               <div key={`itemsFeed${product.id}`}>
                 <Link to={`/displayItems/${product.id}`}>
                   <div className="product-card">
+                    
                     <h2>{product.name}</h2>
                     <p>{product.description}</p>
                     <p>${product.price}</p>
                     <p>Quantity: {product.quantity}</p>
-                    {/* <img src={image_url}/> */}
+                    {/* <img src={product.image_url}/> */}
                   </div>
                 </Link>
               </div>
