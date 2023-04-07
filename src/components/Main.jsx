@@ -32,6 +32,7 @@ const Main = () => {
 
   async function getMeUser() {
     //only want getMe to run if token is present
+    const token = localStorage.getItem("token");
     if (token) {
       const response = await fetchMe(token);
       setCurrentUser(response);
@@ -42,12 +43,13 @@ const Main = () => {
   const retrieveProducts = async () => {
     const allProducts = await getProducts();
     setProducts(allProducts.products);
-
-
+    
+    
   };
   useEffect(() => {
     if (token) {
       getMeUser();
+      setLoggedIn(true)
     }
   }, [token]);
   useEffect(() => {
@@ -61,6 +63,8 @@ const Main = () => {
         setToken={setToken}
         setCurrentUser={setCurrentUser}
         currentUser={currentUser}
+        loggedIn={loggedIn} 
+        setLoggedIn={setLoggedIn}
       />
       <Categories />
       <Routes>
