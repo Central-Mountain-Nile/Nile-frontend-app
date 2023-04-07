@@ -434,6 +434,7 @@ export const deleteOrder = async (id, token) => {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
+        
       },
     });
     const result = await response.json();
@@ -443,3 +444,23 @@ export const deleteOrder = async (id, token) => {
     console.error(err);
   }
 };
+//secretcode87654321
+export const becomeAdmin = async (token, secretCode)=>{
+  try {
+    const response = await fetch(`${BASE_URL}/admin/users`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        secretCode
+      }),
+    });
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (err) {
+    console.error(err);
+  }
+}
