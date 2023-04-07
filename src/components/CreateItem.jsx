@@ -16,7 +16,6 @@ const CreateItem = (props) => {
   const token = props.token;
 
 
-
  async function makeStore(event) {
   try {
     const response = await becomeStore(token)
@@ -31,9 +30,6 @@ const CreateItem = (props) => {
     event.preventDefault();
     if (token && currentUser) {
     const result = await postProduct(token, {name, price, description, quantity, categoryId: 5, imgURL: "image"});
-   console.log(result, "RESULT")
-
-  
     navigate("/");
     }else{
       alert("MUST BE LOGGED IN TO PERFORM THIS ACTION");
