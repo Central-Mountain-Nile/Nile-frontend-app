@@ -434,7 +434,6 @@ export const deleteOrder = async (id, token) => {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
-        
       },
     });
     const result = await response.json();
@@ -445,7 +444,7 @@ export const deleteOrder = async (id, token) => {
   }
 };
 //secretcode87654321
-export const becomeAdmin = async (token, secretCode)=>{
+export const becomeAdmin = async (token, secretCode) => {
   try {
     const response = await fetch(`${BASE_URL}/admin/users`, {
       method: "PATCH",
@@ -454,7 +453,7 @@ export const becomeAdmin = async (token, secretCode)=>{
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        secretCode
+        secretCode,
       }),
     });
     const result = await response.json();
@@ -462,10 +461,10 @@ export const becomeAdmin = async (token, secretCode)=>{
   } catch (err) {
     console.error(err);
   }
-}
-export const becomeStore = async (token)=>{
+};
+export const becomeStore = async (token) => {
   try {
-    console.log('api')
+    console.log("api");
     const response = await fetch(`${BASE_URL}/users/store`, {
       method: "PATCH",
       headers: {
@@ -473,10 +472,10 @@ export const becomeStore = async (token)=>{
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log('api2')
+    console.log("api2");
     const result = await response.json();
     return result;
   } catch (err) {
     console.error(err);
   }
-}
+};
