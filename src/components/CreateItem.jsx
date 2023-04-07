@@ -15,13 +15,12 @@ const CreateItem = (props) => {
   const currentUser = localStorage.getItem("currentUser");
   const token = props.token;
 
-  const products = props.products;
-  const setProducts = props.setProducts
+
 
  async function makeStore(event) {
   try {
-    setIsStore(true)
     const response = await becomeStore(token)
+    console.log(response)
     setIsStore(response.isStore)
   } catch (error) {
     console.log(error)
@@ -31,10 +30,10 @@ const CreateItem = (props) => {
   const handleClick = async (event) => {
     event.preventDefault();
     if (token && currentUser) {
-    const result = await postProduct(token, {name, price, description, quantity});
+    const result = await postProduct(token, {name, price, description, quantity, categoryId: 5, imgURL: "image"});
    console.log(result, "RESULT")
 
-    setProducts(result);
+  
     navigate("/");
     }else{
       alert("MUST BE LOGGED IN TO PERFORM THIS ACTION");
