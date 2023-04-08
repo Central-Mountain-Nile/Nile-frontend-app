@@ -6,7 +6,7 @@ function DisplayItem(props) {
   const [singleProduct, setSingleProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
   const { productId } = useParams();
-  const { token, cart, setCart } = props;
+  const { token, cart, setCart,searchTerm } = props;
   const navigate = useNavigate();
 
   const retrieveProduct = async () => {

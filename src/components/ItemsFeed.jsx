@@ -4,6 +4,7 @@ import { getProducts, getProductById } from "../Api-Adapter";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 function ItemsFeed(props) {
+  const {searchTerm} = props
   const { pageNumber } = useParams();
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(Number(pageNumber));
@@ -11,12 +12,19 @@ function ItemsFeed(props) {
   const navigate = useNavigate();
 
   const retrieveProducts = async () => {
-    const allProducts = await getProducts(page);
-    setProducts(allProducts.products);
-    let num = Math.ceil(allProducts.count / 25);
-    setPageCount(num);
-  };
+    if(!searchTerm){
+      const allProducts = await getProducts(page);
+      setProducts(allProducts.products);
+      let num = Math.ceil(allProducts.count / 25);
+      setPageCount(num);
+    }else{
+      const allProducts = await getProducts(page,searchTerm);
+      setProducts(allProducts.products);
+      let num = Math.ceil(allProducts.count / 25);
+      setPageCount(num);
+    }
 
+  };
   function createPageCount() {
     let elements = [];
     let count = 0;
@@ -39,10 +47,9 @@ function ItemsFeed(props) {
     navigate(`/itemsfeed/${num}`);
     setPage(num);
   }
-  console.log(page);
   useEffect(() => {
     retrieveProducts();
-  }, [page]);
+  }, [page, searchTerm]);
   
 
   return (

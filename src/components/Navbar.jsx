@@ -2,17 +2,12 @@ import React, { useEffect, useReducer, useState } from "react";
 import { useNavigate, Outlet, Link } from "react-router-dom";
 
 const Navbar = (props) => {
-  const { setSearchTerm, setToken } = props;
-
-  // const currentUser = localStorage.getItem("currentUser");
-  // const token = props.token;
-
-  const loggedIn = props.loggedIn;
-
-  const setLoggedIn = props.setLoggedIn;
+  const {loggedIn,setLoggedIn, setSearchTerm, setToken} = props
+const [searchBar, setSearchtBar] = useState('')
   function logout() {
     localStorage.removeItem("token");
     localStorage.removeItem("currentUser");
+    setToken('')
     setLoggedIn(false);
   }
 
@@ -22,7 +17,10 @@ const Navbar = (props) => {
         <Link to="/itemsfeed/1">
           <img className="logoDash" src="/Untitled_Artwork 36.png" alt="" />
         </Link>
-        <input type="text" className="search" />
+        <input type="text" className="search"          onChange={(e) => {
+            setSearchtBar(e.target.value);
+          }} />
+        <button onClick={()=>setSearchTerm(searchBar)}>search</button>
         <div className="linksBtn">
           {loggedIn ? (
             <div>
