@@ -21,7 +21,7 @@ import {
   CheckoutForm,
   Admin,
 } from "./";
-import { fetchMe, getProducts } from "../Api-Adapter";
+import { fetchMe, getProducts, getCart } from "../Api-Adapter";
 
 const Main = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -29,13 +29,17 @@ const Main = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [loggedIn, setLoggedIn] = useState(false);
   const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState({});
 
   async function getMeUser() {
     //only want getMe to run if token is present
-    const token = localStorage.getItem("token");
     if (token) {
       const response = await fetchMe(token);
-      setCurrentUser(response);
+      if (!response.message) {
+        setCurrentUser(response);
+      } else {
+        setCurrentUser({});
+      }
     } else {
       setCurrentUser({});
     }
@@ -43,19 +47,21 @@ const Main = () => {
   const retrieveProducts = async () => {
     const allProducts = await getProducts();
     setProducts(allProducts.products);
-    
-    
   };
   useEffect(() => {
     if (token) {
       getMeUser();
-      setLoggedIn(true)
+      setLoggedIn(true);
+      getCartItems();
     }
   }, [token]);
   useEffect(() => {
     retrieveProducts();
   }, []);
 
+  async function getCartItems() {
+    setCart(await getCart(token));
+  }
   return (
     <div id="main">
       <Navbar
@@ -63,7 +69,7 @@ const Main = () => {
         setToken={setToken}
         setCurrentUser={setCurrentUser}
         currentUser={currentUser}
-        loggedIn={loggedIn} 
+        loggedIn={loggedIn}
         setLoggedIn={setLoggedIn}
       />
       <Categories />
@@ -83,16 +89,39 @@ const Main = () => {
         <Route path="/" element={<Home />} />
         <Route
           path="/itemsfeed/:pageNumber"
-          element={<ItemsFeed searchTerm={searchTerm} />}
+          element={
+            <ItemsFeed searchTerm={searchTerm}/>
+          }
         />
-        <Route path="/cart" element={<Cart token={token} />} />
+        <Route
+          path="/cart"
+          element={<Cart token={token} cart={cart} setCart={setCart} />}
+        />
         <Route
           path="/displayItems/:productId"
-          element={<DisplayItem token={token} />}
+          element={<DisplayItem token={token} cart={cart} setCart={setCart} />}
         />
-        <Route path="/admin" element={<Admin token={token} currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
+        <Route
+          path="/admin"
+          element={
+            <Admin
+              token={token}
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+            />
+          }
+        />
 
-        <Route path="/createitem" element={<CreateItem token={token} setCurrentUser={setCurrentUser} currentUser={currentUser}/>} />
+        <Route
+          path="/createitem"
+          element={
+            <CreateItem
+              token={token}
+              setCurrentUser={setCurrentUser}
+              currentUser={currentUser}
+            />
+          }
+        />
       </Routes>
     </div>
   );

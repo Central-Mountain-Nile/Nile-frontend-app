@@ -4,19 +4,8 @@ import { useNavigate, Outlet, Link } from "react-router-dom";
 
 
 function Cart(props) {
-  const { token } = props;
+  const { token,cart, setCart } = props;
   getCart;
-  const [cart, setCart] = useState({})
-
-  useEffect(() => {
-    getCartItems()
-  }, []);
-
-  async function getCartItems(){
-
-    setCart(await getCart(token))
-  };
-
   async function removeFromCart(idx) {
     const newCart = { ...cart };
    const result = await deleteCartItem(cart.cartItems[idx].id, token);

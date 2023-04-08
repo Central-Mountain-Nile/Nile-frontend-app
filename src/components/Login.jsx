@@ -17,7 +17,6 @@ function Login(props) {
     } else {
       setToken(response.token);
       setCurrentUser(response.user);
-      localStorage.setItem("currentUser", JSON.stringify(response.user));
       localStorage.setItem("token", response.token);      
       navigate("/itemsfeed/1");
     }

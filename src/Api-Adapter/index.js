@@ -336,7 +336,7 @@ export const deleteCartItem = async (id, token) => {
     console.error(err);
   }
 };
-export const updateCart = async (quantity, cartItemId, token) => {
+export const updateCartItem = async (quantity, cartItemId, token) => {
   try {
     const response = await fetch(`${BASE_URL}/carts`, {
       headers: {

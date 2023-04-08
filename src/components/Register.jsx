@@ -15,8 +15,7 @@ function Register(props) {
   const [postalCode, setPostalCode] = useState("");
   const [country, setCountry] = useState("");
   const setToken = props.setToken;
-
-  const [user, setUser] = useState("");
+  const setCurrentUser = props.setCurrentUser
 
   const navigate = useNavigate();
 
@@ -41,13 +40,13 @@ function Register(props) {
         country,
       });
       console.log(result,"result")
-      if(result.token){
-        localStorage.setItem("token", result.token);
+      if (result.error) {
+        alert(result.message);
+      } else {
         setToken(result.token);
- 
-       navigate("/itemsfeed/1");
-      }else{
-        //display message
+        setCurrentUser(result.user);
+        localStorage.setItem("token", result.token);      
+        navigate("/itemsfeed/1");
       }
 
     } catch (error) {
