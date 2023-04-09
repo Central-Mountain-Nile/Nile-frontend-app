@@ -2,7 +2,6 @@ const BASE_URL = "https://nileserver.onrender.com/api";
 
 //const BASE_URL ="http://localhost:8080/api"
 
-
 export const loginUser = async (username, password) => {
   try {
     const response = await fetch(`${BASE_URL}/users/login`, {
@@ -53,47 +52,22 @@ export const fetchMe = async (token) => {
   }
 };
 // products endpoints
-export const getProducts = async (pageNumber, searchTerm) => {
+export const getProducts = async ({ category, page, searchTerm }) => {
+  console.log('api',category)
   try {
-    if (!pageNumber) {
-      pageNumber = 1;
+    if (!page) {
+      page = 1;
     }
     let urlSearch = "";
     if (searchTerm) {
       urlSearch = `/${searchTerm}`;
     }
-    const response = await fetch(
-      `${BASE_URL}/products/${pageNumber}${urlSearch}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const result = await response.json();
-
-    return result;
-  } catch (error) {
-    throw error;
-  }
-};
-
-export const getProductsByCategory = async (
-  categoryId,
-  pageNumber,
-  searchTerm
-) => {
-  try {
-    if (!pageNumber) {
-      pageNumber = 1;
-    }
-    let urlSearch = "";
-    if (searchTerm) {
-      urlSearch = `/${searchTerm}`;
+    let categorySearch = "";
+    if (category) {
+      categorySearch = `/category/${category}`;
     }
     const response = await fetch(
-      `${BASE_URL}/products/category/${categoryId}/${pageNumber}${urlSearch}`,
+      `${BASE_URL}/products${categorySearch}/${page}${urlSearch}`,
       {
         method: "GET",
         headers: {

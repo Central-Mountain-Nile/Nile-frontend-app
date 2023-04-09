@@ -28,7 +28,6 @@ const Main = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [loggedIn, setLoggedIn] = useState(false);
-  const [products, setProducts] = useState([]);
   const [cart, setCart] = useState({});
 
   async function getMeUser() {
@@ -44,10 +43,6 @@ const Main = () => {
       setCurrentUser({});
     }
   }
-  const retrieveProducts = async () => {
-    const allProducts = await getProducts();
-    setProducts(allProducts.products);
-  };
   useEffect(() => {
     if (token) {
       getMeUser();
@@ -55,9 +50,6 @@ const Main = () => {
       getCartItems();
     }
   }, [token]);
-  useEffect(() => {
-    retrieveProducts();
-  }, []);
 
   async function getCartItems() {
     setCart(await getCart(token));
@@ -72,7 +64,7 @@ const Main = () => {
         loggedIn={loggedIn}
         setLoggedIn={setLoggedIn}
       />
-      <Categories />
+      <Categories/>
       <Routes>
         <Route
           path="/login"
@@ -89,6 +81,12 @@ const Main = () => {
         <Route path="/" element={<Home />} />
         <Route
           path="/itemsfeed/:pageNumber"
+          element={
+            <ItemsFeed searchTerm={searchTerm}/>
+          }
+        />
+         <Route
+          path="/itemsfeed/:category/:pageNumber"
           element={
             <ItemsFeed searchTerm={searchTerm}/>
           }
