@@ -27,13 +27,15 @@ function Cart(props) {
         subtotal += item.price * item.quantity;
       });
     }
+    subtotal =  Math.floor(subtotal*100)/100
     return subtotal;
   }
 
   return (
+    <div className="cartWrapper">
     <div className="cart">
       {" "}
-      <h1>Cart</h1>
+      <h1>CART</h1>
       {cart.cartItems ? (
         cart.cartItems.map((product, idx) => {
           return (
