@@ -151,6 +151,7 @@ export const editProduct = async (productId, token, fields) => {
 //fields is an object that must include(name,categoryId, description, price ,quantity, and imagURL)
 export const postProduct = async (token, fields) => {
   try {
+    console.log(fields)
     const response = await fetch(`${BASE_URL}/products/`, {
       method: "POST",
       headers: {
