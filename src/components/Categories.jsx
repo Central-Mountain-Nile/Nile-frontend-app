@@ -15,7 +15,7 @@ const {setCategory} = props
       <Link to={"/itemsfeed/gaming/1"}><button>Gaming</button></Link>
       <Link to={"/itemsfeed/pets/1"}><button>Pets</button></Link>
       <Link to={"/itemsfeed/sports/lifestyle/1"}><button>Sports/Lifestyle</button></Link>
-      <Link to={"/itemsfeed/tooles/appliances/1"}><button>Tools/appliances</button></Link>
+      <Link to={"/itemsfeed/tools/appliances/1"}><button>Tools/appliances</button></Link>
       <Link to={"/itemsfeed/books/1"}><button>Books</button></Link>
     </div>
   );
