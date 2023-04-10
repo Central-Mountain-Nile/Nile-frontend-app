@@ -20,6 +20,7 @@ import {
   UpdateItem,
   CheckoutForm,
   Admin,
+  Banner,
 } from "./";
 import { fetchMe, getProducts, getCart } from "../Api-Adapter";
 
@@ -64,7 +65,8 @@ const Main = () => {
         loggedIn={loggedIn}
         setLoggedIn={setLoggedIn}
       />
-      <Categories/>
+      <Categories />
+      <Banner />
       <Routes>
         <Route
           path="/login"
@@ -81,15 +83,11 @@ const Main = () => {
         <Route path="/" element={<Home />} />
         <Route
           path="/itemsfeed/:pageNumber"
-          element={
-            <ItemsFeed searchTerm={searchTerm}/>
-          }
+          element={<ItemsFeed searchTerm={searchTerm} />}
         />
-         <Route
+        <Route
           path="/itemsfeed/:category/:pageNumber"
-          element={
-            <ItemsFeed searchTerm={searchTerm}/>
-          }
+          element={<ItemsFeed searchTerm={searchTerm} />}
         />
         <Route
           path="/cart"

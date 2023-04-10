@@ -12,7 +12,7 @@ LIGHT BLUE- #118AB2 */
 
 body {
   margin: 0;
-  background-color: #d4d4d4;
+  background-color: #efefef;
 }
 
 
@@ -35,6 +35,37 @@ body {
   top: 0;
   z-index: 9999;
   background-color: rgb(44, 44, 44);
+}
+
+.searchBar {
+  display: flex;
+  width: 600px;
+  height: 33px;
+  align-content: center;
+
+}
+
+.img {
+  height: 400px;
+  width: 100%;
+  position: relative;
+}
+
+.searchIcon {
+  height: 35px;
+  width: 40px;
+  margin-top: 2px;
+  background-color: #e0b713;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+
+}
+
+.search {
+  width: 600px;
+  height: 33px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 .linksBtn button {
@@ -68,9 +99,6 @@ body {
   padding: 5px;
 }
 
-.search {
-  width: 600px;
-}
 
 .links {
   list-style: none;
@@ -124,27 +152,33 @@ body {
 }
 
 .product-card {
+  border-radius: 12px;
   background-color: white;
-  box-shadow: 0px 0px 10px rgb(41, 41, 41);
+  box-shadow: 0px 0px 5px rgb(41, 41, 41);
   border-radius: 2px;
   display: flex;
   flex-direction: column;
   align-items: left;
   padding: 5px;
-  margin: px;
+  margin: 1rem;
   height: 400px;
   width: 300px;
+
 }
 
 .product-card h2 {
   background: #FFD116;
   text-align: center;
+  border-radius: 10px;
+  width: 250px;
+  margin: 10px auto;
+  text-decoration: none;
 }
 
 .product-card:hover {
-  background-color: #727272;
-  border-bottom: 2px solid #FFD116;
-  border-top: 2px solid #FFD116;
+  background-color: #8e8d8d;
+  /* border-bottom: 2px solid #FFD116;
+  border-top: 2px solid #FFD116; */
   transition: 0.5s;
 }
 
@@ -163,6 +197,21 @@ body {
   border-radius: 10px;
 
 
+}
+
+.pageCount {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+div.pageNum>* {
+  margin: 10px;
+}
+
+.page {
+  margin-right: 1rem;
 }
 
 .individual_item_img {
@@ -211,6 +260,8 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  position: relative;
+  margin-top: -100px;
 }
 
 
@@ -318,6 +369,7 @@ body {
 
 .product_text {
   width: 150px;
+
 }
 .remove_btn{
   background-color: #073B4C;

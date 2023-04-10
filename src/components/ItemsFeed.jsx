@@ -1,10 +1,9 @@
 import { React, useState, useEffect } from "react";
-
 import { getProducts, getProductById } from "../Api-Adapter";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 function ItemsFeed(props) {
-  const {searchTerm} = props
+  const { searchTerm } = props;
   const { pageNumber, category } = useParams();
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(Number(pageNumber));
@@ -12,13 +11,12 @@ function ItemsFeed(props) {
   const navigate = useNavigate();
 
   const retrieveProducts = async () => {
-
-    console.log(searchTerm,category)
-      const allProducts = await getProducts({page,searchTerm, category});
-      console.log(allProducts, 'allProducts')
-      setProducts(allProducts.products);
-      let num = Math.ceil(allProducts.count / 25);
-      setPageCount(num);
+    console.log(searchTerm, category);
+    const allProducts = await getProducts({ page, searchTerm, category });
+    console.log(allProducts, "allProducts");
+    setProducts(allProducts.products);
+    let num = Math.ceil(allProducts.count / 25);
+    setPageCount(num);
   };
   function createPageCount() {
     let elements = [];
@@ -45,7 +43,6 @@ function ItemsFeed(props) {
   useEffect(() => {
     retrieveProducts();
   }, [page, searchTerm, category]);
-  
 
   return (
     <div>
@@ -57,7 +54,6 @@ function ItemsFeed(props) {
               <div key={`itemsFeed${product.id}`}>
                 <Link to={`/displayItems/${product.id}`}>
                   <div className="product-card">
-                    
                     <h2>{product.name}</h2>
                     <p>{product.description}</p>
                     <p>${product.price}</p>
@@ -75,10 +71,8 @@ function ItemsFeed(props) {
         )}
       </div>
       <div className="pageCount">
-        <div>page</div>
-        <div>
-        {createPageCount()}
-        </div>
+        <div className="page">Page</div>
+        <div className="pageNum">-{createPageCount()}-</div>
       </div>
     </div>
   );
