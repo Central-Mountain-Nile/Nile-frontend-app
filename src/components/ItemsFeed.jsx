@@ -61,7 +61,6 @@ function ItemsFeed(props) {
         {products.length ? (
           products.map((product) => {
             return (
-              // <form onSubmit={handleClickDelete}>
               <div key={`itemsFeed${product.id}`}>
                 <Link className="linkProperties" to={`/displayItems/${product.id}`}>
                   <div className="product-card">
@@ -82,7 +81,6 @@ function ItemsFeed(props) {
                 {/* {currentUser && currentUser.isAdmin ? <button>Delete</button> : null} */}
                 </Link>
               </div>
-              // </form>
             );
           })
         ) : (
