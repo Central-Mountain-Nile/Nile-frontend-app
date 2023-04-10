@@ -119,9 +119,11 @@ const Main = () => {
             />
           }
         />
-                <Route
+        <Route
           path="checkoutpage"
-          element={<StripeContainer token={token} cart={cart} setCart={setCart} />}
+          element={
+            <StripeContainer token={token} cart={cart} setCart={setCart} />
+          }
         />
       </Routes>
     </div>
