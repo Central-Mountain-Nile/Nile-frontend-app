@@ -1,6 +1,6 @@
-// const BASE_URL = "https://nileserver.onrender.com/api";
+const BASE_URL = "https://nileserver.onrender.com/api";
 
-const BASE_URL ="http://localhost:8080/api"
+// const BASE_URL ="http://localhost:8080/api"
 
 
 export const loginUser = async (username, password) => {
