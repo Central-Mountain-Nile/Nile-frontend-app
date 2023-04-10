@@ -1,9 +1,9 @@
 import { React, useState, useEffect } from "react";
-import { getProducts, getProductById, deleteProduct } from "../Api-Adapter";
+import { getProducts, adminDelete, } from "../Api-Adapter";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 function ItemsFeed(props) {
-  const { searchTerm, currentUser } = props;
+  const { searchTerm, currentUser, token } = props;
   const { pageNumber, category } = useParams();
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(Number(pageNumber));
@@ -34,8 +34,9 @@ function ItemsFeed(props) {
     return elements;
   }
   const handleClickDelete = async (id) => {
-    const result = await deleteProduct(id);
 
+    const result = await adminDelete(token,id);
+console.log(result)
     const filteredData = props.product.filter((element) => {
       if (element._id !== id) {
         return true;
@@ -63,7 +64,8 @@ function ItemsFeed(props) {
           products.map((product) => {
             return (
 
-              <form onSubmit={handleClickDelete}>
+              <form onSubmit={(event)=>{event.preventDefault();
+                handleClickDelete(product.id)}}>
 
               <div key={`itemsFeed${product.id}`}>
                 <Link className="linkProperties" to={`/displayItems/${product.id}`}>

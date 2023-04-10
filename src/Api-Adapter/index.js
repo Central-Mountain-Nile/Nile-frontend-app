@@ -469,3 +469,20 @@ export const checkOut = async (amount, id) => {
     console.error(error);
   }
 };
+
+
+export const adminDelete = async(token,productId)=>{
+  try {
+    const response = await fetch(`${BASE_URL}/admin/product/${productId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    throw error;
+  }
+}

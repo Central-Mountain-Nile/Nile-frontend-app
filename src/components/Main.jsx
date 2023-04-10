@@ -84,11 +84,11 @@ const Main = () => {
         <Route path="/" element={<Home />} />
         <Route
           path="/itemsfeed/:pageNumber"
-          element={<ItemsFeed searchTerm={searchTerm} currentUser={currentUser} />}
+          element={<ItemsFeed searchTerm={searchTerm} currentUser={currentUser} token={token} />}
         />
         <Route
           path="/itemsfeed/:category/:pageNumber"
-          element={<ItemsFeed searchTerm={searchTerm} currentUser={currentUser} />}
+          element={<ItemsFeed searchTerm={searchTerm} currentUser={currentUser} token={token} />}
         />
         <Route
           path="/cart"
