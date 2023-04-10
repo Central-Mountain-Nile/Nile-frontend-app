@@ -60,7 +60,7 @@ function Cart(props) {
               </div>
               <div className="CartTotal">
                 <p>Subtotal: ${orderTotal()}</p>
-                <Link to="/checkoutform">
+                <Link to="/checkoutpage">
                   <button id="Checkoutbutton">Checkout</button>
                 </Link>
               </div>
