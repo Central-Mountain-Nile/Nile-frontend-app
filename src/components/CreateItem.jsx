@@ -10,9 +10,10 @@ const CreateItem = (props) => {
   const [description, setDescription] = useState("")
   const [quantity, setQuantity] = useState("");
   const [isStore, setIsStore] = useState(false)
+  const [category, setCategory] = useState('')
   const navigate = useNavigate();
   // const loggedIn = props.loggedIn;
-  const currentUser = localStorage.getItem("currentUser");
+  const currentUser = props.currentUser;
   const token = props.token;
 
 
@@ -29,7 +30,7 @@ const CreateItem = (props) => {
   const handleClick = async (event) => {
     event.preventDefault();
     if (token && currentUser) {
-    const result = await postProduct(token, {name, price, description, quantity, categoryId: 5, imgURL: "image"});
+    const result = await postProduct(token, {name, price, description, quantity, category, imgURL: "image"});
     navigate("/");
     }else{
       alert("MUST BE LOGGED IN TO PERFORM THIS ACTION");
@@ -95,7 +96,7 @@ const CreateItem = (props) => {
               <input
                 className="newPostInput"
                 name="Quantity"
-                type="text"
+                type="number"
                 value={quantity}
                 onChange={(event) => {
                   console.log(event.target.value);
@@ -103,6 +104,23 @@ const CreateItem = (props) => {
                 }}
               />
             </label>
+            
+          </div>
+          <div className="newPostLabelText">
+            <label>
+              <p>Category:</p>
+              <input
+                className="newPostInput"
+                name="Category"
+                type="text"
+                value={category}
+                onChange={(event) => {
+                  console.log(event.target.value);
+                  setCategory(event.target.value);
+                }}
+              />
+            </label>
+            
           </div>
           <div className="newPostLabelText">
             <label>
