@@ -84,7 +84,7 @@ const Main = () => {
         <Route path="/" element={<Home />} />
         <Route
           path="/itemsfeed/:pageNumber"
-          element={<ItemsFeed searchTerm={searchTerm} />}
+          element={<ItemsFeed searchTerm={searchTerm} currentUser={currentUser} />}
         />
         <Route
           path="/itemsfeed/:category/:pageNumber"

@@ -54,14 +54,15 @@ function ItemsFeed(props) {
   useEffect(() => {
     retrieveProducts();
   }, [page, searchTerm, category]);
-
+  
+  console.log(products, "PRODUCT")
   return (
     <div>
       <div className="allProducts">
         {products.length ? (
           products.map((product) => {
             return (
-              // <form onSubmit={handleClickDelete}>
+              <form onSubmit={handleClickDelete}>
               <div key={`itemsFeed${product.id}`}>
                 <Link className="linkProperties" to={`/displayItems/${product.id}`}>
                   <div className="product-card">
@@ -76,18 +77,18 @@ function ItemsFeed(props) {
                     {/* <p>category:{product.categoryName}</p> */}
                     <p>Quantity: {product.quantity}</p>
                   </div>
+                  </Link>
                 {currentUser && currentUser.isAdmin ? <button 
                 onClick={() => {
                   handleClickDelete(product._id);}}>Delete</button> : null}
                 {/* {currentUser && currentUser.isAdmin ? <button>Delete</button> : null} */}
-                </Link>
               </div>
-              // </form>
+             </form>
             );
           })
-        ) : (
-          <div className="loader"></div>
-        )}
+          ) : (
+            <div className="loader"></div>
+            )}
       </div>
       <div className="pageCount">
         <div className="page">Page</div>
