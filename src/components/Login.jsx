@@ -24,8 +24,9 @@ function Login(props) {
 
 
   return (
-    <div className="LoginForm">
-      <h2>Please Log in</h2>
+    <div className="loginPageBox">
+      <div className="loginPage">
+      <h2>PLEASE LOG IN</h2>
       <form
         className="form"
         onSubmit={(e) => {
@@ -58,6 +59,7 @@ function Login(props) {
       <Link to="/register" className="registerLink">
             Don't have an account? Register here!
           </Link>
+    </div>
     </div>
   );
 }

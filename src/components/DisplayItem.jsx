@@ -21,7 +21,6 @@ function DisplayItem(props) {
     if (quantity > 0) {
       //check for duplicates in cart and add their quantities together
       for (let i = 0; i < cart.cartItems.length; i++) {
-        console.log(cart.cartItems[i].productId, singleProduct.id);
         if (cart.cartItems[i].productId === singleProduct.id) {
           const result = await updateCartItem(
             quantity + cart.cartItems[i].quantity,
@@ -64,7 +63,6 @@ function DisplayItem(props) {
       <form onSubmit={(event) => handleClick(event)}>
         {/* {singleProduct.length ? (
       singleProduct.map((product) => {
-        console.log("hit")
         return ( */}
         {singleProduct.name ? (
           <div className="product-card-individual">
