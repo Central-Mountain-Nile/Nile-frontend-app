@@ -11,12 +11,10 @@ function ItemsFeed(props) {
   const navigate = useNavigate();
 
   const retrieveProducts = async () => {
-    console.log(searchTerm, category);
-    const allProducts = await getProducts({ page, searchTerm, category });
-    console.log(allProducts, "allProducts");
-    setProducts(allProducts.products);
-    let num = Math.ceil(allProducts.count / 25);
-    setPageCount(num);
+      const allProducts = await getProducts({page,searchTerm, category});
+      setProducts(allProducts.products);
+      let num = Math.ceil(allProducts.count / 25);
+      setPageCount(num);
   };
   function createPageCount() {
     let elements = [];
