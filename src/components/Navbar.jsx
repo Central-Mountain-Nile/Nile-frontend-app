@@ -1,13 +1,14 @@
 import React, { useEffect, useReducer, useState } from "react";
 import { useNavigate, Outlet, Link } from "react-router-dom";
+import { MagnifyingGlassCircleIcon } from "@heroicons/react/24/solid";
 
 const Navbar = (props) => {
-  const {loggedIn,setLoggedIn, setSearchTerm, setToken} = props
-const [searchBar, setSearchtBar] = useState('')
+  const { loggedIn, setLoggedIn, setSearchTerm, setToken } = props;
+  const [searchBar, setSearchtBar] = useState("");
   function logout() {
     localStorage.removeItem("token");
     localStorage.removeItem("currentUser");
-    setToken('')
+    setToken("");
     setLoggedIn(false);
   }
 
@@ -17,16 +18,24 @@ const [searchBar, setSearchtBar] = useState('')
         <Link to="/itemsfeed/1">
           <img className="logoDash" src="/Untitled_Artwork 36.png" alt="" />
         </Link>
-        <input type="text" className="search"          onChange={(e) => {
-            setSearchtBar(e.target.value);
-          }} />
-        <button onClick={()=>setSearchTerm(searchBar)}>search</button>
+        <div className="searchBar">
+          <input
+            type="text"
+            className="search"
+            onChange={(e) => {
+              setSearchtBar(e.target.value);
+            }}
+          />
+          <MagnifyingGlassCircleIcon
+            className="searchIcon"
+            onClick={() => setSearchTerm(searchBar)}
+          ></MagnifyingGlassCircleIcon>
+        </div>
+
         <div className="linksBtn">
           {loggedIn ? (
             <div>
-
               {/* <button>Hello, {props.currentUser.username}</button> */}
-
 
               <Link to="/">
                 <button>Home</button>
