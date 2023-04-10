@@ -1,4 +1,9 @@
-import { CardElement, useElements, useStripe, Elements } from "@stripe/react-stripe-js";
+import {
+  CardElement,
+  useElements,
+  useStripe,
+  Elements,
+} from "@stripe/react-stripe-js";
 import axios from "axios";
 import React, { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
@@ -10,7 +15,7 @@ const PUBLIC_KEY =
 const stripeTestPromise = loadStripe(PUBLIC_KEY);
 
 export default function CheckoutPage(props) {
-  const {cart} = props
+  const { cart } = props;
   const [success, setSuccess] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
@@ -35,7 +40,7 @@ export default function CheckoutPage(props) {
       try {
         const { id } = paymentMethod;
         const response = await axios.post("http://localhost:8080/api/payment", {
-          amount: orderTotal(),
+          amount: orderTotal() * 100,
           id,
         });
         console.log("hit");
@@ -53,20 +58,27 @@ export default function CheckoutPage(props) {
   };
 
   return (
-
     <>
       {!success ? (
         <form onSubmit={handleSubmit}>
-          <fieldset className="FormGroup">
-            <div className="FormRow">
-              <CardElement />
-            </div>
-          </fieldset>
-          <button>Pay</button>
+          <div className="ccWrapper">
+            <fieldset className="FormGroup">
+              <img className="logoFoot" src="/nileLogo.png" alt="" />
+              <div className="FormRow">
+                <CardElement />
+              </div>
+              <button>Pay</button>
+            </fieldset>
+          </div>
         </form>
       ) : (
-        <div>
-          <h2>Purchase confirmed</h2>
+        <div className="confirmPayment">
+          <div className="confirmPayCard">
+            <h2>Purchase confirmed,</h2>
+            <br></br>
+            <h2>Thank You.</h2>
+          </div>
+          <img className="logoConfirmPay" src="/nileLogo.png" alt="" />
         </div>
       )}
     </>

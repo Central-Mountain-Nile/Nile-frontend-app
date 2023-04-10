@@ -36,42 +36,44 @@ function Cart(props) {
       <div className="cart">
         {" "}
         <h1>CART</h1>
-        {cart.cartItems ? (
-          cart.cartItems.map((product, idx) => {
-            return (
-              <div>
-                <div className="product-card-cart" key={"cart" + product.id}>
-                  <div className="product_text">
-                    <h2 className="productName">{product.name}</h2>
-                    <p className="productPrice">${product.price}</p>
-                    <p className="cart-quantity">
-                      Quantity: {product.quantity}
-                    </p>
-                  </div>
-                  <img
-                    className="cart_img"
-                    src="http://placeimg.com/640/480/nature"
-                    alt={product.description}
-                  />
-                  <div className="product_buttons">
-                    <button onClick={() => removeFromCart(idx)}>
-                      remove from cart
-                    </button>
-                    <input placeholder="Edit quantity" />
+        <div className="cartView">
+          {cart.cartItems ? (
+            cart.cartItems.map((product, idx) => {
+              return (
+                <div>
+                  <div className="product-card-cart" key={"cart" + product.id}>
+                    <div className="product_text">
+                      <h2 className="productName">{product.name}</h2>
+                      <p className="productPrice">${product.price}</p>
+                      <p className="cart-quantity">
+                        Quantity: {product.quantity}
+                      </p>
+                    </div>
+                    <img
+                      className="cart_img"
+                      src="http://placeimg.com/640/480/nature"
+                      alt={product.description}
+                    />
+                    <div className="product_buttons">
+                      <button onClick={() => removeFromCart(idx)}>
+                        remove from cart
+                      </button>
+                      <input placeholder="Edit quantity" />
+                    </div>
                   </div>
                 </div>
-                <div className="CartTotal">
-                  <p>Subtotal: ${orderTotal()}</p>
-                  <Link to="/checkoutpage">
-                    <button id="Checkoutbutton">Checkout</button>
-                  </Link>
-                </div>
-              </div>
-            );
-          })
-        ) : (
-          <div className="loader"></div>
-        )}
+              );
+            })
+          ) : (
+            <div className="loader"></div>
+          )}
+        </div>
+        <div className="CartTotal">
+          <p>Subtotal: ${orderTotal()}</p>
+          <Link to="/checkoutpage">
+            <button id="Checkoutbutton">Checkout</button>
+          </Link>
+        </div>
       </div>
     </div>
   );
