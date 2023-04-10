@@ -20,10 +20,9 @@ const CreateItem = (props) => {
  async function makeStore(event) {
   try {
     const response = await becomeStore(token)
-    console.log(response)
     setIsStore(response.isStore)
   } catch (error) {
-    console.log(error)
+    throw error
   }
  }
 
@@ -54,7 +53,6 @@ const CreateItem = (props) => {
                 type="text"
                 value={name}
                 onChange={(event) => {
-                  console.log(event.target.value);
                   setName(event.target.value);
                 }}
               />
@@ -69,7 +67,6 @@ const CreateItem = (props) => {
                 type="text"
                 value={price}
                 onChange={(event) => {
-                  console.log(event.target.value);
                   setPrice(event.target.value);
                 }}
               />
@@ -84,7 +81,6 @@ const CreateItem = (props) => {
                 type="text"
                 value={description}
                 onChange={(event) => {
-                  console.log(event.target.value);
                   setDescription(event.target.value);
                 }}
               />
@@ -99,7 +95,6 @@ const CreateItem = (props) => {
                 type="number"
                 value={quantity}
                 onChange={(event) => {
-                  console.log(event.target.value);
                   setQuantity(event.target.value);
                 }}
               />
@@ -115,7 +110,6 @@ const CreateItem = (props) => {
                 type="text"
                 value={category}
                 onChange={(event) => {
-                  console.log(event.target.value);
                   setCategory(event.target.value);
                 }}
               />

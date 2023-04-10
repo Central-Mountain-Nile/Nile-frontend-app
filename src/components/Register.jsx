@@ -15,13 +15,13 @@ function Register(props) {
   const [postalCode, setPostalCode] = useState("");
   const [country, setCountry] = useState("");
   const setToken = props.setToken;
-  const setCurrentUser = props.setCurrentUser
+  const setCurrentUser = props.setCurrentUser;
 
   const navigate = useNavigate();
 
   const registerNewUser = async (username, password) => {
     if (!username || !password) {
-      console.log("All fields are required");
+      alert("All fields are required");
       return;
     }
 
@@ -39,18 +39,16 @@ function Register(props) {
         postalCode,
         country,
       });
-      console.log(result,"result")
       if (result.error) {
         alert(result.message);
       } else {
         setToken(result.token);
         setCurrentUser(result.user);
-        localStorage.setItem("token", result.token);      
+        localStorage.setItem("token", result.token);
         navigate("/itemsfeed/1");
       }
-
     } catch (error) {
-      console.log(error);
+      throw error;
     }
   };
 

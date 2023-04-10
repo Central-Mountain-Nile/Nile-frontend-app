@@ -13,9 +13,7 @@ function ItemsFeed(props) {
 
   const retrieveProducts = async () => {
 
-    console.log(searchTerm,category)
       const allProducts = await getProducts({page,searchTerm, category});
-      console.log(allProducts, 'allProducts')
       setProducts(allProducts.products);
       let num = Math.ceil(allProducts.count / 25);
       setPageCount(num);

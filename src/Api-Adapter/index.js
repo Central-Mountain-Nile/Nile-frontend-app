@@ -17,7 +17,7 @@ export const loginUser = async (username, password) => {
     const result = await response.json();
     return result;
   } catch (error) {
-    console.log(error);
+    throw error
   }
 };
 export const registerUser = async (fields) => {
@@ -34,7 +34,7 @@ export const registerUser = async (fields) => {
     const result = await response.json();
     return result;
   } catch (error) {
-    console.log(error);
+    throw error
   }
 };
 export const fetchMe = async (token) => {
@@ -433,7 +433,6 @@ export const becomeAdmin = async (token, secretCode) => {
 };
 export const becomeStore = async (token) => {
   try {
-    console.log("api");
     const response = await fetch(`${BASE_URL}/users/store`, {
       method: "PATCH",
       headers: {
@@ -441,10 +440,9 @@ export const becomeStore = async (token) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log("api2");
     const result = await response.json();
     return result;
   } catch (err) {
-    console.error(err);
+    throw error
   }
 };

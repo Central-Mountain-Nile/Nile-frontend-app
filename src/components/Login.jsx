@@ -12,7 +12,6 @@ function Login(props) {
 
   const logInToSite = async () => {
     const response = await loginUser(userName, password);
-    console.log(response)
     if (response.error) {
       alert("Invalid Credentials");
     } else {
