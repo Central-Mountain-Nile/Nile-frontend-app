@@ -69,7 +69,7 @@ function DisplayItem(props) {
             <div>
               <img
                 className="individual_item_img"
-                src="http://placeimg.com/640/480/nature"
+                src={singleProduct.imgURL}
                 alt={singleProduct.description}
               />
               <div className="singleItemText">

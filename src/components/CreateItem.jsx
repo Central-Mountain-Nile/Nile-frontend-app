@@ -11,6 +11,7 @@ const CreateItem = (props) => {
   const [quantity, setQuantity] = useState("");
   const [isStore, setIsStore] = useState(false)
   const [category, setCategory] = useState('')
+  const [imgURL, setImgURL] = useState("https://picsum.photos/200")
   const navigate = useNavigate();
   // const loggedIn = props.loggedIn;
   const currentUser = props.currentUser;
@@ -29,7 +30,7 @@ const CreateItem = (props) => {
   const handleClick = async (event) => {
     event.preventDefault();
     if (token && currentUser) {
-    const result = await postProduct(token, {name, price, description, quantity, category, imgURL: "image"});
+    const result = await postProduct(token, {name, price, description, quantity, category, imgURL});
     navigate("/");
     }else{
       alert("MUST BE LOGGED IN TO PERFORM THIS ACTION");
@@ -113,9 +114,21 @@ const CreateItem = (props) => {
                   setCategory(event.target.value);
                 }}
               />
-            </label>
-
-            
+            </label>            
+          </div>
+          <div className="newPostLabelText">
+            <label>
+              <p>{"Image url: (change to remove default)"}</p>
+              <input
+                className="newPostInput"
+                name="image url"
+                type="text"
+                value={imgURL}
+                onChange={(event) => {
+                  setImgURL(event.target.value);
+                }}
+              />
+            </label>            
           </div>
           <div className="newPostLabelText">
             <label>

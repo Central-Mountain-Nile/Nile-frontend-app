@@ -75,7 +75,7 @@ function ItemsFeed(props) {
                     <h2>{product.name}</h2>
                     <img
                       className="individual_item_img"
-                      src="http://placeimg.com/640/480/nature"
+                      src={product.imgURL}
                       alt={product.description}
                     />
                     <span>{product.description}</span>
