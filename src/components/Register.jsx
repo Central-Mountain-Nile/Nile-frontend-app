@@ -53,8 +53,8 @@ function Register(props) {
   };
 
   return (
-    <div className="loginPageBox">
-      <div className="loginPage">
+    <div className="registerPageBox">
+      <div className="registerPage">
         <h1>Create Account</h1>
         <form
           className="registrationForm"
@@ -63,6 +63,8 @@ function Register(props) {
             registerNewUser(username, password);
           }}
         >
+          <div className="rowWrapper">
+          <div className="row1">
           <p>First Name:</p>
           <input
             className="firstNameInput"
@@ -70,14 +72,6 @@ function Register(props) {
             type="text"
             placeholder="First Name"
             onChange={(e) => setFirstName(e.target.value)}
-          />
-          <p>Last Name:</p>
-          <input
-            className="LastNameInput"
-            value={lastName}
-            type="text"
-            placeholder="Last Name"
-            onChange={(e) => setLastName(e.target.value)}
           />
           <p>Username:</p>
           <input
@@ -87,14 +81,7 @@ function Register(props) {
             placeholder="Username"
             onChange={(e) => setUsername(e.target.value)}
           />
-          <p>Email:</p>
-          <input
-            className="emailInput"
-            value={email}
-            type="text"
-            placeholder="Email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
+
           <p>Password:</p>
           <input
             className="passwordInput"
@@ -104,12 +91,6 @@ function Register(props) {
             onChange={(e) => setPassword(e.target.value)}
           />
           <br></br>
-          <p>Confirm Password:</p>
-          <input
-            className="passwordInput"
-            type="password"
-            placeholder="Confirm Password"
-          />
           <p>Address:</p>
           <input
             className="addressInput"
@@ -117,6 +98,46 @@ function Register(props) {
             type="text"
             placeholder="Address"
             onChange={(e) => setAddress(e.target.value)}
+          />
+                    <p>City:</p>
+          <input
+            className="CityInput"
+            value={city}
+            type="text"
+            placeholder="City"
+            onChange={(e) => setCity(e.target.value)}
+          />
+                    <p>Zip:</p>
+          <input
+            className="ZipInput"
+            value={postalCode}
+            type="number"
+            placeholder="Zip"
+            onChange={(e) => setPostalCode(e.target.value)}
+          />
+          </div>
+          <div className="row2">
+                    <p>Last Name:</p>
+          <input
+            className="LastNameInput"
+            value={lastName}
+            type="text"
+            placeholder="Last Name"
+            onChange={(e) => setLastName(e.target.value)}
+          />
+                    <p>Email:</p>
+          <input
+            className="emailInput"
+            value={email}
+            type="text"
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+                    <p>Confirm Password:</p>
+          <input
+            className="passwordInput"
+            type="password"
+            placeholder="Confirm Password"
           />
           <p>Address line 2:</p>
           <input
@@ -126,14 +147,6 @@ function Register(props) {
             placeholder="Address line 2 (optional)"
             onChange={(e) => setAddress2(e.target.value)}
           />
-          <p>City:</p>
-          <input
-            className="CityInput"
-            value={city}
-            type="text"
-            placeholder="City"
-            onChange={(e) => setCity(e.target.value)}
-          />
           <p>State:</p>
           <input
             className="StateInput"
@@ -141,14 +154,6 @@ function Register(props) {
             type="text"
             placeholder="State"
             onChange={(e) => setState(e.target.value)}
-          />
-          <p>Zip:</p>
-          <input
-            className="ZipInput"
-            value={postalCode}
-            type="number"
-            placeholder="Zip"
-            onChange={(e) => setPostalCode(e.target.value)}
           />
           <p>Country:</p>
           <input
@@ -158,6 +163,8 @@ function Register(props) {
             placeholder="Country"
             onChange={(e) => setCountry(e.target.value)}
           />
+          </div>
+          </div>
 
           <br></br>
           <button className="submitButton" type="submit">
@@ -168,6 +175,8 @@ function Register(props) {
             Already have an account? Login here!
           </Link>
         </form>
+        <img className="logoFoot" src="/nileLogo.png" alt="" />
+
       </div>
     </div>
   );
