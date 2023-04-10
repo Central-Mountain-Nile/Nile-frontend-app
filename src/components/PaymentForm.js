@@ -1,16 +1,8 @@
-import { CardElement, useElements, useStripe,Elements } from "@stripe/react-stripe-js";
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
 import React, { useState } from "react";
-import { loadStripe } from "@stripe/stripe-js";
-import { checkOut } from "../Api-Adapter";
 
-const PUBLIC_KEY =
-  "pk_test_51MtsydIGbpUzCRMIyl91749azbcWLZi8pNyIcBfcTlYnO6MfPEuxrwfjmcXBqIHccsbvCW2HPsW1rs07QwiaMtkD00oIiY7ppP";
-
-const stripeTestPromise = loadStripe(PUBLIC_KEY);
-
-export default function CheckoutPage(props) {
-  const {cart} = props
+export default function PaymentForm() {
   const [success, setSuccess] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
@@ -21,21 +13,12 @@ export default function CheckoutPage(props) {
       type: "card",
       card: elements.getElement(CardElement),
     });
-    function orderTotal() {
-      let subtotal = 0;
-      if (cart.cartItems) {
-        cart.cartItems.forEach((item) => {
-          subtotal += item.price * item.quantity;
-        });
-      }
-      return subtotal;
-    }
 
     if (!error) {
       try {
         const { id } = paymentMethod;
-        const response = await axios.post("http://localhost:8080/payment", {
-          amount: `${orderTotal()}`,
+        const response = await axios.post("http://localhost:4000/payment", {
+          amount: 1000,
           id,
         });
         console.log("hit");
@@ -53,7 +36,6 @@ export default function CheckoutPage(props) {
   };
 
   return (
-    <Elements stripe={stripeTestPromise}>
     <>
       {!success ? (
         <form onSubmit={handleSubmit}>
@@ -70,6 +52,5 @@ export default function CheckoutPage(props) {
         </div>
       )}
     </>
-    </Elements>
   );
 }
