@@ -35,15 +35,15 @@ function ItemsFeed(props) {
   }
   const handleClickDelete = async (id) => {
     const result = await adminDelete(token, id);
-    console.log(result);
-    const filteredData = props.product.filter((element) => {
-      if (element._id !== id) {
+    console.log(products)
+    const filteredData = products.filter((element) => {
+      if (element.id !== id) {
         return true;
       } else {
         return false;
       }
     });
-    props.setPosts(filteredData);
+    setProducts(filteredData);
   };
 
   async function changePage(num) {
