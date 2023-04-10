@@ -85,7 +85,7 @@ function ItemsFeed(props) {
                   </div>
                 </Link>
                 {currentUser && currentUser.isAdmin ? (
-                  <button>
+                  <button className="deleteBtn">
                     Delete
                   </button>
                 ) : null}
