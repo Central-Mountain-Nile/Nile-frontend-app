@@ -4,19 +4,22 @@ import { getProducts, getProductById } from "../Api-Adapter";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 function ItemsFeed(props) {
-  const { pageNumber } = useParams();
+  const {searchTerm} = props
+  const { pageNumber, category } = useParams();
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(Number(pageNumber));
   const [pageCount, setPageCount] = useState(1);
   const navigate = useNavigate();
 
   const retrieveProducts = async () => {
-    const allProducts = await getProducts(page);
-    setProducts(allProducts.products);
-    let num = Math.ceil(allProducts.count / 25);
-    setPageCount(num);
-  };
 
+    console.log(searchTerm,category)
+      const allProducts = await getProducts({page,searchTerm, category});
+      console.log(allProducts, 'allProducts')
+      setProducts(allProducts.products);
+      let num = Math.ceil(allProducts.count / 25);
+      setPageCount(num);
+  };
   function createPageCount() {
     let elements = [];
     let count = 0;
@@ -39,10 +42,9 @@ function ItemsFeed(props) {
     navigate(`/itemsfeed/${num}`);
     setPage(num);
   }
-  console.log(page);
   useEffect(() => {
     retrieveProducts();
-  }, [page]);
+  }, [page, searchTerm, category]);
   
 
   return (
@@ -59,6 +61,7 @@ function ItemsFeed(props) {
                     <h2>{product.name}</h2>
                     <p>{product.description}</p>
                     <p>${product.price}</p>
+                    <p>category:{product.categoryName}</p>
                     <p>Quantity: {product.quantity}</p>
                     {/* <img src={product.image_url}/> */}
                   </div>
