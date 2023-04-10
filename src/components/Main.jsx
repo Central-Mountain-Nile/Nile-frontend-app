@@ -20,6 +20,7 @@ import {
   UpdateItem,
   CheckoutForm,
   Admin,
+  StripeContainer,
 } from "./";
 import { fetchMe, getProducts, getCart } from "../Api-Adapter";
 
@@ -122,7 +123,7 @@ const Main = () => {
         />
                 <Route
           path="checkoutpage"
-          element={<CheckoutPage token={token} cart={cart} setCart={setCart} />}
+          element={<StripeContainer token={token} cart={cart} setCart={setCart} />}
         />
       </Routes>
     </div>
