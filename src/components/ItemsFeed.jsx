@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from "react";
 import { getProducts, adminDelete } from "../Api-Adapter";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { Banner } from "./";
 
 function ItemsFeed(props) {
   const { searchTerm, currentUser, token } = props;
@@ -35,7 +36,7 @@ function ItemsFeed(props) {
   }
   const handleClickDelete = async (id) => {
     const result = await adminDelete(token, id);
-    console.log(products)
+    console.log(products);
     const filteredData = products.filter((element) => {
       if (element.id !== id) {
         return true;
@@ -56,6 +57,7 @@ function ItemsFeed(props) {
 
   return (
     <div>
+      <Banner />
       <div className="allProducts">
         {products.length ? (
           products.map((product) => {
@@ -85,9 +87,7 @@ function ItemsFeed(props) {
                   </div>
                 </Link>
                 {currentUser && currentUser.isAdmin ? (
-                  <button className="deleteBtn">
-                    Delete
-                  </button>
+                  <button className="deleteBtn">Delete</button>
                 ) : null}
                 {/* {currentUser && currentUser.isAdmin ? <button>Delete</button> : null} */}
               </form>

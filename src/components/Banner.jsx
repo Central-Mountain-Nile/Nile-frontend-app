@@ -3,9 +3,10 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 
+
 function Banner() {
   return (
-    <Carousel autoPlay showThumbs={false}>
+    <Carousel autoPlay showThumbs={false} Dots={false}>
       <div>
         <img className="img" src={require("./images/banner.jpg")} />
       </div>

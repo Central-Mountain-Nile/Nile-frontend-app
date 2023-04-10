@@ -67,7 +67,6 @@ const Main = () => {
         setLoggedIn={setLoggedIn}
       />
       {/* <Categories /> */}
-      <Banner />
       <Routes>
         <Route
           path="/login"

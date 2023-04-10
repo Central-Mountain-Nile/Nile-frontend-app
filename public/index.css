@@ -515,3 +515,67 @@ justify-content: center;
 .logoFoot{
   height: 50px;
 }
+.ccWrapper{
+  height: 700px;
+  display: flex;
+  justify-content: center;
+}
+.FormGroup{
+  background: #073B4C;
+  margin-top: 4rem;
+  border: 1px solid #727272;
+  border-radius: 10px;
+  height: 200px;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.FormGroup > button {
+  background: #FFD116;
+  border: none;
+  border-radius: 5px;
+  margin-top: 1rem;
+  width: 70px;
+}
+.FormGroup > button:hover{
+  background-color: #e0b713;
+}
+.FormGroup > button:active{
+  background-color: #09485d;
+  color: #FFD116;
+}
+.FormRow{
+  border: 1px solid #727272;
+  border-radius: 3px;
+  width: 280px;
+  height: 20px;
+  background: #c0c0c0;
+}
+.confirmPayment{
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.confirmPayCard{
+  margin-top: 5rem;
+  display: flex;
+  padding-top: 5rem;
+  text-align: center;
+  flex-direction: column;
+  color: #FFD116;
+  border-radius: 10px;
+  background-color: #073B4C;
+  height: 400px;
+  width: 500px;
+}
+.logoConfirmPay{
+  height: 100px;
+  position: relative;
+  bottom: 120px;
+}
+
