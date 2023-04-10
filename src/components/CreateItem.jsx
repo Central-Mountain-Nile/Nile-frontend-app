@@ -40,11 +40,11 @@ const CreateItem = (props) => {
   }, [])
 
   return (
-    <div id="newRoutineFormBox">
-      <div id="newRoutineFormFull">
+    <div className="loginPageBox">
+      <div className="loginPage">
         <form onSubmit={handleClick}>
           <div className="newPostLabelText">
-            <h3>CREATE A ROUTINE</h3>
+            <h3>CREATE A PRODUCT</h3>
             <label>
               <p>Name:</p>
               <input
@@ -114,6 +114,7 @@ const CreateItem = (props) => {
                 }}
               />
             </label>
+
             
           </div>
           <div className="newPostLabelText">
