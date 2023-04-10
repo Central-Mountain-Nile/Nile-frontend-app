@@ -1,6 +1,7 @@
 import React, { useEffect, useReducer, useState } from "react";
 import { useNavigate, Outlet, Link } from "react-router-dom";
 import { MagnifyingGlassCircleIcon } from "@heroicons/react/24/solid";
+import { Categories } from "./"
 
 const Navbar = (props) => {
   const { loggedIn, setLoggedIn, setSearchTerm, setToken } = props;
@@ -14,9 +15,10 @@ const Navbar = (props) => {
 
   return (
     <>
+    <div className="fullNavBarWrapper">
       <div id="navbar">
         <Link to="/itemsfeed/1">
-          <img className="logoDash" src="/Untitled_Artwork 36.png" alt="" />
+          <img className="logoDash" src="/nileLogo.png" alt="" />
         </Link>
         <div className="searchBar">
           <input
@@ -65,6 +67,8 @@ const Navbar = (props) => {
           )}
         </div>
       </div>
+        <Categories />
+        </div>
     </>
   );
 };

@@ -66,7 +66,7 @@ const Main = () => {
         loggedIn={loggedIn}
         setLoggedIn={setLoggedIn}
       />
-      <Categories />
+      {/* <Categories /> */}
       <Banner />
       <Routes>
         <Route
@@ -88,7 +88,7 @@ const Main = () => {
         />
         <Route
           path="/itemsfeed/:category/:pageNumber"
-          element={<ItemsFeed searchTerm={searchTerm} />}
+          element={<ItemsFeed searchTerm={searchTerm} currentUser={currentUser} />}
         />
         <Route
           path="/cart"
@@ -126,6 +126,7 @@ const Main = () => {
           }
         />
       </Routes>
+      <Footer />
     </div>
   );
 };

@@ -1,9 +1,9 @@
 import { React, useState, useEffect } from "react";
-import { getProducts, getProductById } from "../Api-Adapter";
+import { getProducts, getProductById, deleteProduct } from "../Api-Adapter";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 function ItemsFeed(props) {
-  const { searchTerm } = props;
+  const { searchTerm, currentUser } = props;
   const { pageNumber, category } = useParams();
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(Number(pageNumber));
@@ -33,6 +33,19 @@ function ItemsFeed(props) {
     }
     return elements;
   }
+  const handleClickDelete = async (id) => {
+    const result = await deleteProduct(id);
+
+    const filteredData = props.product.filter((element) => {
+      if (element._id !== id) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    props.setPosts(filteredData);
+    console.log("hello", result);
+  };
 
   async function changePage(num) {
     navigate(`/itemsfeed/${num}`);
@@ -48,17 +61,25 @@ function ItemsFeed(props) {
         {products.length ? (
           products.map((product) => {
             return (
-              // <form onSubmit={handleClick}>
+              // <form onSubmit={handleClickDelete}>
               <div key={`itemsFeed${product.id}`}>
-                <Link to={`/displayItems/${product.id}`}>
+                <Link className="linkProperties" to={`/displayItems/${product.id}`}>
                   <div className="product-card">
                     <h2>{product.name}</h2>
-                    <p>{product.description}</p>
-                    <p>${product.price}</p>
-                    <p>category:{product.categoryName}</p>
+                    <img
+                className="individual_item_img"
+                src="http://placeimg.com/640/480/nature"
+                alt={product.description}
+              />
+                    <span>{product.description}</span>
+                    <span>${product.price}</span>
+                    {/* <p>category:{product.categoryName}</p> */}
                     <p>Quantity: {product.quantity}</p>
-                    {/* <img src={product.image_url}/> */}
                   </div>
+                {currentUser && currentUser.isAdmin ? <button 
+                onClick={() => {
+                  handleClickDelete(product._id);}}>Delete</button> : null}
+                {/* {currentUser && currentUser.isAdmin ? <button>Delete</button> : null} */}
                 </Link>
               </div>
               // </form>

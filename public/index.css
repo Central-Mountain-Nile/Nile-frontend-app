@@ -28,13 +28,16 @@ body {
   flex-grow: 1;
   max-height: 10%;
   min-height: 40px;
+
+  background-color: rgb(44, 44, 44);
+}
+.fullNavBarWrapper{
   position: sticky;
   position: -webkit-sticky;
   right: 0;
   bottom: 0;
   top: 0;
   z-index: 9999;
-  background-color: rgb(44, 44, 44);
 }
 
 .searchBar {
@@ -126,14 +129,14 @@ body {
 }
 
 .categories button {
-  margin-left: 0px;
   flex-grow: 1;
   padding: 1rem;
   color: rgb(255, 255, 255);
   background-color: #3A3A3A;
   border: none;
   text-transform: uppercase;
-  height: 80px;
+  height: 50px;
+  width: 150px;
   cursor: pointer;
   transition: 0.5s;
 }
@@ -163,7 +166,11 @@ body {
   margin: 1rem;
   height: 400px;
   width: 300px;
-
+  color: black;
+  text-decoration: none;
+}
+.linkProperties{
+  text-decoration: none;
 }
 
 .product-card h2 {
@@ -173,6 +180,7 @@ body {
   width: 250px;
   margin: 10px auto;
   text-decoration: none;
+  
 }
 
 .product-card:hover {
@@ -262,6 +270,7 @@ div.pageNum>* {
   justify-content: space-around;
   position: relative;
   margin-top: -100px;
+  
 }
 
 
@@ -456,4 +465,16 @@ div.pageNum>* {
 }
 .registerLink:active {
   color: rgb(181, 179, 179);
+}
+.footer{
+  height: 150px;
+  background-color: #3A3A3A;
+  color: rgb(173, 171, 171);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.logoFoot{
+  height: 50px;
 }

@@ -2,7 +2,12 @@ import React from 'react'
 
 function Footer() {
   return (
-    <div>Footer</div>
+    <>
+    <div className="footer">
+    <img className="logoFoot" src="/nileLogo.png" alt="" />
+      <h4>Copyright Nile Marketplace Inc, 2023</h4>
+      </div>
+    </>
   )
 }
 
