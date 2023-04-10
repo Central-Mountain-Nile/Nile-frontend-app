@@ -118,6 +118,10 @@ const Main = () => {
             />
           }
         />
+                <Route
+          path="checkoutpage"
+          element={<CheckoutPage token={token} cart={cart} setCart={setCart} />}
+        />
       </Routes>
     </div>
   );

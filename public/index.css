@@ -290,9 +290,14 @@ div.pageNum>* {
     transform: rotate(360deg);
   }
 }
+.cartWrapper{
+  display: flex;
+  justify-content: center;
+}
 
 .cart {
   width: 70%;
+  
 }
 
 .product-card-cart {
@@ -304,8 +309,9 @@ div.pageNum>* {
 }
 
 .product-card-cart:nth-child(odd) {
-  background-color: #727272;
+  background-color: #828282;
 }
+
 
 .productName {
   font-size: large;
@@ -341,9 +347,113 @@ div.pageNum>* {
 }
 
 #Checkoutbutton {
+  width: 150px;
+  height: 30px;
   background-color: #FFD116;
+  border: none;
+  border-radius: 10px;
+  margin-left: 8rem;
+  box-shadow: 0px 0px 5px rgb(41, 41, 41);
+  text-transform: uppercase;
+}
+#Checkoutbutton:hover {
+  background-color: #073B4C;
+  color: white;
+  transition:  0.3s;
+}
+#Checkoutbutton:active {
+  background-color: #FFD116;
+  color: black;
+  box-shadow: 0px 0px 5px rgb(41, 41, 41);
 }
 
 .product_text {
   width: 150px;
+
+}
+.remove_btn{
+  background-color: #073B4C;
+  color: white;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 5px;
+}
+.remove_btn:hover{
+  background-color: #FFD116;
+  transition:  0.3s;
+}
+.remove_btn:active{
+  background-color: #073B4C;
+  box-shadow: 0px 0px 5px rgb(41, 41, 41);
+}
+.pageCount {
+  display: flex;
+  flex-direction: column;
+}
+
+.loginPageBox {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.loginPage {
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgb(21, 21, 21);
+  background-color: #073B4C;
+  color: white;
+  width: 30%;
+  margin-bottom: 20px;
+  text-align: center;
+  cursor: pointer;
+  padding: 3rem;
+}
+.submitButton {
+  background-color: #073B4C;
+  color: rgb(181, 179, 179);
+  margin-top: 10px;
+  border: none;
+  height: 30px;
+  text-transform: uppercase;
+  font-size: large;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.submitButton:hover {
+  color: white;
+  background-color: #FFD116;
+  border-bottom: 2px solid #FFD116;
+  transition: 0.5s;
+}
+.submitButton:active {
+  color: rgb(181, 179, 179);
+}
+.submitBtn2 {
+  background-color: #073B4C;
+  color: rgb(181, 179, 179);
+  margin-top: 75px;
+  border: none;
+  height: 30px;
+  text-transform: uppercase;
+  font-size: large;
+  cursor: pointer;
+}
+.submitBtn2:hover {
+  color: white;
+  border-bottom: 2px solid #FFD116;
+  transition: 0.2s;
+}
+.submitBtn2:active {
+  color: rgb(181, 179, 179);
+}
+.registerLink {
+  color: rgb(181, 179, 179);
+  text-decoration: none;
+}
+.registerLink:hover {
+  color: #FFD116;
+  border-bottom: 2px solid #FFD116;
+  transition: 0.2s;
+}
+.registerLink:active {
+  color: rgb(181, 179, 179);
 }

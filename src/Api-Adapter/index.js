@@ -1,6 +1,6 @@
-const BASE_URL = "https://nileserver.onrender.com/api";
+// const BASE_URL = "https://nileserver.onrender.com/api";
 
-//const BASE_URL ="http://localhost:8080/api"
+const BASE_URL = "http://localhost:8080/api";
 
 export const loginUser = async (username, password) => {
   try {
@@ -53,7 +53,7 @@ export const fetchMe = async (token) => {
 };
 // products endpoints
 export const getProducts = async ({ category, page, searchTerm }) => {
-  console.log('api',category)
+  console.log("api", category);
   try {
     if (!page) {
       page = 1;
@@ -451,5 +451,26 @@ export const becomeStore = async (token) => {
     return result;
   } catch (err) {
     console.error(err);
+  }
+};
+
+export const checkOut = async (amount, id) => {
+  try {
+    const response = await fetch(`${BASE_URL}/carts`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        amount,
+        id,
+      }),
+    });
+
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error(error);
   }
 };

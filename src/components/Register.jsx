@@ -148,7 +148,7 @@ function Register(props) {
           <input
             className="ZipInput"
             value={postalCode}
-            type="text"
+            type="number"
             placeholder="Zip"
             onChange={(e) => setPostalCode(e.target.value)}
           />
@@ -162,7 +162,7 @@ function Register(props) {
           />
 
           <br></br>
-          <button className="submitBtn" type="submit">
+          <button className="submitButton" type="submit">
             Submit
           </button>
           <br></br>
