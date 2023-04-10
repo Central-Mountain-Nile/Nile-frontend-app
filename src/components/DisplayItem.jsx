@@ -39,7 +39,6 @@ function DisplayItem(props) {
           return;
         }
       }
-
       const result = await addToCart(token, productId, quantity);
       if (!result.message) {
         result.price = singleProduct.price;
@@ -52,6 +51,7 @@ function DisplayItem(props) {
       }
     }
   };
+
 
   useEffect(() => {
     if (productId) {
