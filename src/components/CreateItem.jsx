@@ -5,11 +5,12 @@ import { Store } from "./";
 
 const CreateItem = (props) => {
   const [name, setName] = useState("");
+  const [products, setProducts] = useState([])
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState("");
   const [isStore, setIsStore] = useState(false);
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState("clothing");
   const [imgURL, setImgURL] = useState("https://picsum.photos/200");
   const navigate = useNavigate();
   // const loggedIn = props.loggedIn;
@@ -48,6 +49,12 @@ const CreateItem = (props) => {
         category,
         imgURL,
       });
+      if(!result.message){
+        const newProducts = [...products]
+        newProducts.push(result)
+        setProducts(newProducts)
+
+      }
     } else {
       alert("MUST BE LOGGED IN TO PERFORM THIS ACTION");
     }
@@ -178,7 +185,7 @@ const CreateItem = (props) => {
           </form>
         </div>
         <div className="storeComp">
-          <Store currentUser={currentUser} token={token} />
+          <Store currentUser={currentUser} token={token} products={products} setProducts={setProducts} />
         </div>
       </div>
     </div>

@@ -9,8 +9,7 @@ import {
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 function Store(props) {
-  const { currentUser, token } = props;
-  const [products, setProducts] = useState([]);
+  const { currentUser, token, setProducts,products } = props;
   const navigate = useNavigate();
   console.log(currentUser, "USER");
   const retrieveUserProducts = async () => {
