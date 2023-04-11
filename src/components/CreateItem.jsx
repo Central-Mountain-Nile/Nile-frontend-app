@@ -136,7 +136,7 @@ const CreateItem = (props) => {
                   }}
                 >
                   {options.map((option, index) => (
-                    <option key={index} value={option[index]}>
+                    <option key={`options ${index}`} value={option}>
                       {option}
                     </option>
                   ))}
