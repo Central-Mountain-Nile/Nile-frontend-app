@@ -22,7 +22,7 @@ export default function CheckoutPage(props) {
           subtotal += item.price * item.quantity;
         });
       }
-      return subtotal;
+      return Math.floor(subtotal * 100)
     }
 
     if (!error) {
@@ -38,7 +38,7 @@ export default function CheckoutPage(props) {
         setCart({});
         const { id } = paymentMethod;
         const response = await axios.post("http://localhost:8080/api/payment", {
-          amount: orderTotal() * 100,
+          amount: orderTotal(),
           id,
         });
         console.log("hit");
