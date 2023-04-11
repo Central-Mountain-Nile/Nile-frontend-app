@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import { getProducts, adminDelete } from "../Api-Adapter";
+import { getProducts, adminDelete, editProduct } from "../Api-Adapter";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Banner } from "./";
 
@@ -63,10 +63,10 @@ function ItemsFeed(props) {
           products.map((product) => {
             return (
               <form
-                onSubmit={(event) => {
-                  event.preventDefault();
-                  handleClickDelete(product.id);
-                }}
+                // onSubmit={(event) => {
+                //   event.preventDefault();
+                //   handleClickDelete(product.id);
+                // }}
                 key={`itemsFeed${product.id}`}
               >
                 <Link
@@ -87,7 +87,19 @@ function ItemsFeed(props) {
                   </div>
                 </Link>
                 {currentUser && currentUser.isAdmin ? (
-                  <button className="deleteBtn">Delete</button>
+                  <>
+                    <button
+                      onClick={() => {
+                        handleClickDelete(product.id);
+                      }}
+                      className="deleteBtn"
+                    >
+                      Delete
+                    </button>
+                    <Link to={`/displayitemedit/${product.id}`}>
+                      <button className="editBtn">Edit</button>
+                    </Link>
+                  </>
                 ) : null}
                 {/* {currentUser && currentUser.isAdmin ? <button>Delete</button> : null} */}
               </form>
