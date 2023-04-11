@@ -137,7 +137,7 @@ const Main = () => {
           }
         />
         <Route
-          path="displayitemedit"
+          path="displayitemedit/:productId"
           element={<DisplayItemEdit token={token} currentUser={currentUser} />}
         />
       </Routes>

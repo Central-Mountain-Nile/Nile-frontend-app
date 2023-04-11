@@ -10,6 +10,11 @@ import { useNavigate, useParams } from "react-router-dom";
 function DisplayItemEdit(props) {
   const [singleProduct, setSingleProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
+  const [name, setName] = useState('')
+  const [imgURL, setImgURL] = useState('')
+  const [description, setDescription] = useState('')
+  const [price, setPrice] = useState(0)
+  // const [quantity, setQuantity] = useState(0)
   const { productId } = useParams();
   const { token, cart, setCart, searchTerm } = props;
   const navigate = useNavigate();
@@ -17,6 +22,11 @@ function DisplayItemEdit(props) {
   const retrieveProduct = async () => {
     const thisProduct = await getProductById(productId);
     setSingleProduct(thisProduct);
+    setName(thisProduct.name)
+    setQuantity(thisProduct.quantity)
+    setDescription(thisProduct.description)
+    setPrice(thisProduct.price)
+    setImgURL(thisProduct.imgURL)
   };
 
   const handleClickEdit = async (id, token, fields) => {
@@ -30,43 +40,6 @@ function DisplayItemEdit(props) {
       navigate("/");
     } else {
       alert("MUST BE LOGGED IN TO PERFORM THIS ACTION");
-    }
-  };
-
-  const handleClick = async (event) => {
-    event.preventDefault();
-    let duplicate = false;
-    const newCart = { ...cart };
-    if (quantity > 0) {
-      //check for duplicates in cart and add their quantities together
-      for (let i = 0; i < cart.cartItems.length; i++) {
-        if (cart.cartItems[i].productId === singleProduct.id) {
-          const result = await updateCartItem(
-            quantity + cart.cartItems[i].quantity,
-            cart.cartItems[i].id,
-            token
-          );
-          if (!result.message) {
-            newCart.cartItems[i].quantity =
-              quantity + cart.cartItems[i].quantity;
-            setCart(newCart);
-            navigate("/");
-          } else {
-            alert(result.message);
-          }
-          return;
-        }
-      }
-      const result = await addToCart(token, productId, quantity);
-      if (!result.message) {
-        result.price = singleProduct.price;
-        result.remainingQuantity = singleProduct.quantity;
-        newCart.cartItems.push(result);
-        setCart(newCart);
-        navigate("/");
-      } else {
-        alert(result.message);
-      }
     }
   };
 
@@ -87,25 +60,45 @@ function DisplayItemEdit(props) {
             <div>
               <img
                 className="individual_item_img"
-                src={singleProduct.imgURL}
+                src={imgURL}
                 alt={singleProduct.description}
               />
               <div className="singleItemText">
-                <h2>{singleProduct.name}</h2>
-                <p>{singleProduct.description}</p>
-                <p>${singleProduct.price}</p>
-                <p>Quantity left in stock: {singleProduct.quantity}</p>
+              <input
+                  className="StateInput"
+                  value={name}
+                  type="text"
+                  onChange={(e) => setName(e.target.value)}
+                />
+                              <input
+                  className="StateInput"
+                  value={description}
+                  type="text"
+                  onChange={(e) => setDescription(e.target.value)}
+                />
+              <input
+                  className="StateInput"
+                  value={price}
+                  type="text"
+                  onChange={(e) => setPrice(e.target.value)}
+                />
+              <input
+                  className="StateInput"
+                  value={quantity}
+                  type="number"
+                  onChange={(e) => setQuantity(e.target.value)}
+                />
+                              <input
+                  className="StateInput"
+                  value={imgURL}
+                  type="text"
+                  onChange={(e) => setImgURL(e.target.value)}
+                />
               </div>
             </div>
             <div className="right-side-individual-product">
-              <input
-                className="quantity-input"
-                placeholder="1"
-                type="number"
-                onChange={(event) => setQuantity(event.target.value)}
-              ></input>
               <button className="addToCartBtn" type="submit">
-                Add To Cart
+                confirm edit
               </button>
             </div>
           </div>
