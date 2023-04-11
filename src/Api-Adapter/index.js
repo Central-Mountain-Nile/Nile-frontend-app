@@ -1,7 +1,6 @@
 const BASE_URL = "https://nileserver.onrender.com/api";
 
-// const BASE_URL ="http://localhost:8080/api"
-
+// const BASE_URL = "http://localhost:8080/api";
 
 export const loginUser = async (username, password) => {
   try {
@@ -18,7 +17,7 @@ export const loginUser = async (username, password) => {
     const result = await response.json();
     return result;
   } catch (error) {
-    throw error
+    throw error;
   }
 };
 export const registerUser = async (fields) => {
@@ -35,7 +34,7 @@ export const registerUser = async (fields) => {
     const result = await response.json();
     return result;
   } catch (error) {
-    throw error
+    throw error;
   }
 };
 export const fetchMe = async (token) => {
@@ -50,6 +49,23 @@ export const fetchMe = async (token) => {
     return result;
   } catch (err) {
     console.error(err);
+  }
+};
+export const getAllUsers = async (token) => {
+  try {
+    const response = await fetch(`${BASE_URL}/admin/users`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(response, "RESPONSE");
+    const result = await response.json();
+    console.log(result, "RESULT");
+    return result;
+  } catch (error) {
+    console.log(error);
   }
 };
 // products endpoints
@@ -151,7 +167,7 @@ export const editProduct = async (productId, token, fields) => {
 //fields is an object that must include(name,categoryId, description, price ,quantity, and imagURL)
 export const postProduct = async (token, fields) => {
   try {
-    console.log(fields)
+    console.log(fields);
     const response = await fetch(`${BASE_URL}/products/`, {
       method: "POST",
       headers: {
@@ -322,7 +338,7 @@ export const updateCartItem = async (quantity, cartItemId, token) => {
     });
 
     const result = await response.json();
-    
+
     return result;
   } catch (err) {
     console.error(err);
@@ -341,7 +357,7 @@ export const getUserOrderById = async (id, token) => {
       },
     });
     const result = await response.json();
-    
+
     return result;
   } catch (err) {
     console.error(err);
@@ -362,7 +378,7 @@ export const updateUserOrder = async (fields, token) => {
     });
 
     const result = await response.json();
-    
+
     return result;
   } catch (err) {
     console.error(err);
@@ -391,7 +407,6 @@ export const createOrder = async (
 
     const result = await response.json();
 
-    
     return result;
   } catch (err) {
     console.error(err);
@@ -408,7 +423,7 @@ export const deleteOrder = async (id, token) => {
       },
     });
     const result = await response.json();
-    
+
     return result;
   } catch (err) {
     console.error(err);
@@ -445,7 +460,7 @@ export const becomeStore = async (token) => {
     const result = await response.json();
     return result;
   } catch (err) {
-    throw error
+    throw error;
   }
 };
 
@@ -470,8 +485,7 @@ export const checkOut = async (amount, id) => {
   }
 };
 
-
-export const adminDelete = async(token,productId)=>{
+export const adminDelete = async (token, productId) => {
   try {
     const response = await fetch(`${BASE_URL}/admin/product/${productId}`, {
       method: "DELETE",
@@ -485,4 +499,4 @@ export const adminDelete = async(token,productId)=>{
   } catch (error) {
     throw error;
   }
-}
+};
