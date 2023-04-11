@@ -3,7 +3,8 @@ yellow- #FFD116
 BLUE- #073B4C
 DARK GREY- #3A3A3A
 LIGHT GREY- #727272
-LIGHT BLUE- #118AB2 */
+LIGHT BLUE- #118AB2 
+image dimensions- 640/480*/
 
 * {
   font-family: "Poppins", sans-serif;
@@ -180,7 +181,7 @@ body {
   width: 250px;
   margin: 10px auto;
   text-decoration: none;
-  
+  color: black;
 }
 .deleteBtn{
   position: relative;
@@ -215,8 +216,7 @@ body {
 
 .product-card:hover {
   background-color: #8e8d8d;
-  /* border-bottom: 2px solid #FFD116;
-  border-top: 2px solid #FFD116; */
+  color: #FFD116;
   transition: 0.5s;
 }
 
@@ -229,7 +229,7 @@ body {
   justify-content: center;
   margin: 5px;
   margin-top: 200px;
-  height: 700px;
+  height: 800px;
   width: 1000px;
   flex: 1;
   border-radius: 10px;
@@ -251,8 +251,20 @@ div.pageNum>* {
 }
 
 .individual_item_img {
-  height: 400px;
+  height: 200px;
+  width: 300px;
   margin-left: 0px;
+}
+.individual_item_img_edit {
+  height: 500px;
+  width: 600px;
+  margin-left: 0px;
+}
+.singleItemText_edit > input{
+display: flex;
+flex-direction: column;
+width: 300px;
+margin-top: 5px;
 }
 
 .singleItemText {

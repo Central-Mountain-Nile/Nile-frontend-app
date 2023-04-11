@@ -209,7 +209,7 @@ export const createUserPayment = async (
   token
 ) => {
   try {
-    console.log(paymentType,provider,accountNo,expire,token)
+    console.log(paymentType, provider, accountNo, expire, token);
     const response = await fetch(`${BASE_URL}/users_payments`, {
       method: "POST",
       headers: {
@@ -386,10 +386,7 @@ export const updateUserOrder = async (fields, token) => {
   }
 };
 
-export const createOrder = async (
-  userPaymentId,
-  token
-) => {
+export const createOrder = async (userPaymentId, token) => {
   try {
     const response = await fetch(`${BASE_URL}/order`, {
       method: "POST",
@@ -492,6 +489,27 @@ export const adminDelete = async (token, productId) => {
       },
     });
     const result = await response.json();
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const editProductAdmin = async (productId, token, fields) => {
+  try {
+    const response = await fetch(`${BASE_URL}/admin/product/${productId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        ...fields,
+      }),
+    });
+    console.log(response, "RESPONSE-EDIT");
+    const result = await response.json();
+    console.log(response, "RESULT-EDIT");
     return result;
   } catch (error) {
     throw error;

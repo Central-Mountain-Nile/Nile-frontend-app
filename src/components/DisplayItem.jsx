@@ -67,7 +67,7 @@ function DisplayItem(props) {
           <div className="product-card-individual">
             <div>
               <img
-                className="individual_item_img"
+                className="individual_item_img_edit"
                 src={singleProduct.imgURL}
                 alt={singleProduct.description}
               />
