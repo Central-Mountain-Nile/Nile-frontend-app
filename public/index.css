@@ -612,4 +612,19 @@ justify-content: center;
   width: 500px;
   padding: 1rem;
 }
-
+.fullCreatePage{
+  display: flex;
+  flex-direction: row;
+  margin-left: 2rem;
+}
+.storeComp{
+  border: 1px solid rgb(199, 199, 199);
+  border-radius: 10px;
+  margin-left: 2rem;
+  height: 742px;
+  width: 1000px;
+}
+.allProductsUser{
+  display: flex;
+  flex-wrap: wrap;
+}

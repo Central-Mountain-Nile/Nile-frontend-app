@@ -113,10 +113,10 @@ export const getProductById = async (productId) => {
     throw error;
   }
 };
-export const getProductsByUserName = async (username, pageNumber) => {
+export const getProductsByUserName = async (username) => {
   try {
     const response = await fetch(
-      `${BASE_URL}/products/user/${username}/${pageNumber}`,
+      `${BASE_URL}/products/products/user/${username}`,
       {
         method: "GET",
         headers: {
@@ -130,7 +130,7 @@ export const getProductsByUserName = async (username, pageNumber) => {
     throw error;
   }
 };
-export const deleteProduct = async ( token, productId) => {
+export const deleteProduct = async (token, productId) => {
   try {
     const response = await fetch(`${BASE_URL}/products/${productId}`, {
       method: "DELETE",

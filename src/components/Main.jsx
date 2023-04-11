@@ -140,6 +140,10 @@ const Main = () => {
           path="displayitemedit/:productId"
           element={<DisplayItemEdit token={token} currentUser={currentUser} />}
         />
+        <Route
+          path="/store"
+          element={<Store token={token} currentUser={currentUser} />}
+        />
       </Routes>
       <Footer />
     </div>
