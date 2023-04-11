@@ -41,7 +41,7 @@ function Cart(props) {
             cart.cartItems.map((product, idx) => {
               return (
                 <div key={"cart" + product.id}>
-                  <div className="product-card-cart" >
+                  <div className="product-card-cart">
                     <div className="product_text">
                       <h2 className="productName">{product.name}</h2>
                       <p className="productPrice">${product.price}</p>
@@ -51,9 +51,10 @@ function Cart(props) {
                     </div>
                     <img
                       className="cart_img"
-                      src="http://placeimg.com/640/480/nature"
+                      src={product.imgURL}
                       alt={product.description}
                     />
+
                     <div className="product_buttons">
                       <button onClick={() => removeFromCart(idx)}>
                         remove from cart
