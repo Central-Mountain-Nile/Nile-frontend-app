@@ -15,18 +15,18 @@ const CreateItem = (props) => {
   // const loggedIn = props.loggedIn;
   const currentUser = props.currentUser;
   const token = props.token;
-  // const options = [
-  //   'Clothing',
-  //   'Electronics',
-  //   'Jewelry',
-  //   'Music',
-  //   'Auto',
-  //   'Gaming',
-  //   'Pets',
-  //   'Lifestyle',
-  //   'Appliances',
-  //   'Books'
-  // ];
+  const options = [
+    "clothing",
+    "electronics",
+    "jewelry",
+    "music",
+    "auto",
+    "gaming",
+    "pets",
+    "lifestyle",
+    "appliances",
+    "books",
+  ];
 
   async function makeStore(event) {
     try {
@@ -120,7 +120,7 @@ const CreateItem = (props) => {
             <div className="newPostLabelText">
               <label>
                 <p>Category:</p>
-                <input
+                {/* <input
                   className="newPostInput"
                   name="Category"
                   type="text"
@@ -128,7 +128,19 @@ const CreateItem = (props) => {
                   onChange={(event) => {
                     setCategory(event.target.value);
                   }}
-                />
+                /> */}
+                <select
+                  onChange={(event) => {
+                    console.log(event.target.value);
+                    setCategory(event.target.value);
+                  }}
+                >
+                  {options.map((option, index) => (
+                    <option key={index} value={option[index]}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
               </label>
             </div>
             <div className="newPostLabelText">
