@@ -40,8 +40,8 @@ function Cart(props) {
           {cart.cartItems ? (
             cart.cartItems.map((product, idx) => {
               return (
-                <div>
-                  <div className="product-card-cart" key={"cart" + product.id}>
+                <div key={"cart" + product.id}>
+                  <div className="product-card-cart" >
                     <div className="product_text">
                       <h2 className="productName">{product.name}</h2>
                       <p className="productPrice">${product.price}</p>
