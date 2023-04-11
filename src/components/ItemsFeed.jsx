@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import { getProducts, adminDelete } from "../Api-Adapter";
+import { getProducts, adminDelete, editProduct } from "../Api-Adapter";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Banner } from "./";
 
@@ -47,6 +47,21 @@ function ItemsFeed(props) {
     setProducts(filteredData);
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const updatedProduct = await editProduct(
+      routineIdNumber,
+      updatedName,
+      updatedGoal
+    );
+
+    setRoutines((prevRoutine) => ({
+      ...prevRoutine,
+      name: updatedProduct.name,
+      goal: updatedProduct.goal,
+    }));
+  };
+
   async function changePage(num) {
     navigate(`/itemsfeed/${num}`);
     setPage(num);
@@ -88,6 +103,7 @@ function ItemsFeed(props) {
                 </Link>
                 {currentUser && currentUser.isAdmin ? (
                   <button className="deleteBtn">Delete</button>
+                  
                 ) : null}
                 {/* {currentUser && currentUser.isAdmin ? <button>Delete</button> : null} */}
               </form>
