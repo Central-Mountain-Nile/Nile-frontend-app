@@ -52,8 +52,9 @@ function ItemsFeed(props) {
     setProducts(filteredData);
   };
   const handleClickDeleteStore = async (id) => {
+    console.log('hit')
     const result = await deleteProduct(token, id);
-    console.log(products);
+    console.log(result);
     const filteredData = products.filter((element) => {
       if (element.id !== id) {
         return true;
@@ -80,10 +81,9 @@ function ItemsFeed(props) {
           products.map((product) => {
             return (
               <form
-                // onSubmit={(event) => {
-                //   event.preventDefault();
-                //   handleClickDelete(product.id);
-                // }}
+                onSubmit={(event) => {
+                  event.preventDefault();
+                }}
                 key={`itemsFeed${product.id}`}
               >
                 <Link
@@ -99,7 +99,6 @@ function ItemsFeed(props) {
                     />
                     <span>{product.description}</span>
                     <span>${product.price}</span>
-                    {/* <p>category:{product.categoryName}</p> */}
                     <p>Quantity: {product.quantity}</p>
                   </div>
                 </Link>
@@ -118,7 +117,7 @@ function ItemsFeed(props) {
                     </Link>
                   </>
                 ) : null}
-                {currentUser && currentUser.isStore ? (
+                {currentUser && product.creatorId === currentUser.id && !currentUser.isAdmin ? (
                   <>
                     <button
                       onClick={() => {
@@ -133,7 +132,6 @@ function ItemsFeed(props) {
                     </Link>
                   </>
                 ) : null}
-                {/* {currentUser && currentUser.isAdmin ? <button>Delete</button> : null} */}
               </form>
             );
           })

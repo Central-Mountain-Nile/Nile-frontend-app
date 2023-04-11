@@ -31,24 +31,19 @@ function DisplayItemEdit(props) {
     setImgURL(thisProduct.imgURL);
   };
 
-  const handleClickEdit = async (event, productId, token, fields) => {
-    console.log("hit");
-    event.preventDefault();
+  const handleClickEdit = async ( productId, fields) => {
     if (currentUser && currentUser.isAdmin) {
+
       const result = await editProductAdmin(productId, token, fields);
-      console.log(result, "RESULT-EDIT");
 
       navigate("/");
     } else {
       alert("MUST BE LOGGED IN TO PERFORM THIS ACTION");
     }
   };
-  const handleClickEditStore = async (event, productId, token, fields) => {
-    console.log("hit");
-    event.preventDefault();
-    if (currentUser && currentUser.isAdmin) {
+  const handleClickEditStore = async ( productId, fields) => {
+    if (currentUser && currentUser.id === singleProduct.creatorId) {
       const result = await editProduct(productId, token, fields);
-      console.log(result, "RESULT-EDIT");
 
       navigate("/");
     } else {
@@ -67,14 +62,6 @@ function DisplayItemEdit(props) {
       <form
         onSubmit={(event) => {
           event.preventDefault();
-          console.log("hit");
-          handleClickEdit(event, productId, token, {
-            name,
-            imgURL,
-            description,
-            price,
-            quantity,
-          });
         }}
       >
         {/* {singleProduct.length ? (
@@ -122,9 +109,37 @@ function DisplayItemEdit(props) {
               </div>
             </div>
             <div className="right-side-individual-product">
-              <button className="addToCartBtn" type="submit">
-                confirm edit
-              </button>
+              {currentUser && currentUser.isAdmin ? (
+                <button
+                  className="addToCartBtn"
+                  type="submit"
+                  onClick={() => {
+                    handleClickEdit(productId, {
+                      name,
+                      imgURL,
+                      description,
+                      price,
+                      quantity,
+                    });
+                  }}
+                >
+                  confirm edit
+                </button>
+              ) : null}
+              {
+                currentUser && currentUser.id === singleProduct.creatorId && !currentUser.isAdmin?
+                <button className="addToCartBtn" type="submit" onClick={()=>{
+                  handleClickEditStore( productId, {
+                    name,
+                    imgURL,
+                    description,
+                    price,
+                    quantity,
+                  })}
+      }>
+        confirm edit
+      </button>:null
+              }
             </div>
           </div>
         ) : (

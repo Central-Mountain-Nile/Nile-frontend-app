@@ -2,43 +2,46 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { postProduct, becomeStore } from "../Api-Adapter";
 
-
-
 const CreateItem = (props) => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
-  const [description, setDescription] = useState("")
+  const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState("");
-  const [isStore, setIsStore] = useState(false)
-  const [category, setCategory] = useState('')
-  const [imgURL, setImgURL] = useState("https://picsum.photos/200")
+  const [isStore, setIsStore] = useState(false);
+  const [category, setCategory] = useState("");
+  const [imgURL, setImgURL] = useState("https://picsum.photos/200");
   const navigate = useNavigate();
   // const loggedIn = props.loggedIn;
   const currentUser = props.currentUser;
   const token = props.token;
 
-
- async function makeStore(event) {
-  try {
-    const response = await becomeStore(token)
-    setIsStore(response.isStore)
-  } catch (error) {
-    throw error
+  async function makeStore(event) {
+    try {
+      const response = await becomeStore(token);
+      setIsStore(response.isStore);
+    } catch (error) {
+      throw error;
+    }
   }
- }
 
   const handleClick = async (event) => {
     event.preventDefault();
     if (token && currentUser) {
-    const result = await postProduct(token, {name, price, description, quantity, category, imgURL});
-    navigate("/");
-    }else{
+      const result = await postProduct(token, {
+        name,
+        price,
+        description,
+        quantity,
+        category,
+        imgURL,
+      });
+      navigate("/");
+    } else {
       alert("MUST BE LOGGED IN TO PERFORM THIS ACTION");
     }
   };
 
-  useEffect(() => {
-  }, [])
+  useEffect(() => {}, []);
 
   return (
     <div className="loginPageBox">
@@ -100,7 +103,6 @@ const CreateItem = (props) => {
                 }}
               />
             </label>
-            
           </div>
           <div className="newPostLabelText">
             <label>
@@ -114,7 +116,7 @@ const CreateItem = (props) => {
                   setCategory(event.target.value);
                 }}
               />
-            </label>            
+            </label>
           </div>
           <div className="newPostLabelText">
             <label>
@@ -128,28 +130,30 @@ const CreateItem = (props) => {
                   setImgURL(event.target.value);
                 }}
               />
-            </label>            
-          </div>
-          <div className="newPostLabelText">
-            <label>
-              Make a store?
-              <input
-                type="checkbox"
-                checked={isStore}
-                onChange={(event) => {makeStore(event)}}
-                />
-
             </label>
           </div>
-     
-
-            <button className="submitBtn" type="submit">
-              POST
-            </button>
-      </form>
+          <div className="newPostLabelText">
+            {currentUser && currentUser.isStore ? 
+            null 
+            :<label>
+            Make a store?
+            <input
+              type="checkbox"
+              checked={isStore}
+              onChange={(event) => {
+                makeStore(event);
+              }}
+            />
+          </label>}
+            
           </div>
+
+          <button className="submitBtn" type="submit">
+            POST
+          </button>
+        </form>
       </div>
-      
+    </div>
   );
 };
 
