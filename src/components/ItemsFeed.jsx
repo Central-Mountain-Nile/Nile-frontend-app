@@ -1,5 +1,10 @@
 import { React, useState, useEffect } from "react";
-import { getProducts, adminDelete, editProduct } from "../Api-Adapter";
+import {
+  getProducts,
+  adminDelete,
+  editProduct,
+  deleteProduct,
+} from "../Api-Adapter";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Banner } from "./";
 
@@ -36,6 +41,18 @@ function ItemsFeed(props) {
   }
   const handleClickDelete = async (id) => {
     const result = await adminDelete(token, id);
+    console.log(products);
+    const filteredData = products.filter((element) => {
+      if (element.id !== id) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    setProducts(filteredData);
+  };
+  const handleClickDeleteStore = async (id) => {
+    const result = await deleteProduct(token, id);
     console.log(products);
     const filteredData = products.filter((element) => {
       if (element.id !== id) {
@@ -91,6 +108,21 @@ function ItemsFeed(props) {
                     <button
                       onClick={() => {
                         handleClickDelete(product.id);
+                      }}
+                      className="deleteBtn"
+                    >
+                      Delete
+                    </button>
+                    <Link to={`/displayitemedit/${product.id}`}>
+                      <button className="editBtn">Edit</button>
+                    </Link>
+                  </>
+                ) : null}
+                {currentUser && currentUser.isStore ? (
+                  <>
+                    <button
+                      onClick={() => {
+                        handleClickDeleteStore(product.id);
                       }}
                       className="deleteBtn"
                     >
