@@ -193,6 +193,7 @@ export const createUserPayment = async (
   token
 ) => {
   try {
+    console.log(paymentType,provider,accountNo,expire,token)
     const response = await fetch(`${BASE_URL}/users_payments`, {
       method: "POST",
       headers: {
@@ -370,22 +371,18 @@ export const updateUserOrder = async (fields, token) => {
 };
 
 export const createOrder = async (
-  orderItemData,
-  orderPaymentData,
-  total,
+  userPaymentId,
   token
 ) => {
   try {
-    const response = await fetch(`${BASE_URL}/users_order`, {
+    const response = await fetch(`${BASE_URL}/order`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        orderItemData: orderItemData,
-        orderPaymentData: orderPaymentData,
-        total: total,
+        userPaymentId,
       }),
     });
 
