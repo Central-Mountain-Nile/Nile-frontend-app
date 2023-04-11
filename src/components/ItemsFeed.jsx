@@ -80,36 +80,64 @@ function ItemsFeed(props) {
         {products.length ? (
           products.map((product) => {
             return (
-              <form
-                onSubmit={(event) => {
-                  event.preventDefault();
-                  handleClickDelete(product.id);
-                }}
-                key={`itemsFeed${product.id}`}
-              >
-                <Link
-                  className="linkProperties"
-                  to={`/displayItems/${product.id}`}
+              <div key={`itemsFeed${product.id}`}>
+                <form
+                  onSubmit={(event) => {
+                    event.preventDefault();
+                    handleClickDelete(product.id);
+                  }}
                 >
-                  <div className="product-card">
-                    <h2>{product.name}</h2>
-                    <img
-                      className="individual_item_img"
-                      src={product.imgURL}
-                      alt={product.description}
-                    />
-                    <span>{product.description}</span>
-                    <span>${product.price}</span>
-                    {/* <p>category:{product.categoryName}</p> */}
-                    <p>Quantity: {product.quantity}</p>
-                  </div>
-                </Link>
-                {currentUser && currentUser.isAdmin ? (
-                  <button className="deleteBtn">Delete</button>
-                  
-                ) : null}
-                {/* {currentUser && currentUser.isAdmin ? <button>Delete</button> : null} */}
-              </form>
+                  <Link
+                    className="linkProperties"
+                    to={`/displayItems/${product.id}`}
+                  >
+                    <div className="product-card">
+                      <h2>{product.name}</h2>
+                      <img
+                        className="individual_item_img"
+                        src={product.imgURL}
+                        alt={product.description}
+                      />
+                      <span>{product.description}</span>
+                      <span>${product.price}</span>
+                      {/* <p>category:{product.categoryName}</p> */}
+                      <p>Quantity: {product.quantity}</p>
+                    </div>
+                  </Link>
+                  {currentUser && currentUser.isAdmin ? (
+                    <>
+
+                      <button className="deleteBtn">Delete</button>
+                      <div className="updateRoutineDiv">
+                        <h4 className="formMSGs">Edit routine {routines.name}</h4>
+                        <form onSubmit={handleSubmit} className="routineDetailsForm">
+                          <label className="routineDetailsLabels">
+                            Edit Name:
+                            <input
+                              type="text"
+                              value={updatedName}
+                              onChange={handleNameChange}
+                            />
+                          </label>
+                          <br />
+                          <label className="routineDetailsLabels">
+                            Edit Goal:
+                            <input
+                              type="text"
+                              value={updatedGoal}
+                              onChange={handleGoalChange}
+                            />
+                          </label>
+                          <br />
+                          <button type="submit" className="submitBtns">
+                            Update routine
+                          </button>
+                        </form>
+                      </div>
+                    </>
+                  ) : null}
+                </form>
+              </div>
             );
           })
         ) : (
