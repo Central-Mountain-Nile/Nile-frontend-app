@@ -108,10 +108,10 @@ function ItemsFeed(props) {
                     <>
 
                       <button className="deleteBtn">Delete</button>
-                      <div className="updateRoutineDiv">
-                        <h4 className="formMSGs">Edit routine {routines.name}</h4>
-                        <form onSubmit={handleSubmit} className="routineDetailsForm">
-                          <label className="routineDetailsLabels">
+                      <div className="updateProductDiv">
+                        <h4 className="formMSGs">Edit Product {product.name}</h4>
+                        <form onSubmit={handleSubmit} className="productDetailsForm">
+                          <label className="productDetailsLabels">
                             Edit Name:
                             <input
                               type="text"
@@ -120,17 +120,17 @@ function ItemsFeed(props) {
                             />
                           </label>
                           <br />
-                          <label className="routineDetailsLabels">
-                            Edit Goal:
+                          <label className="productDetailsLabels">
+                            Edit Description:
                             <input
                               type="text"
-                              value={updatedGoal}
-                              onChange={handleGoalChange}
+                              value={updatedDescription}
+                              onChange={handleDescriptionChange}
                             />
                           </label>
                           <br />
                           <button type="submit" className="submitBtns">
-                            Update routine
+                            Update Product
                           </button>
                         </form>
                       </div>
