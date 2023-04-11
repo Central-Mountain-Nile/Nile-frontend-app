@@ -10,6 +10,7 @@ function ItemsFeed(props) {
   const [page, setPage] = useState(Number(pageNumber));
   const [pageCount, setPageCount] = useState(1);
   const navigate = useNavigate();
+  
 
   const retrieveProducts = async () => {
     const allProducts = await getProducts({ page, searchTerm, category });
@@ -50,15 +51,17 @@ function ItemsFeed(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const updatedProduct = await editProduct(
-      routineIdNumber,
-      updatedName,
-      updatedGoal
+      productId,
+      fields
     );
 
-    setRoutines((prevRoutine) => ({
-      ...prevRoutine,
+    setProducts((prevProduct) => ({
+      ...prevProduct,
       name: updatedProduct.name,
-      goal: updatedProduct.goal,
+      description: updatedProduct.description,
+      price: updatedProduct.price,
+      quantity: updatedProduct.quantity,
+      imgURL: updatedProduct.imgURL,
     }));
   };
 
