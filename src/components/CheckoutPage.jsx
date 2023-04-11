@@ -2,20 +2,15 @@ import {
   CardElement,
   useElements,
   useStripe,
-  Elements,
 } from "@stripe/react-stripe-js";
 import axios from "axios";
 import React, { useState } from "react";
-import { loadStripe } from "@stripe/stripe-js";
-import { checkOut } from "../Api-Adapter";
+import { createOrder, createUserPayment } from "../Api-Adapter";
 
-const PUBLIC_KEY =
-  "pk_test_51MtsydIGbpUzCRMIyl91749azbcWLZi8pNyIcBfcTlYnO6MfPEuxrwfjmcXBqIHccsbvCW2HPsW1rs07QwiaMtkD00oIiY7ppP";
 
-const stripeTestPromise = loadStripe(PUBLIC_KEY);
 
 export default function CheckoutPage(props) {
-  const { cart } = props;
+  const { cart, token } = props;
   const [success, setSuccess] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
@@ -35,7 +30,10 @@ export default function CheckoutPage(props) {
       }
       return subtotal;
     }
-
+    const userPayment = await createUserPayment(paymentMethod.card.brand,'WellsFargo',paymentMethod.card.last4,`${paymentMethod.card.exp_year}-${paymentMethod.card.exp_month}-01`,token)
+    console.log(userPayment)
+    const order = await createOrder(userPayment.id,token)
+    console.log(order)
     if (!error) {
       try {
         const { id } = paymentMethod;
