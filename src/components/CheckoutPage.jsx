@@ -1,13 +1,7 @@
-import {
-  CardElement,
-  useElements,
-  useStripe,
-} from "@stripe/react-stripe-js";
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
 import React, { useState } from "react";
 import { createOrder, createUserPayment } from "../Api-Adapter";
-
-
 
 export default function CheckoutPage(props) {
   const { cart, token, setCart } = props;
@@ -33,9 +27,15 @@ export default function CheckoutPage(props) {
 
     if (!error) {
       try {
-        const userPayment = await createUserPayment(paymentMethod.card.brand,'WellsFargo',paymentMethod.card.last4,`${paymentMethod.card.exp_year}-${paymentMethod.card.exp_month}-01`,token)
-        await createOrder(userPayment.id,token)
-        setCart({})
+        const userPayment = await createUserPayment(
+          paymentMethod.card.brand,
+          "WellsFargo",
+          paymentMethod.card.last4,
+          `${paymentMethod.card.exp_year}-${paymentMethod.card.exp_month}-01`,
+          token
+        );
+        await createOrder(userPayment.id, token);
+        setCart({});
         const { id } = paymentMethod;
         const response = await axios.post("http://localhost:8080/api/payment", {
           amount: orderTotal() * 100,
