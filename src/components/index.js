@@ -14,7 +14,7 @@ export { default as ItemsFeed } from "./ItemsFeed";
 export { default as Login } from "./Login";
 export { default as Profile } from "./Profile";
 export { default as Register } from "./Register";
-export { default as SingleItem } from "./SingleItem";
+export { default as DisplayItemEdit } from "./DisplayItemEdit";
 export { default as Store } from "./Store";
 export { default as UpdateItem } from "./UpdateItem";
 export { default as StripeContainer } from "./StripeContainer";
