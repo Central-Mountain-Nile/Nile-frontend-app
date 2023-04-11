@@ -578,4 +578,13 @@ justify-content: center;
   position: relative;
   bottom: 120px;
 }
+.users-card-wrapper{
+  display: flex;
+  justify-content: center;
+}
+.users-card{
+  border: 1px solid rgb(129, 129, 129);
+  width: 500px;
+  padding: 1rem;
+}
 
