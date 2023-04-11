@@ -622,9 +622,16 @@ justify-content: center;
   border-radius: 10px;
   margin-left: 2rem;
   height: 742px;
-  width: 1000px;
+  width: 1180px;
+  overflow-x: scroll;
+  scroll-snap-stop: always;
+  scroll-snap-type: y mandatory;
+}
+.storeComp::-webkit-scrollbar{
+  display: none;
 }
 .allProductsUser{
   display: flex;
   flex-wrap: wrap;
+
 }
