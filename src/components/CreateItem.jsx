@@ -41,6 +41,7 @@ const CreateItem = (props) => {
 
   const handleClick = async (event) => {
     event.preventDefault();
+    setMessage('')
     let result = null;
     if (token && currentUser) {
       result = await postProduct(token, {
