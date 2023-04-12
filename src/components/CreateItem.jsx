@@ -5,14 +5,14 @@ import { Store } from "./";
 
 const CreateItem = (props) => {
   const [name, setName] = useState("");
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState([]);
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState("");
   const [isStore, setIsStore] = useState(false);
   const [category, setCategory] = useState("clothing");
   const [imgURL, setImgURL] = useState("https://picsum.photos/200");
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const navigate = useNavigate();
   // const loggedIn = props.loggedIn;
   const currentUser = props.currentUser;
@@ -51,17 +51,16 @@ const CreateItem = (props) => {
         category,
         imgURL,
       });
-      if(!result.message){
-        const newProducts = [...products]
-        newProducts.push(result)
-        setProducts(newProducts)
-
-      }else{
-        console.log(result)
-        setMessage(result.message)
+      if (!result.message) {
+        const newProducts = [...products];
+        newProducts.push(result);
+        setProducts(newProducts);
+      } else {
+        console.log(result);
+        setMessage(result.message);
       }
     } else {
-      setMessage("MUST BE LOGGED IN TO PERFORM THIS ACTION")
+      setMessage("MUST BE LOGGED IN TO PERFORM THIS ACTION");
     }
   };
 
@@ -69,8 +68,8 @@ const CreateItem = (props) => {
 
   return (
     <div className="fullCreatePage">
-      <div className="loginPageBox">
-        <div className="loginPage">
+      <div className="loginPageBoxCreate">
+        <div className="createPage">
           <form onSubmit={handleClick}>
             <div className="newPostLabelText">
               <h3>CREATE A PRODUCT</h3>
@@ -190,7 +189,12 @@ const CreateItem = (props) => {
           </form>
         </div>
         <div className="storeComp">
-          <Store currentUser={currentUser} token={token} products={products} setProducts={setProducts} />
+          <Store
+            currentUser={currentUser}
+            token={token}
+            products={products}
+            setProducts={setProducts}
+          />
         </div>
       </div>
       <h2 className="message">{message}</h2>

@@ -8,7 +8,7 @@ function Footer() {
         <img className="logoFoot" src="/nileLogo.png" alt="" />
         <h4>Copyright Nile Marketplace Inc, 2023</h4>
         <Link to="/admin">
-          <p>Admin Access</p>
+          <p className="adminAccess">Admin Access</p>
         </Link>
       </div>
     </>

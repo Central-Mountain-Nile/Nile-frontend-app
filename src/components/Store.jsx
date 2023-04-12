@@ -9,7 +9,7 @@ import {
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 function Store(props) {
-  const { currentUser, token, setProducts,products } = props;
+  const { currentUser, token, setProducts, products } = props;
   const navigate = useNavigate();
   console.log(currentUser, "USER");
   const retrieveUserProducts = async () => {
@@ -50,7 +50,7 @@ function Store(props) {
 
   console.log(products, "PRODUCTS");
   return (
-    <div>
+    <div className="allProdUserWrapper">
       <div className="allProductsUser">
         {products.length ? (
           products.map((product) => {
