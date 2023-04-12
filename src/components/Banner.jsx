@@ -12,7 +12,7 @@ function Banner() {
       interval={5000}
       showStatus={false}
     >
-      <div>
+      <div className="carousel">
         <img className="img" src={require("./images/banner.jpg")} />
       </div>
       <div>
