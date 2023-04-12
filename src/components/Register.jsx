@@ -14,14 +14,15 @@ function Register(props) {
   const [state, setState] = useState("");
   const [postalCode, setPostalCode] = useState("");
   const [country, setCountry] = useState("");
+  const [message, setMessage] = useState('');
   const setToken = props.setToken;
   const setCurrentUser = props.setCurrentUser;
 
   const navigate = useNavigate();
 
   const registerNewUser = async (username, password) => {
-    if (!username || !password) {
-      alert("All fields are required");
+    if (!username || !password ||!firstName || !lastName || !email || !address||!city||!state||!postalCode||!country) {
+      setMessage("All fields are required");
       return;
     }
 
@@ -40,7 +41,7 @@ function Register(props) {
         country,
       });
       if (result.error) {
-        alert(result.message);
+        setMessage(result.message)
       } else {
         setToken(result.token);
         setCurrentUser(result.user);
@@ -178,6 +179,7 @@ function Register(props) {
         <img className="logoFoot" src="/nileLogo.png" alt="" />
 
       </div>
+      <h2 className="message">{message}</h2>
     </div>
   );
 }

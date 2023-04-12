@@ -12,6 +12,7 @@ const CreateItem = (props) => {
   const [isStore, setIsStore] = useState(false);
   const [category, setCategory] = useState("clothing");
   const [imgURL, setImgURL] = useState("https://picsum.photos/200");
+  const [message, setMessage] = useState('');
   const navigate = useNavigate();
   // const loggedIn = props.loggedIn;
   const currentUser = props.currentUser;
@@ -56,7 +57,7 @@ const CreateItem = (props) => {
 
       }
     } else {
-      alert("MUST BE LOGGED IN TO PERFORM THIS ACTION");
+      setMessage(response.message)
     }
   };
 
@@ -188,6 +189,7 @@ const CreateItem = (props) => {
           <Store currentUser={currentUser} token={token} products={products} setProducts={setProducts} />
         </div>
       </div>
+      <h2 className="message">{message}</h2>
     </div>
   );
 };

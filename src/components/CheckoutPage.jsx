@@ -6,6 +6,7 @@ import { createOrder, createUserPayment } from "../Api-Adapter";
 export default function CheckoutPage(props) {
   const { cart, token, setCart } = props;
   const [success, setSuccess] = useState(false);
+  const [message, setMessage] = useState('');
   const stripe = useStripe();
   const elements = useElements();
 
@@ -51,7 +52,7 @@ export default function CheckoutPage(props) {
         console.log("Error", error);
       }
     } else {
-      console.log(error.message);
+      setMessage(error.message)
     }
   };
 
@@ -79,6 +80,7 @@ export default function CheckoutPage(props) {
           <img className="logoConfirmPay" src="/nileLogo.png" alt="" />
         </div>
       )}
+          <h2 className="message">{message}</h2>
     </>
   );
 }

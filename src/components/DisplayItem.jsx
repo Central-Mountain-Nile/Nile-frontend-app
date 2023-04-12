@@ -6,6 +6,7 @@ function DisplayItem(props) {
   const [singleProduct, setSingleProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
   const { productId } = useParams();
+  const [message, setMessage] = useState('');
   const { token, cart, setCart, searchTerm } = props;
   const navigate = useNavigate();
 
@@ -33,7 +34,7 @@ function DisplayItem(props) {
             setCart(newCart);
             navigate("/");
           } else {
-            alert(result.message);
+            setMessage(result.message)
           }
           return;
         }
@@ -46,7 +47,7 @@ function DisplayItem(props) {
         setCart(newCart);
         navigate("/");
       } else {
-        alert(result.message);
+        setMessage(result.message)
       }
     }
   };
@@ -60,9 +61,6 @@ function DisplayItem(props) {
   return (
     <div className="allProducts">
       <form onSubmit={(event) => handleClick(event)}>
-        {/* {singleProduct.length ? (
-      singleProduct.map((product) => {
-        return ( */}
         {singleProduct.name ? (
           <div className="product-card-individual">
             <div>
@@ -93,13 +91,8 @@ function DisplayItem(props) {
         ) : (
           <div className="loader"></div>
         )}
-
-        {/* );
-      })
-    ) : (
-      <div className="loader"></div>
-    )} */}
       </form>
+      <h2 className="message">{message}</h2>
     </div>
   );
 }

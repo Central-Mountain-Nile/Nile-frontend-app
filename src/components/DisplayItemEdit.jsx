@@ -16,9 +16,9 @@ function DisplayItemEdit(props) {
   const [imgURL, setImgURL] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
-  // const [quantity, setQuantity] = useState(0)
+  const [message, setMessage] = useState('');
   const { productId } = useParams();
-  const { token, cart, setCart, searchTerm, currentUser } = props;
+  const { token, currentUser } = props;
   const navigate = useNavigate();
 
   const retrieveProduct = async () => {
@@ -38,7 +38,7 @@ function DisplayItemEdit(props) {
 
       navigate("/");
     } else {
-      alert("MUST BE LOGGED IN TO PERFORM THIS ACTION");
+      setMessage("MUST BE LOGGED IN TO PERFORM THIS ACTION");
     }
   };
   const handleClickEditStore = async ( productId, fields) => {
@@ -47,7 +47,7 @@ function DisplayItemEdit(props) {
 
       navigate("/");
     } else {
-      alert("MUST BE LOGGED IN TO PERFORM THIS ACTION");
+      setMessage("MUST BE LOGGED IN TO PERFORM THIS ACTION");
     }
   };
 

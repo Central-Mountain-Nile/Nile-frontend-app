@@ -6,6 +6,7 @@ function Login(props) {
   const { setToken, setCurrentUser} = props
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
 
@@ -13,7 +14,7 @@ function Login(props) {
   const logInToSite = async () => {
     const response = await loginUser(userName, password);
     if (response.error) {
-      alert("Invalid Credentials");
+      setMessage(response.message)
     } else {
       setToken(response.token);
       setCurrentUser(response.user);
@@ -60,6 +61,7 @@ function Login(props) {
             Don't have an account? Register here!
           </Link>
     </div>
+    <h2 className="message">{message}</h2>
     </div>
   );
 }
