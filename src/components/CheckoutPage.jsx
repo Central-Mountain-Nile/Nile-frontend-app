@@ -6,7 +6,7 @@ import { createOrder, createUserPayment } from "../Api-Adapter";
 export default function CheckoutPage(props) {
   const { cart, token, setCart } = props;
   const [success, setSuccess] = useState(false);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const stripe = useStripe();
   const elements = useElements();
 
@@ -23,7 +23,7 @@ export default function CheckoutPage(props) {
           subtotal += item.price * item.quantity;
         });
       }
-      return Math.floor(subtotal * 100)
+      return Math.floor(subtotal * 100);
     }
 
     if (!error) {
@@ -38,10 +38,13 @@ export default function CheckoutPage(props) {
         await createOrder(userPayment.id, token);
         setCart({});
         const { id } = paymentMethod;
-        const response = await axios.post("http://localhost:8080/api/payment", {
-          amount: orderTotal(),
-          id,
-        });
+        const response = await axios.post(
+          "https://nileserver.onrender.com/api/payment",
+          {
+            amount: orderTotal(),
+            id,
+          }
+        );
         console.log("hit");
 
         if (response.data.success) {
@@ -52,7 +55,7 @@ export default function CheckoutPage(props) {
         console.log("Error", error);
       }
     } else {
-      setMessage(error.message)
+      setMessage(error.message);
     }
   };
 
@@ -80,7 +83,7 @@ export default function CheckoutPage(props) {
           <img className="logoConfirmPay" src="/nileLogo.png" alt="" />
         </div>
       )}
-          <h2 className="message">{message}</h2>
+      <h2 className="message">{message}</h2>
     </>
   );
 }
