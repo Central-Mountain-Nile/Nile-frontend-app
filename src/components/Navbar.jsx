@@ -5,7 +5,7 @@ import { Categories } from "./";
 
 const Navbar = (props) => {
   const { loggedIn, setLoggedIn, setSearchTerm, setToken } = props;
-  const [searchBar, setSearchtBar] = useState("");
+  const [searchBar, setSearchBar] = useState("");
   function logout() {
     localStorage.removeItem("token");
     localStorage.removeItem("currentUser");
@@ -20,7 +20,7 @@ const Navbar = (props) => {
           <Link
             to="/itemsfeed/1"
             onClick={() => {
-              setSearchtBar("");
+              setSearchBar("");
               setSearchTerm("");
             }}
           >
@@ -46,7 +46,13 @@ const Navbar = (props) => {
               <div>
                 {/* <button>Hello, {props.currentUser.username}</button> */}
 
-                <Link to="/">
+                <Link
+                  to="/"
+                  onClick={() => {
+                    setSearchBar("");
+                    setSearchTerm("");
+                  }}
+                >
                   <button>Home</button>
                 </Link>
                 <Link to="/cart">

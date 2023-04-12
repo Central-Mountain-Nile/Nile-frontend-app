@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.8eb20739.css",
-    "main.js": "/static/js/main.811180ca.js",
+
     "static/media/banner.jpg": "/static/media/banner.15d906f4cfe650133f0e.jpg",
     "static/media/clothes.jpeg": "/static/media/clothes.e8303f4139d808a1e11e.jpeg",
     "static/media/VR.png": "/static/media/VR.fe40d7407d257dc59a12.png",
@@ -10,10 +10,12 @@
     "static/media/iphones.jpeg": "/static/media/iphones.f9117f401964a44c0e1d.jpeg",
     "index.html": "/index.html",
     "main.8eb20739.css.map": "/static/css/main.8eb20739.css.map",
-    "main.811180ca.js.map": "/static/js/main.811180ca.js.map"
+
+    "main.eb3702cf.js.map": "/static/js/main.eb3702cf.js.map"
   },
   "entrypoints": [
     "static/css/main.8eb20739.css",
-    "static/js/main.811180ca.js"
+    "static/js/main.eb3702cf.js"
+
   ]
 }

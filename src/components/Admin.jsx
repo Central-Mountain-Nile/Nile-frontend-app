@@ -18,7 +18,7 @@ function Admin(props) {
 
   useEffect(() => {
     retrieveAllUsers();
-  }, []);
+  }, [currentUser]);
   return (
     <div>
       admin page

@@ -41,6 +41,7 @@ const CreateItem = (props) => {
 
   const handleClick = async (event) => {
     event.preventDefault();
+    setMessage('')
     let result = null;
     if (token && currentUser) {
       result = await postProduct(token, {
@@ -51,13 +52,12 @@ const CreateItem = (props) => {
         category,
         imgURL,
       });
-      if (!result.message) {
-        const newProducts = [...products];
-        newProducts.push(result);
-        setProducts(newProducts);
-      } else {
-        console.log(result);
-        setMessage(result.message);
+      if(!result.message){
+        const newProducts = [...products]
+        newProducts.push(result)
+        setProducts(newProducts)
+      }else{
+        setMessage(result.message)
       }
     } else {
       setMessage("MUST BE LOGGED IN TO PERFORM THIS ACTION");
