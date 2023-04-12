@@ -619,7 +619,10 @@ justify-content: center;
 .logoConfirmPay{
   height: 100px;
   position: relative;
-  bottom: 120px;
+  bottom: 180px;
+}
+.logoCard{
+height: 50px;
 }
 .users-card-wrapper{
   display: flex;
@@ -633,6 +636,7 @@ justify-content: center;
 .fullCreatePage{
   display: flex;
   flex-direction: row;
+
   margin-left: 2rem;
 }
 .storeComp{
@@ -655,6 +659,10 @@ justify-content: center;
 .message{
   color: red;
   z-index: 9999;
+}
+.loginPageBoxCreate{
+  display: flex;
+  flex-direction: row;
 }
 @media screen and (max-width: 767px) {
 
@@ -764,6 +772,10 @@ body {
   display: flex;
   justify-content: center;
 }
+.loginPageBoxCreate{
+  display: flex;
+  justify-content: center;
+}
 .storeComp{
   width: 100%;
   margin: 0px;
@@ -778,6 +790,9 @@ body {
  flex-direction: column;
 }
 .cart{
+  width: 100%;
+}
+.confirmPayCard{
   width: 100%;
 }
 }

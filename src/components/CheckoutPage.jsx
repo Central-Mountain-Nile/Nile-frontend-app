@@ -65,7 +65,7 @@ export default function CheckoutPage(props) {
         <form onSubmit={handleSubmit}>
           <div className="ccWrapper">
             <fieldset className="FormGroup">
-              <img className="logoFoot" src="/nileLogo.png" alt="" />
+              <img className="logoCard" src="/nileLogo.png" alt="" />
               <div className="FormRow">
                 <CardElement />
               </div>

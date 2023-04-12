@@ -32,7 +32,7 @@ const Navbar = (props) => {
               type="text"
               className="search"
               onChange={(e) => {
-                setSearchtBar(e.target.value);
+                setSearchBar(e.target.value);
               }}
             />
             <MagnifyingGlassCircleIcon
