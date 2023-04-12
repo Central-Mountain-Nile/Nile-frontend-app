@@ -777,4 +777,7 @@ body {
  display: flex;
  flex-direction: column;
 }
+.cart{
+  width: 100%;
+}
 }
