@@ -58,7 +58,6 @@ const CreateItem = (props) => {
         setProducts(newProducts)
 
       }else{
-        console.log(result)
         setMessage(result.message)
       }
     } else {
