@@ -41,8 +41,9 @@ const CreateItem = (props) => {
 
   const handleClick = async (event) => {
     event.preventDefault();
+    let result = null;
     if (token && currentUser) {
-      const result = await postProduct(token, {
+      result = await postProduct(token, {
         name,
         price,
         description,
@@ -55,9 +56,12 @@ const CreateItem = (props) => {
         newProducts.push(result)
         setProducts(newProducts)
 
+      }else{
+        console.log(result)
+        setMessage(result.message)
       }
     } else {
-      setMessage(response.message)
+      setMessage("MUST BE LOGGED IN TO PERFORM THIS ACTION")
     }
   };
 
