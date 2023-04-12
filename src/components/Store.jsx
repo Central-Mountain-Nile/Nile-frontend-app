@@ -19,31 +19,7 @@ function Store(props) {
       setProducts(allProducts);
     }
   };
-  // const handleClickDelete = async (id) => {
-  //   const result = await adminDelete(token, id);
-  //   console.log(products);
-  //   const filteredData = products.filter((element) => {
-  //     if (element.id !== id) {
-  //       return true;
-  //     } else {
-  //       return false;
-  //     }
-  //   });
-  //   setProducts(filteredData);
-  // };
-  // const handleClickDeleteStore = async (id) => {
-  //   console.log("hit");
-  //   const result = await deleteProduct(token, id);
-  //   console.log(result);
-  //   const filteredData = products.filter((element) => {
-  //     if (element.id !== id) {
-  //       return true;
-  //     } else {
-  //       return false;
-  //     }
-  //   });
-  //   setProducts(filteredData);
-  // };
+  
   useEffect(() => {
     retrieveUserProducts();
   }, [currentUser]);
@@ -77,43 +53,12 @@ function Store(props) {
                     <p>Quantity: {product.quantity}</p>
                   </div>
                 </Link>
-                {/* {currentUser && currentUser.isAdmin ? (
-                  <>
-                    <button
-                      onClick={() => {
-                        handleClickDelete(product.id);
-                      }}
-                      className="deleteBtn"
-                    >
-                      Delete
-                    </button>
-                    <Link to={`/displayitemedit/${product.id}`}>
-                      <button className="editBtn">Edit</button>
-                    </Link>
-                  </>
-                ) : null}
-                {currentUser &&
-                product.creatorId === currentUser.id &&
-                !currentUser.isAdmin ? (
-                  <>
-                    <button
-                      onClick={() => {
-                        handleClickDeleteStore(product.id);
-                      }}
-                      className="deleteBtn"
-                    >
-                      Delete
-                    </button>
-                    <Link to={`/displayitemedit/${product.id}`}>
-                      <button className="editBtn">Edit</button>
-                    </Link>
-                  </>
-                ) : null} */}
+               
               </form>
             );
           })
         ) : (
-          <div className="loader"></div>
+          null
         )}
       </div>
     </div>
