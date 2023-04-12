@@ -52,7 +52,7 @@ function ItemsFeed(props) {
     setProducts(filteredData);
   };
   const handleClickDeleteStore = async (id) => {
-    console.log('hit')
+    console.log("hit");
     const result = await deleteProduct(token, id);
     console.log(result);
     const filteredData = products.filter((element) => {
@@ -117,7 +117,9 @@ function ItemsFeed(props) {
                     </Link>
                   </>
                 ) : null}
-                {currentUser && product.creatorId === currentUser.id && !currentUser.isAdmin ? (
+                {currentUser &&
+                product.creatorId === currentUser.id &&
+                !currentUser.isAdmin ? (
                   <>
                     <button
                       onClick={() => {
