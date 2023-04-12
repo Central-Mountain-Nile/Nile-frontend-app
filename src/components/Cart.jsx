@@ -30,7 +30,7 @@ function Cart(props) {
     subtotal = Math.floor(subtotal * 100) / 100;
     return subtotal;
   }
-
+console.log(cart.cartItems)
   return (
     <div className="cartWrapper">
       <div className="cart">
@@ -59,7 +59,6 @@ function Cart(props) {
                       <button onClick={() => removeFromCart(idx)}>
                         remove from cart
                       </button>
-                      <input placeholder="Edit quantity" />
                     </div>
                   </div>
                 </div>
